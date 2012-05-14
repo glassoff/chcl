@@ -1,0 +1,60 @@
+<form action="" method="POST" style="margin:0px;padding:0px" id="filter_form" name="filter_form">
+[[filter]]
+<table class="products_sort " cellpadding="0" cellspacing="0" border="0" style="height:50px;">
+
+ <tr>
+  <td>Стоимость от:</td>
+   <td valign="middle">
+       
+<input type="text" value="[+ucf_price+]" size="10" name="ucf_price"> до
+<input type="text" value="[+ucf_price2+]" size="10" name="ucf_price2">
+
+  
+   </td>
+
+
+</tr> </table> 
+
+
+<table class="products_sort " cellpadding="0" cellspacing="0" border="0" style="height:40px;">
+
+
+<tr>
+   <td>Показать:</td>
+    <td valign="middle">
+        <select name="ucf" class="reg_select">
+
+            <option value="all" [+phx:if=`[+ucf+]`:is=`all`:then=`selected`:else=``+]>Все</option>
+            <option value="sell" [+phx:if=`[+ucf+]`:is=`sell`:then=`selected`:else=``+]>Товары в наличии</option>
+            <option value="new" [+phx:if=`[+ucf+]`:is=`new`:then=`selected`:else=``+]>Новинки</option>
+          
+        
+        </select>
+    </td>
+    <td valign="middle">Сортировать:</td>
+    <td valign="middle">
+        <select name="ucs" class="reg_select">
+   
+  <option value="pagetitle" [+phx:if=`[+ucs+]`:is=`pagetitle`:then=`selected`:else=``+]>по названию</option>    
+            <option value="price" [+phx:if=`[+ucs+]`:is=`price`:then=`selected`:else=``+]>по цене</option>
+          
+  
+        </select>
+    </td>
+    <td valign="middle">
+        <select name="ucsd" class="reg_select">
+        <option value="ASC" [+phx:if=`[+ucsd+]`:is=`ASC`:then=`selected`:else=``+]>по возрастанию</option>   
+            <option value="DESC" [+phx:if=`[+ucsd+]`:is=`DESC`:then=`selected`:else=``+]>по убыванию</option>
+              
+        </select>
+    </td>
+  <td valign="middle">
+        <input value=" Показать "  name="" type="submit">
+    </td>
+ </tr>
+ 
+
+
+</table>
+<input type="hidden" value="[+parents+]" name="parents" >
+</form>

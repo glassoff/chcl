@@ -1,0 +1,33 @@
+<div id="content" class="home_content">
+      
+	{{shareIcons}}
+	
+	<div class="home_banner">[!bannerShow? &bannerTpl=`PreOrderBannerTpl` &parent=`2914`!]</div>
+	
+	{{spec_banners1}}
+	[!eCList1?   &parents=``  &outerTpl=`spec_banners`!]
+	
+	<p class="zag1">Спецпредложения</p>          
+	[!eCList? &type=`blocklist` &parents=`[[getChildIDs? &docID=`5`]]` &itemHomeId=`219` &id=`hitItemsOnIndex` &cache=`0` &cacheScale=`global` &cachelifetime=`1200` &filter=`si.popular:1` &paginate=`0` &total=`12` &sort=`date_issue` &dir=`DESC`  &columns=`3` &cellTpl=`ProductCellForIndexTpl` &rowTpl=`ProductRowTpl` &outerTpl=`ProductListForIndex`!]
+	
+	[!eCList?   &parents=``  &outerTpl=`r_content`!]
+
+
+</div>
+                
+<div class="home_news">
+	<div class="home_news__bottom">
+		<div class="home_news__body">
+			<div class="sidebar_block">
+				<div class="sidebar_block__header">
+					<img src="assets/templates/kidsdream/images/news-title.png" alt="Новости" />
+				</div>					
+				<div class="sidebar_block__body">
+					[[Ditto? &amp;extenders=`dateFilter` &amp;tpl=`News` &amp;sortBy=`createdon` &amp;sortDir=`DESC`&amp;language=`russian` &amp;display=`5` &amp;paginateAlwaysShowLinks=`0` &amp;paginate=`1` &amp;parents=`2924` &amp;dateFormat=`%d.%m.%Y`]]
+				</div>					
+			</div>
+		</div>
+	</div>
+</div>
+
+<div style="clear:both;"></div>

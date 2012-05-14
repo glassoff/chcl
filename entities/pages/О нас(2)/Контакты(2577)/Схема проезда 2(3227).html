@@ -1,0 +1,62 @@
+<html>
+<body>
+<h3>Наш адрес в Химках</h3>
+<p>141400, г. Химки, ул.Энгельса, д.17, 3 этаж, офис 46</p>
+<div style="width:600px;margin:auto;text-align:center;">
+<!-- Этот блок кода нужно вставить в ту часть страницы, где вы хотите разместить карту  (начало) -->
+<script src="http://api-maps.yandex.ru/1.1/?key=AGvWAk4BAAAAZXb8UwIAlNr4tuST-8ziCXVg81FNQdizz1oAAAAAAAAAAAB4xPrHsgvVC1eqOIKVgiNHtl_vBQ==&modules=pmap&wizard=constructor" type="text/javascript"></script>
+<script type="text/javascript">
+    YMaps.jQuery(window).load(function () {
+        var map = new YMaps.Map(YMaps.jQuery("#YMapsID-817")[0]);
+        map.setCenter(new YMaps.GeoPoint(37.436583,55.893527), 15, YMaps.MapType.MAP);
+        map.addControl(new YMaps.Zoom());
+        map.addControl(new YMaps.ToolBar());
+        YMaps.MapType.PMAP.getName = function () { return "Народная"; };
+        map.addControl(new YMaps.TypeControl([
+            YMaps.MapType.MAP,
+            YMaps.MapType.SATELLITE,
+            YMaps.MapType.HYBRID,
+            YMaps.MapType.PMAP
+        ], [0, 1, 2, 3]));
+
+        YMaps.Styles.add("constructor#pmgnm1Placemark", {
+            iconStyle : {
+                href : "http://api-maps.yandex.ru/i/0.3/placemarks/pmgnm1.png",
+                size : new YMaps.Point(28,29),
+                offset: new YMaps.Point(-8,-27)
+            }
+        });
+
+
+        YMaps.Styles.add("constructor#pmgnm2Placemark", {
+            iconStyle : {
+                href : "http://api-maps.yandex.ru/i/0.3/placemarks/pmgnm2.png",
+                size : new YMaps.Point(28,29),
+                offset: new YMaps.Point(-8,-27)
+            }
+        });
+
+       map.addOverlay(createObject("Placemark", new YMaps.GeoPoint(37.431873,55.707659), "constructor#pmgnm1Placemark", "Производитель детской одежды \"МАЛЫШИ\" от 0 до 8 лет."));
+       map.addOverlay(createObject("Placemark", new YMaps.GeoPoint(37.438385,55.893117), "constructor#pmgnm2Placemark", "Производитель детской одежды \"МАЛЫШИ\" от 0 до 8 лет"));
+        
+        function createObject (type, point, style, description) {
+            var allowObjects = ["Placemark", "Polyline", "Polygon"],
+                index = YMaps.jQuery.inArray( type, allowObjects),
+                constructor = allowObjects[(index == -1) ? 0 : index];
+                description = description || "";
+            
+            var object = new YMaps[constructor](point, {style: style, hasBalloon : !!description});
+            object.description = description;
+            
+            return object;
+        }
+    });
+</script>
+
+<div id="YMapsID-817" style="width:450px;height:350px"></div>
+<div style="width:450px;text-align:right;font-family:Arial"><a href="http://api.yandex.ru/maps/tools/constructor/" style="color:#1A3DC1">Создано с помощью инструментов Яндекс.Карт</a></div>
+<!-- Этот блок кода нужно вставить в ту часть страницы, где вы хотите разместить карту (конец) -->
+
+</div>
+</body>
+</html>

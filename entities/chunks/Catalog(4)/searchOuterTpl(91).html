@@ -1,0 +1,29 @@
+<form action="[~1308~]" method="POST" style="margin:0px;padding:0px">
+<table class="products_sort " cellpadding="0" cellspacing="0" border="0" class="">
+  <tr>    
+    <td valign="middle">
+        <input name="searchtxt" class="search_txt_ipt" value="[+search.text+]" type="text">
+    </td>
+    <td valign="middle">
+        <input name="search" id="button" value="Искать" class="" type="submit">
+    </td>
+    <tr>
+        <td colspan="2">
+            Сортировать по:
+            <input type="radio" id="sortprice" name="searchsort" value="si.retail_price" [+phx:if=`[+search.sort+]`:is=`si.retail_price`:then=`checked`+]>&nbsp;<label for="sortprice">Цене</label>&nbsp;
+            <input type="radio" id="sortrating" name="searchsort" value="si.rating" [+phx:if=`[+search.sort+]`:is=`si.rating`:then=`checked`+]>&nbsp;<label for="sortrating">Рейтингу</label>            
+        </td>
+    </tr>
+</table>
+</form>
+<div class="space1"></div>
+[+search.message+]
+[+ecl.pager+]
+<div class="space1"></div>
+<table cellspacing="0" cellpadding=0 class="search_table">
+[+ecl.wrapper+]
+</table>
+<div class="space"></div> 
+[+ecl.pager+]
+<div class="space1"></div> 
+

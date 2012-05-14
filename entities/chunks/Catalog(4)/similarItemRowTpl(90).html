@@ -1,0 +1,63 @@
+<!--li><a  href="[~[+itemhomeid+]~]?id=[+id+]" title="[+longtitle+]">[+pagetitle+]</a></li-->
+
+<div class="catalog_object similar-item"> 
+    <div class="oblect_image">
+        <a onclick="document.filter_form_nav.action=this.href;document.filter_form_nav.submit();return false;" href="[~[+itemhomeid+]~]?id=[+id+]#tovar" title="[+longtitle+]">  
+        [+phx:if=`[+image1+]`:isnot=``:then=`<img src="[+phx:phpthumb=`w=95#[+image1+]`+]" alt="[+pagetitle+]" class="img_link"/>`:else=`<img src="assets/templates/cd/i/nopic.jpg" class="img_link"/>`+]   
+        </a>        
+    </div>
+ 
+    <div class="object_desc">
+        <div class="object_title"><a onclick="document.filter_form_nav.action=this.href;document.filter_form_nav.submit();return false;" class="big_title" href="[~[+itemhomeid+]~]?id=[+id+]#tovar">[+pagetitle+]</a></div>       
+        
+     
+        <div class="object_title">Раздел: <a href="[~[+parent+]~]">[+parenttitle+]</a></div> 
+        <div class="object_manuf"> 
+            [+phx:if=`[+country+]`:isnot=``:then=`<br>Страна: [+country+] `+]   
+            <br>Артикул: [+acc_id+] 
+             [+phx:if=`[+retail_size+]`:isnot=``:then=`<br>Размер: [+retail_size+]`:else=`
+                [+phx:if=`[+size+]`:isnot=``:then=`<br>Размер: [+size+]`+]
+             `+]       
+            [+phx:if=`[+material+]`:isnot=``:then=`<br>Материал: [+material+]`:else=``+]      
+            [+phx:if=`[+composition+]`:isnot=``:then=`<br>Состав: [+composition+]`:else=``+]   
+            [+phx:if=`[+color+]`:isnot=``:then=`<br>Цвет: [+color+]<br>`:else=`<br>`+]      
+        </div> 
+        
+        <br>
+        
+           
+
+  [+phx:if=`[+user.opt+]`:isnot=`0`:and:if=`[+rozn+]`:isnot=`1`:then=`
+               
+
+     [+phx:if=`[+price_opt+]`:isnot=`0.00`:then=`
+                <div class="object_price">Оптовая цена: <span class="price">[+price_opt+]</span> руб.</div>
+                
+ 
+                `:else=``+]
+
+    `:else=`
+
+     [+phx:if=`[+fretail_price+]`:isnot=`0.00`:then=`
+                <div class="object_price">Розн цена: <span class="price">[+fretail_price+]</span> руб.</div>
+                `:else=``+]
+
+
+`+]
+      
+
+
+
+
+        [+phx:if=`[+sell+]`:is=`0`:then=`<span class="price">Нет в наличии </span>`+]
+        [+phx:if=`[+soon+]`:is=`1`:then=`<span class="price">Скоро в продаже</span>`+]        
+        
+        
+    </div>
+    <div class="clear"></div>
+</div>
+
+
+
+
+

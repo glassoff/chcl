@@ -1,0 +1,34 @@
+<div class="content_body">[+message+]</div>
+<div class="korzina">
+	<form action="[~84~]" method="POST" style="padding:0px;margin:0px;">
+		[+ec.cartbody+]
+	</form>
+	<div class="space"></div>
+	
+	<div class="orderpage-first">
+		<div class="orderpage-first__left">
+			[+phx:if=`[+ec.cartamount+]`:gt=`[+ec.limit+]`:then=`
+				<p>Перейдите на страницу оформления заказа для выбора способа доставки и оплаты.</p>
+				<a href="[~240~]" title="Оформить заказ"><img alt="Оформить заказ" src="[(site_url)]/images/order.gif" border="0" /></a>
+			`:else=`
+				{{cartLimitMess}}
+			`+]
+		</div>
+		<div class="orderpage-first__right">
+			{{cartAmounts}}				
+		</div>
+
+	</div>
+	
+
+	<div class="space"></div>
+	<div class="space"></div>
+</div>
+
+
+
+
+
+
+
+

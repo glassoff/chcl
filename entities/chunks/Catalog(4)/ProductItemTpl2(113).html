@@ -1,0 +1,290 @@
+<div id="content">
+    <!--Breadcrumb -->
+    <div class="breadcrumb"> 
+    [[Breadcrumbs? &homeCrumbTitle=`Главная` &id=`breadCrumbsAtItemPage` &cache=`0` $cacheScale=`folder` &showCurrentCrumb=`1` &currentAsLink=`1` &currPageId=`[+parent+]` &startPageId=`1` &respectHidemenu=`0` &maxCrumbs=`10`]]
+    </div>
+    <!--Game Page-->
+    <div class="game_page">
+    <h1>[+pagetitle+][+phx:if=`[+recommended+]`:is=`1`:then=`
+                      
+   [+phx:if=`[+date_issue+]`:isgt=`[[datenow]]`:then=`
+                    
+  (предзаказ)`+]`+]</h1>
+    
+    [+phx:if=`[+voted+]`:is=`1`:then=`
+    <div class="message1">Ваш голос учтен! Спасибо что проголосовали.</div>
+    `+] 
+    [+phx:if=`[+selectrate+]`:is=`1`:then=`
+    <div class="message1">Выберите оценку.</div>
+    `+]   
+    [+phx:if=`[+dublevoted+]`:is=`1`:then=`
+    <div class="message1">Выставлять оценку одному и тому же товару можно не чаще чем 1 раз в сутки</div>
+    `+] 
+    
+    
+    <table cellpadding="0" cellspacing="0">       
+    <tr>
+     <td valign="top" width="170" style="padding:5;padding-left:33px;">
+     
+     
+        [+phx:if=`[+image1+]`:isnot=``:then=`      
+        [+phx:if=`[+new+]`:isnot=`0`:then=`
+             <div style="position:relative; top:40px; left:105px;margin-top: -40px">
+              <img src="http://www.cddiski.ru/assets/templates/cd/i/new.gif" alt="новинка"/></div>   
+              `+]   
+            <a href="[+image1+]" title="Обложка диска" rel="gb_imageset[nice_pics]">
+                 <img src="[+phx:phpthumb=`w=140#[+image1+]`+]" alt="[+pagetitle+]" class="img_link"/>
+            </a> 
+            
+                    
+        <div class="space1"></div>
+        `:else=`
+        <img src="assets/templates/cd/i/nopic.jpg" class="img_link"/>
+        `+]  
+     </td>
+     <td valign="top">     
+     <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-bottom:5px;">
+   
+          <tr>
+              <td valign="top" style="padding:5px;padding-left:0px;>    
+               [+phx:if=`[+longtitle+]`:isnot=``:then=`
+                    <div  class="object_prog"><b> [+longtitle+]</b></div>
+                    `:else=``+]
+                 
+                    <div class="object_title">Раздел: <a href="[~[+parent+]~]">[+parenttitle+]</a></div> 
+                    [+phx:if=`[+brand_name+]`:isnot=``:then=`
+                    <div class="object_manuf">Издатель: [+brand_name+]</div>
+                    `:else=``+]
+                    [+phx:if=`[+discdeveloper+]`:isnot=``:then=`
+                    <div class="object_prog">Разработчик: [+discdeveloper+]</div>
+                    `:else=``+]
+                    [+phx:if=`[+date_issue+]`:isnot=`0`:then=`
+                    <div class="object_date">Дата выхода: [[datef? &format=`%d.%m.%Y` &date=`[+date_issue+]`]]</div>
+                    `:else=``+]
+                    [+phx:if=`[+medium+]`:isnot=``:then=`
+                    <div class="object_type">Тип носителя: [+cds+][+medium+]</div>
+                    `:else=` <div class="object_type">Тип носителя: [+cds+]DVD</div>`+]
+                    [+phx:if=`[+pack_name+]`:isnot=``:then=`
+                    <div class="object_box">Тип упаковки: [+pack_name+]</div>
+                    `:else=``+]
+                    [+phx:if=`[+disclanguage+]`:isnot=``:then=`
+                    <div class="object_lang">Язык: [+disclanguage+]</div>
+                    `:else=``+]                
+                    [+phx:if=`[+cdage+]`:isnot=``:then=`
+                    <div class="object_lang">Возраст: [+cdage+]</div>
+                    `:else=``+]   
+                    <div class="object_raiting">
+                    <table cellpadding="0" cellspacing="0">
+                        <tr>
+                        <td>Рейтинг:</td>
+                        <td>[[StarRating?&itemID=`[+id+]` &starTpl=`starRatingTpl` &votes=`[+votes+]`  &rating=`[+rating+]`]]</td>
+                        <td>&nbsp;([+votes+] голосов)</td>
+                        </tr>
+                        <tr><td colspan="3" height="40">                        
+                       <form action="" method="POST">
+                        <input type="hidden" name="itemid" value="[+id+]">
+                        <select name="itemvote">
+                            
+                            <option value="0">Выберите оценку</option>                            
+                            <option value="1">Ужасно</option>
+                            <option value="2">Терпимо</option>
+                            <option value="3">Нормально</option>
+                            <option value="4">Хорошо</option>
+                            <option value="5">Отлично</option>
+                            
+                        </select>
+                        &nbsp;                        
+                        [+phx:if=`[+canvote+]`:is=`1`:then=`
+                        <input type="submit" value="Голосовать" >                        
+                        `:else=`
+                        <input type="button" value="Голосовать" onClick="javascript:alert('Вы уже проголосовали за этот диск')">                        
+                        `+]
+                        </form>
+                        </td></tr>
+                        </table>
+                       
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0" >
+   
+       <tr>
+           <td style="padding:5px;" align="center" width="110">
+[+phx:if=`[+image2+]`:isnot=``:then=`  <a href="[~[+itemscreenshotshomeid+]~]?id=[+id+]"><img src="assets/templates/cd/i/show_kadr.jpg" align="top" border="0" width="60"></a>
+               <br><a href="[~[+itemscreenshotshomeid+]~]?id=[+id+]">Посмотреть кадры</a>
+                `:else=``+]
+                 </td>   <td style="padding:15px;" align="center" width="110">
+  
+                 [+phx:if=`[+movie+]`:isnot=``:then=`
+               <a title="Просмотр видеоролика" href="javascript:displayStaticMessage(document.getElementById('videoblock').innerHTML,'modalDialog_contentDiv_login',330,299);">
+               <img src="assets/templates/cd/i/video1.jpg" align="top" border="0" width="60">
+               </a><br>
+                <a title="Просмотр видеоролика" href="javascript:displayStaticMessage(document.getElementById('videoblock').innerHTML,'modalDialog_contentDiv_login',330,299);">
+              Посмотреть видео
+               </a>
+              
+              
+               <div id="videoblock" style="display:none">
+                <img src="assets/templates/cd/i/x.jpg" align="left" style="cursor:pointer;padding:0px;margin:0px" onClick="closeMessage()">
+                <div style="margin:6px;">
+                 <h3>Просмотр видеоролика</h3>                 
+                      <embed src="assets/flashp/player_flv_multi.swf" width="320" height="240" allowfullscreen="true" flashvars="flv=http://www.cddiski.ru/[+movie+]&amp;title=[+pagetitle+]&amp;width=320&amp;height=240&amp;showstop=1&amp;showvolume=1&amp;showtime=1&amp;startimage=/medias/startimage_en.jpg|/medias/startimage_en.jpg&amp;showfullscreen=1&amp;"></embed>
+                   
+                </div>
+               </div>
+               
+               `:else=``+] 
+               
+           </td>  <td></td>                 
+          </tr>
+        </table>             
+                         
+                    </div>                     
+              </td>              
+              <td  valign="top" style="padding:5px;">     
+              
+              
+     
+               
+               [+phx:if=`[+fretail_price+]`:isnot=`0.00`:then=`
+                <div class="object_price">Розн цена: <span class="price">[+fretail_price+]</span> руб.</div>
+                `:else=``+]
+                [+phx:if=`[+fmdealer_price+]`:isnot=`0.00`:then=`
+                <div class="object_price">Мелко.опт цена:<span class="price">[+fmdealer_price+]</span> руб.(<strong>с [+mdealer_cnt+] шт.</strong>)</div>
+                `:else=``+]
+                [+phx:if=`[+fdealer_price+]`:isnot=`0.00`:then=`
+                <div class="object_price">Опт цена: <span class="price">[+fdealer_price+]</span> руб.(<strong>с [+dealer_cnt+] шт.)</strong></div>
+                `:else=``+]
+                <div class="object_price">&nbsp;</div>        
+                [+phx:if=`[+ok_to_sell+]`:is=`1`:then=`
+                    <form action="[~84~]" method="POST" style="margin:0px;padding:0px;">
+                    <input name="addtocart" value="1" type="hidden">
+                    <input name="item[id]" value="[+id+]" type="hidden">    
+                    <table cellpadding="0" cellspacing="0">
+                        <tr>
+                        <td><input name="item[quantity]"  maxlength="3" value="1" size="3" onChange="if (isNaN(parseInt(this.value))) this.value = 0; else this.value=parseInt(this.value);" class="reg_txt3" type="text"></td>
+                        <td>&nbsp;<strong>шт.</strong>&nbsp;</td>
+                        <td>
+                        <input name="button3" id="button3" value="&nbsp;" class="tobasket" type="submit">
+                        </td>
+                        </tr>
+                    </table>
+                    </form>
+                `:else=`   <center>
+                 [+phx:if=`[+ok_to_sell+]`:is=`2`:then=`Будет не скоро`+]
+                 [+phx:if=`[+ok_to_sell+]`:is=`3`:then=`Скоро в продаже`+]
+                 [+phx:if=`[+ok_to_sell+]`:is=`0`:then=`Временно нет в продаже`+] </center>
+                
+                  <br>
+                <br> <form action="[~2470~]" method="POST" style="margin:0px;padding:0px;">
+                  
+                    <input name="disc_id" value="[+id+]" type="hidden">    
+                    
+                        <input name="button4" id="button4" value="&nbsp;" class="notice" type="submit">
+                        
+                    </form>
+                
+                
+                `+]    
+               
+                             
+              </td>
+          </tr>
+      </table>        
+     </td>   
+    </tr>
+    <tr><td colspan="3">
+    
+    
+     
+       
+        <div class="space1"></div>
+   
+    
+    
+    
+    
+    </td><tr>
+    <tr>
+
+    <td valign="top" colspan="3">                   
+        <!--Object description end -->    
+        <div class="game_page_des_content2">
+                      [+phx:if=`[+recommended+]`:is=`1`:then=`
+                      
+   [+phx:if=`[+date_issue+]`:isgt=`[[datenow]]`:then=`
+                    
+    <div><b>{{Predzakaz1}} [[datef? &format=`%d.%m.%Y` &date=`[+date_issue+]`]]. {{Predzakaz2}}
+</b>
+</div>
+  `+]
+    `+] <br><br>
+        
+            [+phx:if=`[+discinfo+]`:isnot=``:then=`                        
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="disk_block">
+              <tr>
+                <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td><img src="assets/templates/cd/i/bl_st.gif" width="6" height="35"/></td>
+                    <td width="100%" class="header_back" ><h5>От издателя об этом DVD</h5></td>
+                    <td><img src="assets/templates/cd/i/bl_end.gif" width="6" height="35" /></td>
+                  </tr>
+                </table></td>
+              </tr>
+              <tr>
+                <td style="padding:5px;">[+discinfo+]</td>
+              </tr>
+            </table>
+            <div class="space1"></div>        
+            `:else=``+]           
+            
+                             
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="disk_block">
+              <tr>
+                <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td><img src="assets/templates/cd/i/bl_st.gif" width="6" height="35" /></td>
+                    <td width="100%" class="header_back"><h5>Отзывы</h5></td>
+                    <td><img src="assets/templates/cd/i/bl_end.gif" width="6" height="35" /></td>
+                  </tr>
+                </table></td>
+              </tr>
+              <tr>
+                <td style="padding:5px;">                   
+                    [[Jot? &canedit=`Customers` &canmoderate=`Moderators` &subscribe=`0` &placeholders=`1` &output=`0` &pagination=`10` &subjectModerate=`Оставлен новый отзыв на диск - [+pagetitle+]` &subjectSubscribe=`Оставлен новый отзыв на диск - [+pagetitle+]` &pagetitle=`[+pagetitle+]` &docid=`[+id+]`]]
+                    [+jot.html.navigation+]
+                    [+jot.html.form+] 
+                    [+jot.html.comments+]                    
+                    <div class="space"></div>
+                    [+phx:if=`[+jot.comments.count+]`:is=`0`:then=`
+                    Пока отзывов нет, Вы можете оставить свой отзыв первым:    
+                    `+]                 
+                    <img src="assets/templates/cd/i/write.gif" alt="Оставить отзыв" border="0" />&nbsp;<a href="javascript:void(0)" onClick="displayStaticMessage(document.getElementById('CommentForm').innerHTML,'',[+phx:if=`[[isWebUserLoggedIn?]]`:is=`1`:then=`390,300`:else=`390,400`+]);">Оставить отзыв</a>
+                    <div class="space"></div>
+                    [+jot.html.moderate+] 
+                </td>                   
+              </tr>
+            </table>                      
+          </div>        
+        </div>
+        </td>
+        </tr>
+        </table>
+    </div>
+    <div class="clear"></div>
+    <div class="space1"></div>
+
+</div>
+</div>
+<!--Right Sidebar-->
+<div class="right_sidebar" id="right_sidebar">
+[[Wayfinder?startId=`[[UltimateParent? &id=`[+parent+]` &topLevel=`1`]]` &id=`ItemRightMenu[+parent+]` &cache=`1` $cacheScale=`folder` &hereid=`[+parent+]` &sortBy=`menuindex,pagetitle` &level=`3` &displayStart=`true` &startItemTpl=`RightMenuStart` &outerTpl=`CatMenuOuter` &rowTpl=`CatMenuRow` &innerTpl=`CatMenuInner` &innerRowTpl=`CatMenuInnerRow` &rowClass=`` &hereClass=`current` &selfClass=`current`]]
+[[Wayfinder?startId=`5` &id=`ItemRightMenu[+parent+]` &cache=`0` $cacheScale=`folder` &hereid=`[+parent+]` &sortBy=`menuindex,pagetitle` &level=`3` &displayStart=`true` &startItemTpl=`RightMenuStart` &outerTpl=`CatMenuOuter` &rowTpl=`CatMenuRow` &innerTpl=`CatMenuInner` &innerRowTpl=`CatMenuInnerRow` &rowClass=`` &hereClass=`current` &selfClass=`current`]]
+[[Wayfinder?startId=`2225` &id=`ItemRightMenu[+parent+]` &cache=`0` $cacheScale=`folder` &hereid=`[+parent+]` &sortBy=`menuindex,pagetitle` &level=`3` &displayStart=`true` &startItemTpl=`RightMenuStart` &outerTpl=`CatMenuOuter` &rowTpl=`CatMenuRow` &innerTpl=`CatMenuInner` &innerRowTpl=`CatMenuInnerRow` &rowClass=`` &hereClass=`current` &selfClass=`current`]]
+    [[Wayfinder?startId=`2442` &id=`ItemRightMenu[+parent+]` &cache=`0` $cacheScale=`folder` &hereid=`[+parent+]` &sortBy=`menuindex,pagetitle` &level=`3` &displayStart=`true` &startItemTpl=`RightMenuStart` &outerTpl=`CatMenuOuter` &rowTpl=`CatMenuRow` &innerTpl=`CatMenuInner` &innerRowTpl=`CatMenuInnerRow` &rowClass=`` &hereClass=`current` &selfClass=`current`]]
+[[Wayfinder?startId=`2441` &id=`ItemRightMenu[+parent+]` &cache=`0` $cacheScale=`folder` &hereid=`[+parent+]` &sortBy=`menuindex,pagetitle` &level=`3` &displayStart=`true` &startItemTpl=`RightMenuStart` &outerTpl=`CatMenuOuter` &rowTpl=`CatMenuRow` &innerTpl=`CatMenuInner` &innerRowTpl=`CatMenuInnerRow` &rowClass=`` &hereClass=`current` &selfClass=`current`]]
+[[Wayfinder?startId=`2440` &id=`ItemRightMenu[+parent+]` &cache=`0` $cacheScale=`folder` &hereid=`[+parent+]` &sortBy=`menuindex,pagetitle` &level=`3` &displayStart=`true` &startItemTpl=`RightMenuStart` &outerTpl=`CatMenuOuter` &rowTpl=`CatMenuRow` &innerTpl=`CatMenuInner` &innerRowTpl=`CatMenuInnerRow` &rowClass=`` &hereClass=`current` &selfClass=`current`]]
+   [[Wayfinder?startId=`2471` &id=`ItemRightMenu[+parent+]` &cache=`0` $cacheScale=`folder` &hereid=`[+parent+]` &sortBy=`menuindex,pagetitle` &level=`3` &displayStart=`true` &startItemTpl=`RightMenuStart` &outerTpl=`CatMenuOuter` &rowTpl=`CatMenuRow` &innerTpl=`CatMenuInner` &innerRowTpl=`CatMenuInnerRow` &rowClass=`` &hereClass=`current` &selfClass=`current`]]
+
+{{StatBlock}}
+ {{buy_disc}} 
+</div>
+<div class="clear"></div>
+</div>

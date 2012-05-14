@@ -1,0 +1,9 @@
+<form action="" method="post" style="margin: 0px; padding: 0px;"><table cellspacing="10" cellpadding="0" border="0">  <tbody>
+<tr><td valign="middle"><select name="type">           
+<option value="" [+phx:if=`[+type+]`:is=``:then=`selected`:else=``+]></option>             
+<option value="1" [+phx:if=`[+type+]`:is=`1`:then=`selected`:else=``+]>Больницы гинекологические</option>            
+ <option value="2" [+phx:if=`[+type+]`:is=`2`:then=`selected`:else=``+]>Больницы детские инфекционные</option>             
+ <option value="3" [+phx:if=`[+type+]`:is=`3`:then=`selected`:else=``+]>Больницы детские городские</option>             
+ <option value="4" [+phx:if=`[+type+]`:is=`4`:then=`selected`:else=``+]>Родильные дома</option>                
+ <option value="5" [+phx:if=`[+type+]`:is=`5`:then=`selected`:else=``+]>Центры восстановительного лечения для детей</option>                 
+</select></td><td><input type="submit" value="  Применить  " name="" /></td> </tr></tbody></table></form><br />

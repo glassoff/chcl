@@ -1,0 +1,45 @@
+[+phx:if=`[+validationmessage+]`:isnot=``
+<div class="message">[+validationmessage+]</div>
+`+]
+<form method="post" action="[~[*id*]~]" id="EmailForm" name="EmailForm">
+<input name="formid" type="hidden" value="ContactForm" />
+<table cellpadding='3' cellspacing='3'>
+    <tr>
+        <td><b>*</b> Имя: </td>
+        <td><input name="name" id="cfName" class="text" size="40" type="text" eform="Имя::1:"/></td>
+    </tr>
+     <tr>
+        <td>E-mail:</td>
+        <td><input name="email" id="cfEmail" class="text" type="text" size="40" eform="E-mail:email:0" /></td>
+    </tr>
+     <tr>
+        <td>Тема:</td>
+        <td><input name="subject" id="cfSubject" class="text" type="text" size="60" eform="Тема::0:" /></td>
+    </tr>
+     <tr>
+        <td><b>*</b>Сообщение:</td>
+        <td><textarea name="message" id="cfMessage" rows="8" class="text" cols="40" eform="Сообщение:textarea:1"></textarea></td>
+    </tr>
+    <tr>
+        <td><b>*</b> Введите антиспам код</td>
+        <td>
+            <img src="[+verimageurl+]" alt="verification code" border="0" style="margin-bottom:5px;"><br>
+            <input type="text" name="vericode" class="text" style="width:146px"/>
+        </td>
+    </tr>    
+    
+    <tr>
+        <td colspan="2" height="20" valign="bottom">(*) Обязательные поля</td>        
+    </tr>        
+    
+    <tr>
+        <td></td>
+        <td height="50">
+            <input type="submit" name="contact" id="cfContact" class="button" value="Отправить" />
+            <input type="reset"  class="button" value="Очистить" />
+        </td>
+    </tr>
+    
+</table> 
+</form>
+

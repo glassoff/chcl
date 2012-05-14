@@ -1,0 +1,63 @@
+<div id="recallForm">
+    <div class="sendRecall"><p>
+        Если Вы по какой-либо причине не можете связаться с нашими сотрудниками отправьте свои контактные данные посредством этой формы и мы обязательно перезвоним Вам сами.
+    </p>
+    <form id="cllbck" method="post" action="">
+        <input type="hidden" value="send" name="_iqf_">
+        <table class="cllbck">
+            <tbody><tr>
+                <td width="113">Ваше имя:</td>
+                <td><input name="callback_name" value=""></td>
+            </tr>
+            <tr>
+                <td>Номер телефона:</td>
+                <td><input name="callback_phone" value=""></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <div class="regError"><div class="message" style="display:none;">&nbsp;</div></div>
+                    <input type="submit" id="btn-submit-form" title="Отправить" value="Отправить">
+                </td>
+            </tr>
+        </tbody></table>        
+    </form></div>
+    <div class="successRecall" style="display:none;"><img src="images/ok_icon.jpg" alt=""/><p>Ваш запрос успешно отправлен! Ждите звонка.</p></div>
+    <a class="recallForm__close" href="#" onclick="$('#recallForm').hide()">&nbsp;</a>
+</div>
+<script>
+    $(function(){
+        var $container = $('#recallForm');
+        var $sendBlock = $('.sendRecall', $container);
+        var $successBlock = $('.successRecall', $container);
+        var $form = $('#recallForm #cllbck');
+        var $error = $('.message', $container);
+        
+        $('#recall-link').click(function(){
+            $sendBlock.show();
+            $successBlock.hide();
+            $container.toggle();
+            return false;
+        });
+        $form.submit(function(){
+            $error.hide();
+            if(!$('input[name=callback_name]', $form).val() || !$('input[name=callback_phone]', $form).val()){
+                $error.text('Заполните все поля').css('display', 'block');
+                return false;
+            }
+            $.post("[~3179~]", $form.serialize(), function(json){
+                var data = eval('('+json+')');
+                if(data.code > 0){
+                    $error.text('Ошибка при отправке запроса').css('display', 'block');
+                }
+                else{
+                    $sendBlock.hide();
+                    $successBlock.show();
+                    setTimeout(function(){
+                        $container.slideToggle();
+                    }, 2000);               
+                }
+            });
+            return false;
+        });
+    });
+</script>

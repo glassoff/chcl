@@ -1,0 +1,38 @@
+<td valign="top" align="left" class="products_td products_td_home">
+    <div class="index_spec_item">
+        
+        <div class="index_spec_item__body">
+            <div class="index_spec_item__image">
+                <a href="[~[+itemhomeid+]~]?id=[+id+]" title="[+longtitle+]">  
+                    [+phx:if=`[+image1+]`:isnot=``:then=`<img src="[+phx:phpthumb=`w=95#[+image1+]`+]" alt="[+pagetitle+]" class="img_link"/>`:else=`<img src="assets/templates/cd/i/nopic.jpg" class="img_link"/>`+]   
+                </a>                
+            </div>
+            <div class="index_spec_item__title">
+                <a href="[~[+itemhomeid+]~]?id=[+id+]">[+pagetitle+]</a>
+            </div>
+            <div class="index_spec_item__info">
+                [+phx:if=`[+size+]`:isnot=``:then=`
+                    Р-р: [+size+]      
+                `+]                 
+            </div>
+            <div class="index_spec_item__price">
+                [+phx:if=`[+user.opt+]`:isnot=`0`:and:if=`[+rozn+]`:isnot=`1`:then=`
+                       
+        
+                    [+phx:if=`[+price_opt+]`:isnot=`0.00`:then=`
+                        Опт. цена: <span class="price">[+price_opt+]</span> руб.
+                    `:else=``+]
+        
+                `:else=`
+        
+                    [+phx:if=`[+fretail_price+]`:isnot=`0.00`:then=`
+                        Розн. цена: <span class="price">[+fretail_price+]</span> руб.
+                    `:else=``+]
+        
+                `+]         
+            </div>
+        </div>
+        
+    </div>
+</td>
+

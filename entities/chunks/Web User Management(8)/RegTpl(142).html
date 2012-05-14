@@ -1,0 +1,41 @@
+<script>
+function submitOpt(opt){
+location.replace("/cabinet/reg2");
+
+}
+
+function submitRoz(opt){
+location.replace("/cabinet/reg1");
+
+}
+</script>
+
+
+<form action="[~[*id*]~]" method="POST" name="userreg" style="padding:0px;marging:0px;">
+
+<div class="kor_objects">
+<table  border="0" cellpadding="0" cellspacing="1" class="table_cool">
+
+                <tr valign="middle" > 
+                    <td class="objects_title" align="left" colspan="2">                                 
+                         <strong>Зарегистрироваться как:</strong>                        
+                    </td>
+                </tr>        
+     <tr valign="middle"> 
+
+                    <td  align="left" nowrap="nowrap"><font class="tableheadtext">Розничный покупатель:</font></td>
+               <td  align="left"><input  type="radio" name="opt" value="0"  onclick="submitRoz()" /></td>     
+                </tr>    
+     <tr valign="middle">        
+                   <td  align="left" nowrap="nowrap"><font class="tableheadtext">Оптовый покупатель:</font></td>
+            <td  align="left"><input  type="radio" name="opt" value="1" onclick="submitOpt()" /></td>
+  
+                </tr>    
+                
+              
+            </tbody>
+            </table>
+            </div>
+</form>         
+
+

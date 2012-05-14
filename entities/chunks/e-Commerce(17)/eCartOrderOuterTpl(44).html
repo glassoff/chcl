@@ -1,0 +1,175 @@
+[+message+] 
+<div class="korzina orderpage">
+<div class="kor_objects">
+<form action="[~240~]" method="POST" style="padding:0px;margin:0px;">
+	[+ec.cartbody+]  
+</form>
+<div class="space"></div>
+
+[+phx:if=`[+ec.cartamount+]`:gt=`[+ec.limit+]`:then=`
+
+<form action="[+240+]" method="POST" name="orderform">
+	<input type="hidden" name="from">
+	<input type="hidden" name="order[to]" value="russia">
+	<input type="hidden" name="order[country]" value="Россия">
+	<input type="hidden" name="order[informcust]" value="1">
+	<input type="hidden" name="order[payment_method_id]" value="8">
+	
+	<div class="orderpage-first">
+		<div class="orderpage-first__left">
+			<h2>Оформление доставки</h2>
+			<table style="width:100%;">
+				<tr>
+					<th colspan="2" class="left-th"><b>Регион доставки</b></th>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<div class="radio-select"><label><input id="_region-18825" type="radio" name="order[_region]" value="18825" [+phx:if=`[+order.region+]`:is=`18825`:then=`checked`+]/> Москва</label></div>
+						<div class="radio-select"><label><input id="_region-18826" type="radio" name="order[_region]" value="18826" [+phx:if=`[+order.region+]`:is=`18826`:then=`checked`+]/> Московская область</label></div>
+						<div class="radio-select">
+							<label><input id="_region-no" type="radio" name="order[_region]" value="-1" [+phx:if=`[+order._region+]`:ne=`18825`:and:ne=`18826`:then=`checked`+]/> Другой регион</label>
+							&nbsp;&nbsp;&nbsp;<span>[+regions.list+]</span>
+						</div>				
+					</td>
+				</tr>
+				[+phx:if=`[+order.region+]`:ne=`18825`:then=`
+				<tr>
+					<td>Город:</td>
+					<td>
+						<input size="50" type="text" name="order[state]" class="inputBox" value="[+order.state+]"><br/>
+						<em>Укажите ваш населенный пункт</em>
+					</td>
+				</tr>
+				`:else=`
+				<input type="hidden" name="order[state]" value="[+order.state+]" />
+				`+]
+				<tr>
+					<th colspan="2" class="left-th"><b>Способ доставки</b><br/><em>Выберете удобный для вас способ доставки</em></th>
+				</tr>
+				<tr>
+					<td colspan="2">
+						[+shipping.list+]
+					</td>
+				</tr>				
+			</table>		
+		</div>
+		<div class="orderpage-first__right ">
+			{{cartAmounts}}
+			[+phx:if=`[+shipping.cost.comment+]`:ne=``:then=`
+			<div class="cart-comment">
+				<img class="cart-comment__icon" src="assets/images/attention.png"/>
+				[+shipping.cost.comment+]
+			</div>
+			`+]			 
+		</div>
+		
+
+	</div>
+	
+	<table class="content_table" cellpadding="0" cellspacing="1" width="100%">
+	    <tr valign="middle"> 
+	        <th class="left-th" align="left" colspan="2">                                 
+	        <strong>Адрес доставки</strong><br>  
+	        <span class="info"><em>Пожалуйста указывайте правильные адрес доставки, чтобы мы могли отправить заказ</em></span>                                               
+	        </th>
+	    </tr>                
+	    <tr>
+	        <td align="left" valign="top">
+	            Почтовый индекс:
+	        </td>
+	        <td><input type="text" name="order[postcode1]" class="inputBox"  value="[+order.postcode1+]">
+	            <em><br>Будьте внимательны вводя индекс, это позволит ускорить отправку вашего заказа до вас.<br>
+	            Если вы забыли свой индекс или он неправильно введен, то заказ будет отправлен на центральную почту вашего района и срок доставки заказа немного увеличиться.</em>
+	        </td>
+	    <tr>
+	    
+	    <tr > 
+	        <td  align="left" nowrap="nowrap">
+	        <font class="tableheadtext">Улица:</font></td>
+	        <td  align="left"><input size="50" type="text" name="order[street]" class="inputBox" value="[+order.street+]"></td>
+	    </tr>
+	   
+	    <tr> 
+	        <td  align="left" nowrap="nowrap">
+	        <font class="tableheadtext">Дом:</font></td>
+	        <td  align="left"><input size="10" type="text" name="order[dom]" class="inputBox" value="[+order.dom+]">
+	        	<font style="margin-left:30px;" class="tableheadtext">Корпус:</font> &nbsp;&nbsp;<input size="10" type="text" name="order[korpus]" class="inputBox" value="[+order.korpus+]">
+	        	<font style="margin-left:30px;" class="tableheadtext">Квартира:</font> <input size="10" type="text" name="order[kvartira]" class="inputBox" value="[+order.kvartira+]">
+	        </td>
+	    </tr>
+	    
+	</table>
+
+<div class="space1"></div>
+
+<table class="content_table" cellpadding="0" cellspacing="1" width="100%">
+     <tr valign="middle"> 
+        <td class="" align="left" colspan="2">                                 
+        <strong>Контактные данные </strong><span style="color:#ffffff">(<a href="[~79~]" style="color:#ffffff">изменить</a>)</span><br>  
+        <span class="info"></span>                                               
+        </td>
+    </tr>
+           <tr>
+        <td>Компания</td>
+        <td align="left">
+            [+type+] [+company+]<br>
+        </td>
+    </tr>
+       
+    <tr>
+        <td>Контактное лицо</td>
+        <td align="left">
+            <input size="60" type="text" name="order[sname]" class="inputBox" value="[+order.sname+]">
+        </td>
+    </tr>
+    
+    <tr>
+        <td>Телефон:</td>
+        <td align="left"><input size="20" type="text" name="order[phone]" class="inputBox" value="[+order.phone+]"></td>
+    </tr>
+    <tr>    
+        <td>Email:</td>
+        <td>[+email+]</td>
+    </tr>                
+</table>    
+    
+
+<div class="space1"></div>
+<div id="shipping_off_1class">
+Полная стоимость заказа с учетом доставки: <strong>[+ec.totalamount+] руб.</strong>
+</div>
+<p>
+	После оформления заказа наши менеджеры свяжутся с вами для согласования удобного для вас способа оплаты.
+</p>
+<div class="space1"></div>
+[+phx:if=`[+ec.overweight+]`:is=`0`:then=`<input type="submit" name="placeorder" class="" value="Оформить заказ">`+]
+</form>
+
+`:else=`
+
+	<div class="orderpage-first">
+		<div class="orderpage-first__left">
+			{{cartLimitMess}}
+		</div>
+		<div class="orderpage-first__right">
+			{{cartAmounts}}				
+		</div>
+
+	</div>
+	
+`+]
+
+<div class="space1"></div>
+</div>
+</div>
+
+        <div id="myOnPageContent" style="display:none;text-align:center;">
+            <p style="text-align:center">Сервис временно недоступен</p>
+            <p style="text-align:center"><input type="submit" id="Login" value="&nbsp;&nbsp;OK&nbsp;&nbsp;" onclick="tb_remove()" /></p>
+        </div>
+
+
+
+
+
+

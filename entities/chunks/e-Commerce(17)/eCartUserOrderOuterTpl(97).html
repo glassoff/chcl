@@ -1,0 +1,103 @@
+<div class="korzina">
+<table border="0" cellspacing="1" cellpadding="0" class="table1">
+    <tr>
+      <td colspan="2" class="objects_title">Данные заказа</td>
+    </td>  
+    <tr>
+      <td class="kor_price1" width="200">№ заказа</td>
+      <td class="kor_price1" align="left"><strong>[+id+]</strong></td>
+    </tr>       
+    <tr>
+      <td class="kor_price1">Дата заказа</td>
+      <td class="kor_price1" align="left"><strong>[[datef? &format=`%d.%m.%Y %H:%I:%S` &date=`[+order_date+]`]]</strong></td>
+    </tr>       
+    <!--tr>
+      <td class="kor_price1">Статус заказа</td>
+      <td class="kor_price1"><strong>[+status_name+]</strong></td>
+    </tr-->  
+    
+    <tr>
+      <td class="kor_price1">Способ доставки</td>
+      <td class="kor_price1"><strong>[+delivery_name+]</strong></td>
+    </tr> 
+    
+    <tr>
+      <td class="kor_price1">Подтвержден</td>
+      <td class="kor_price1"><strong>[+phx:if=`[+confirmed+]`:is=`1`:then=`Да`:else=`Нет`+]</strong></td>
+    </tr>     
+    
+    <tr>
+      <td class="kor_price1">Полная стоимость заказа</td>
+      <td class="kor_price1"><strong>[+ec.orderamount+] руб.</strong></td>
+    </tr>    
+  
+    <tr>
+      <td class="kor_price1">Способ оплаты</td>
+      <td class="kor_price1"><strong>[+payment_type_name+]</strong></td>
+    </tr>   
+    <!--tr>
+      <td class="kor_price1">Статус оплаты</td>
+      <td class="kor_price1"><strong>[+phx:if=`[+paid+]`:is=`0`:then=`Не оплачен`:else=`Оплачен`+]</strong></td>
+    </tr-->   
+    <tr>
+      <td class="kor_price1" valign="top">Если каких-либо позиций из заказа не будет в наличии, то:</td>
+      <td class="kor_price1" valign="top">[+customer_sku_comment+] затем [+customer_sku_comment1+]</td>
+    </tr>   
+    <tr>
+      <td class="kor_price1" valign="top">Ваша комментарии к заказу:</td>
+      <td class="kor_price1" valign="top">[+customer_comment+]</td>
+    </tr>   
+    <tr>
+      <td class="kor_price1" valign="top">Адрес отправки</td>
+      <td class="kor_price1" valign="top">
+      [+customer_country+], [+customer_region+], [+customer_state+]<br>
+      [+customer_postcode1+] Улица: [+customer_street+]<br>
+      Дом: [+customer_dom+]<br>
+      Корпус: [+customer_korpus+]<br>
+      Квартира: [+customer_kvartira+]
+      </td>
+    </tr> 
+    <tr>
+      <td class="kor_price1" valign="top">Контактные данные</td>
+      <td class="kor_price1" valign="top">
+      [+customer_fname+] [+customer_sname+] [+customer_lname+]<br>
+      Телефон: [+customer_phone+]<br>
+      Email: [+customer_email+]<br>
+      </td>
+    </tr> 
+        
+</table>  
+
+    
+<div class="space1"></div>
+  <table border="0" cellspacing="1" cellpadding="0" class="table1">
+    <tr>
+      <td colspan="8" class="objects_title">Заказанные товары</td>
+    </td>   
+    <tr>
+      <td class="objects_title">№</td>
+      <td class="objects_title">Наименование</td>
+	  <td class="objects_title">Артикул</td>
+	  <td class="objects_title">Цвет</td>
+	  <td class="objects_title">Размер</td>
+      <td class="objects_title">Цена</td>
+      <td class="objects_title">Количество</td>
+	  <td class="objects_title">Стоимость</td>
+    </tr>
+    [+ec.wrapper+]
+    <tr>
+      <td class="kor_price" colspan="5" align="right">
+      Всего товаров: <strong><span class="cart_total">[+ec.cartquantity+] шт.</strong></span><br>    
+      На сумму: <strong><span class="cart_total">[+ec.cartamount+] руб.</strong></span><br>
+      С учетом скидки ([+ec.cartdiscount+]%): <strong><span class="cart_total">[+ec.dcartamount+] руб.</strong></span><br>  
+      Стоимость доставки: <strong>[+ec.shippingamount+] руб.</strong><br>     
+      Полная стоимость заказа с учетом доставки: <strong>[+ec.orderamount+] руб.</strong>  
+      
+      </td>      
+    </tr>    
+  </table>  
+<div class="space1"></div>
+</div>
+
+
+

@@ -1,0 +1,63 @@
+<div class="content_body">
+<form action="" method="POST" style="margin:0px;padding:0px">
+<table class="products_sort" cellpadding="0" cellspacing="0" border="0">
+<tr>
+<td>Показать:</td>
+<td valign="middle">
+<select name="uof" class="reg_select" style="width:160px;">
+    <option value="all" [+phx:if=`[+uof+]`:is=`all`:then=`selected`+]>Все</option>
+    <option value="paid" [+phx:if=`[+uof+]`:is=`paid`:then=`selected`+]>Оплаченные</option>
+    <option value="notpaid" [+phx:if=`[+uof+]`:is=`notpaid`:then=`selected`+]>Не оплаченные</option>  
+    <option value="confirmed" [+phx:if=`[+uof+]`:is=`confirmed`:then=`selected`+]>Подтвержденные</option>
+    <option value="notconfirmed" [+phx:if=`[+uof+]`:is=`notconfirmed`:then=`selected`+]>Не подтвержденные</option>  
+</select>
+</td>
+<td valign="middle">Сортировать:</td>
+<td valign="middle">
+<select name="uos" class="reg_select">
+    <option value="date" [+phx:if=`[+uos+]`:is=`date`:then=`selected`+]>по дате</option>  
+    <option value="status" [+phx:if=`[+uos+]`:is=`status`:then=`selected`+]>по статус</option>
+    <option value="amount" [+phx:if=`[+uos+]`:is=`amount`:then=`selected`+]>по сумме</option>
+    <option value="quantity" [+phx:if=`[+uos+]`:is=`quantity`:then=`selected`+]>по кол. тов</option>      
+</select>
+</td>
+<td valign="middle">
+<select name="uosd" class="reg_select">
+    <option value="DESC" [+phx:if=`[+uosd+]`:is=`DESC`:then=`selected`+]>по убыванию</option>
+    <option value="ASC" [+phx:if=`[+uosd+]`:is=`ASC`:then=`selected`+]>по возрастанию</option>     
+</select>
+</td>
+<td valign="middle">
+        <input value="Показать"  name="" type="submit">
+    </td>
+</tr>
+</table>
+[+ec.message+]
+</div>
+<div class="content_body">
+[+ec.pager+]
+</div>
+<div class="korzina">
+<div class="kor_objects">
+[+phx:if=`[+ec.wrapper+]`:isnot=``:then=`
+<table border="0" cellspacing="1" cellpadding="0">
+    <tr height="25" class="table_header">    
+        <td align="" class="objects_title">№ заказа</td>
+        <td align="" class="objects_title">Дата</td>
+        <!--td align="" class="objects_title">Статус</td-->
+        <td align="" class="objects_title" >Кол. товаров</td>   
+        <td align="" class="objects_title">Общая сумма</td>  
+        <!--td align="" class="objects_title">Оплачен</td-->
+        <td align="" class="objects_title"></td>         
+    </tr>
+    [+ec.wrapper+]    
+</table>
+`+]
+</div>
+</div>
+<div class="content_body">
+[+ec.pager+]
+</div>
+<div class="space"></div>
+<div class="space"></div>
+

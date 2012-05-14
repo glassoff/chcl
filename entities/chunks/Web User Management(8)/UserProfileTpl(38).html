@@ -1,0 +1,174 @@
+<div class="content_body">
+[+wlpe.message+]
+<ul>
+[+username.empty:is=`1`:then=`<li>Имя пользователя</li>`+]
+[+email.empty:is=`1`:then=`<li>Email</li>`+]
+[+phone.empty:is=`1`:then=`<li>Телефон</li>`+]
+
+</ul>
+</div>
+<div class="kor_objects">
+<form id="wlpeUserRegisterForm" action="[~[*id*]~]" method="POST" style="padding:0px;marging:0px;">
+<input id="wlpeUserProfileUserName" type="hidden" name="username"  value="[+user.username+]" />
+<input type="hidden" name="internalkey" value="[+user.internalKey+]" />
+<input type="hidden" name="changelogindatas" value="1"/>
+<table  border="0" cellpadding="0" cellspacing="1">
+    <tr valign="middle"> 
+        <td class="objects_title" colspan="2" align="left">                      
+        <strong>Имя пользователя и пароль:</strong><br>
+        <span class="info"><em>(Оставьте поля пароля пустым если вы не желаете изменить ваш пароль)</em></span>
+        </td>
+    </tr>
+    <tr valign="middle"> 
+        <td  align="left" valign="top" nowrap="nowrap"><font class="starrequired">*</font>&nbsp;<font class="tableheadtext">Email:</font></td>
+        <td  align="left"><input id="wlpeUserProfileEmail" type="text"  name="email" value="[+user.email+]" /></td>
+    </tr>	
+    <!--tr valign="middle"> 
+        <td  align="left" width='50%' nowrap="nowrap">
+            <font class="starrequired">*</font>&nbsp;<font class="tableheadtext">Логин и пароль:</font></td>
+            <td  align="left" width="50%">
+            <input id="wlpeUserProfileUserName" type="text" name="username"  value="[+user.username+]" />
+            </td>
+    </tr-->    
+    <tr valign="middle"> 
+        <td  align="left" nowrap="nowrap"><font class="tableheadtext">Новый пароль (мин. 6 символов):</font></td>
+        <td  align="left"><input   type="password" name="newpassword" /></td>
+    </tr>
+    <tr valign="middle"> 
+        <td  align="left" nowrap="nowrap"><font class="tableheadtext">Подтверждение пароля:</font></td>
+        <td  align="left"><input   type="password" name="newpasswordconfirm"/></td>
+    </tr>
+    <tr> 
+        <td colspan="2" height="60"  align="left" valign="middle">
+        <button type="submit" id="wlpeSaveProfileButton" class="btn" name="service" value="saveprofile">Сохранить</button>
+        </td>
+    </tr>                    
+</table>
+</form>
+
+<form enctype="multipart/form-data" id="wlpeUserRegisterForm" action="[~[*id*]~]" method="POST" style="padding:0px;marging:0px;">
+<input type="hidden" name="internalkey" value="[+user.internalKey+]" />
+    <table  border="0" cellpadding="0" cellspacing="1">
+    <tr valign="middle"> 
+        <td class="objects_title" align="left" colspan="2" >
+        <strong>Контактные данные:</strong><br> 
+        <span class="info"><em>(Пожалуйста указывайте правильные контактные данные, чтобы мы могли отправить вам заказ)</em></span>                                               
+        </td>
+    </tr> 
+
+ [+phx:if=`[+user.opt+]`:is=`1`:then=`
+    <tr valign="middle"> 
+        <td  align="left" nowrap="nowrap"><font class="tableheadtext">Организационно-правовая форма:</font></td>
+        <td  align="left">[+user.type+]</td>
+    </tr>  
+   <tr valign="middle"> 
+        <td  align="left" nowrap="nowrap"><font class="tableheadtext">Наименование организации:</font></td>
+        <td  align="left">[+user.company+]</td>
+    </tr>  
+    <tr valign="middle"> 
+        <td  align="left" nowrap="nowrap"><font class="tableheadtext">Контактное лицо:</font></td>
+        <td  align="left"><input id="wlpeUserProfilesName"  type="text" name="sname" value="[+user.sname+]" /></td>
+    </tr>  
+    <tr valign="middle"> 
+        <td  align="left" valign="middle" nowrap="nowrap"><font class="tableheadtext">Карточка клиента:</font>[+user.clientfileload+]</td>
+        <td  align="left"><input id="wlpeUserClientFile" type="file" name="clientfile"  value="[+post.clientfile+]" />
+        
+        </td>
+    </tr>
+
+`:else=`
+    <tr valign="middle"> 
+        <td  align="left" nowrap="nowrap"><font class="tableheadtext">Фамилия:</font></td>
+        <td  align="left"><input id="wlpeUserProfilefName"  type="text" name="fname" value="[+user.fname+]" /></td>
+    </tr>    
+    <tr valign="middle"> 
+        <td  align="left" nowrap="nowrap"><font class="tableheadtext">Имя:</font></td>
+        <td  align="left"><input id="wlpeUserProfilesName"  type="text" name="sname" value="[+user.sname+]" /></td>
+    </tr>    
+    <tr valign="middle"> 
+        <td  align="left" nowrap="nowrap"><font class="tableheadtext">Отчество:</font></td>
+        <td  align="left"><input id="wlpeUserProfilelName"  type="text" name="lname" value="[+user.lname+]" /></td>
+    </tr>    
+
+`+]
+    <!--tr valign="middle"> 
+        <td  align="left" valign="top" nowrap="nowrap"><font class="starrequired">*</font>&nbsp;<font class="tableheadtext">Email:</font></td>
+        <td  align="left"><input id="wlpeUserProfileEmail" type="text"  name="email" value="[+user.email+]" /></td>
+    </tr-->
+    <tr valign="middle"> 
+        <td  align="left" valign="top" nowrap="nowrap"><font class="starrequired">*</font>&nbsp;<font class="tableheadtext">Телефон:</font></td>
+        <td  align="left"><input id="wlpeUserProfilePhone" type="text" name="phone"  value="[+user.phone+]" />
+        <br>Пожалуйста, указывайте телефон с кодом города.
+        </td>
+    </tr>
+    
+    <tr valign="middle"> 
+        <td  align="left" valign="top" nowrap="nowrap"><font class="tableheadtext">Город:</font></td>
+        <td  align="left"><input id="wlpeUserProfileTown" type="text" name="town"  value="[+user.town+]" />
+        </td>
+    </tr>
+  <tr valign="middle"> 
+        <td  align="left" valign="top" nowrap="nowrap"><font class="tableheadtext">Улица:</font></td>
+        <td  align="left"><input id="wlpeUserProfileStreet" type="text" name="street"  value="[+user.street+]" />
+        </td>
+    </tr>
+  <tr valign="middle"> 
+        <td  align="left" valign="top" nowrap="nowrap"><font class="tableheadtext">Дом:</font></td>
+        <td  align="left"><input id="wlpeUserProfileHouse" type="text" name="house"  value="[+user.house+]" />
+        </td>
+    </tr>
+  <tr valign="middle"> 
+        <td  align="left" valign="top" nowrap="nowrap"><font class="tableheadtext">Корпус:</font></td>
+        <td  align="left"><input id="wlpeUserProfileKorpus" type="text" name="korpus"  value="[+user.korpus+]" />
+        </td>
+    </tr>
+  <tr valign="middle"> 
+        <td  align="left" valign="top" nowrap="nowrap"><font class="tableheadtext">Квартира</font></td>
+        <td  align="left"><input id="wlpeUserProfileKvartira" type="text" name="kvartira"  value="[+user.kvartira+]" />
+        </td>
+    </tr>
+  <tr valign="middle"> 
+        <td  align="left" valign="top" nowrap="nowrap"><font class="tableheadtext">Индекс:</font></td>
+        <td  align="left"><input id="wlpeUserProfilePostcode1" type="text" name="postcode1"  value="[+user.postcode1+]" />
+      
+        </td>
+    </tr>
+    <tr > 
+        <td  align="left" valign="top" nowrap="nowrap"><font class="tableheadtext">Ваш бонус-код:</font></td>
+        <td  align="left"><input id="wlpeUserRegisterBonuscode" type="text" name="bonuscode"  value="[+user.bonuscode+]" />
+          
+        </td>
+    </tr> 
+    <tr > 
+        <td  align="left" valign="top" nowrap="nowrap">&nbsp;</td>
+        <td  align="left">
+        	<label><input [+phx:if=`[+user.subscribe+]`:is=`1`:then=`checked`+] name="subscribe" value="1" type="checkbox"/> Подписаться на рассылку новостей, новых предложений, акций</label>
+        </td>
+    </tr>
+                        
+    <tr> 
+        <td colspan="2" height="60"  align="left" valign="middle">
+        <button type="submit" id="wlpeSaveProfileButton" class="btn" name="service" value="saveprofile">Сохранить</button>
+        </td>
+    </tr>
+    <tr>
+        <td align="left" colspan="2"><p class="info">(*)&nbsp;<em>Обязательные поля</em></p></td>
+    </tr>
+    
+    <tr> 
+        <td colspan="2" height="60"  align="left" valign="middle">&nbsp;&nbsp;
+        <button type="submit" id="wlpeProfileDoneButton" class="btn" name="service" value="cancel">Завершить</button>
+        <button type="submit" id="wlpeProfileLogoutButton" class="btn" name="service" value="logout">Выйти</button>
+        <button type="submit" id="wlpeProfileDeleteButton" class="btn" name="service" value="deleteprofile">Удалить мой аккаунт</button>            
+        </td>
+    </tr>
+    
+ </tbody>
+</table>
+</form>   
+</div>
+  
+
+
+
+

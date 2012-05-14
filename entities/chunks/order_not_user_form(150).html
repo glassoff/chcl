@@ -1,0 +1,86 @@
+<p><span style="color:#900;">[+validationmessage+]</span></p>
+<form method="post" action="[~[*id*]~]">
+	<input type="hidden" name="formid" value="order_form" />
+ 	
+	<table border="0" cellspacing="0" cellpadding="1" class="table1" style="width: 500px;">
+		<tr>
+			<td align="right"><label accesskey="e">Ваш е-мэйл адрес*</label></td>
+			<td><input type="text" name="email" size="40" maxlength="40" eform="Ваш е-мэйл адрес:email:1" /></td>
+		</tr>
+		<tr>
+			<td align="right"><label accesskey="e">Фамилия*</label></td>
+			<td><input type="text" name="sname" size="40" maxlength="40" eform="Фамилия:string:1" /></td>
+		</tr>
+		<tr>
+			<td align="right"><label accesskey="e">Имя*</label></td>
+			<td><input type="text" name="fname" size="40" maxlength="40" eform="Имя:string:1" /></td>
+		</tr>
+		<tr>
+			<td align="right"><label accesskey="e">Контактный телефон*</label></td>
+			<td><input type="text" name="phone" size="40" maxlength="40" eform="Контактный телефон:string:1" /></td>
+		</tr>
+		<tr>
+			<td align="right"><label accesskey="e">Город</label></td>
+			<td><input type="text" name="state" size="40" maxlength="40" eform="Город:string:0" /></td>
+		</tr>		
+		<tr>
+			<td colspan="2">
+				<label accesskey="c">Комментарий</label><br />
+				<textarea cols="55" rows="8" name="comment" eform="Комментарий:html:0"></textarea></p>					
+			</td>
+		</tr>
+		
+        <tr > 
+            <td  align="right" valign="top" nowrap="nowrap"><font class="tableheadtext">Ваш бонус-код:</font></td>
+            <td  align="left"><input id="wlpeUserRegisterBonuscode" type="text" name="bonuscode" eform="Бонус код:string:0:Бонусный код может состоять только из цифр и букв и длиной от 2-х до 4-х сисмволов.:#REGEX /^[a-zA-Z0-9]{2,4}$/" value="[+post.bonuscode+]" />
+              
+            </td>
+        </tr> 	
+        <tr > 
+            <td  align="left" valign="top" nowrap="nowrap"><font class="tableheadtext">Источник информации о нашей компании:</font></td>
+            <td  align="left">
+              	<p><label><input [+phx:if=`[+post.infosource+]`:is=`site`:then=`checked`+] type="radio" value="site" name="infosource" />Сайт</label></p>
+				<p><label><input [+phx:if=`[+post.infosource+]`:is=`telephone`:then=`checked`+] type="radio" value="telephone" name="infosource" />Телефонный звонок</label></p>
+				<p><label><input [+phx:if=`[+post.infosource+]`:is=`other`:then=`checked`+] type="radio" value="other" name="infosource" />Другое</label></p>
+				<script>
+					$(function(){
+						function changeSource(radio_elem){
+							var othersourceblock = $("#othersourceblock");
+							if(radio_elem.val() == 'other')
+								othersourceblock.css('display', 'block');
+							else
+								othersourceblock.css('display', 'none');
+						}
+						
+						$("input[name=infosource]").change(function(){
+							changeSource($(this));
+						});
+						
+						changeSource($("input[name=infosource]:checked"));
+					});
+				</script>
+				<p id="othersourceblock" style="display:none;">
+					<input type="text" name="infosource_other" value="[+post.infosource_other+]" />
+				</p>
+            </td>
+        </tr>
+						
+		<tr>
+			<td colspan="2">
+				Пожалуйста введите код: (Чтобы предупредить спам)<br />
+				<img src="[+verimageurl+]" alt="verification code" /><br />
+				<input type="text" name="vericode" size="20" />				
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<input type="submit" name="submit_order" value=" " style="cursor:pointer;border:0;width: 173px; height: 27px;background:url([(site_url)]/images/sendorder.gif);">		
+			</td>
+		</tr>
+	</table>
+</form>
+
+
+
+
+

@@ -1,0 +1,19 @@
+<div class="managers_list__item">
+    <div class="managers_list__item__header">
+        <table>
+            <tr>
+                <td class="skype_call">
+                    <a href="skype:[+skype_login+]?call"><img src="assets/templates/kidsdream/images/skype-call.png"/></a>
+                </td>
+                <td class="manager_name">
+                    [+phx:if=`[+m_fio+]`:isnot=``:then=`[+m_fio+]`:else=``+]
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="managers_list__item__body">
+        [+phx:if=`[+m_phone+]`:isnot=``:then=`[+m_phone+]<br>`:else=``+] 
+        [+phx:if=`[+m_email+]`:isnot=``:then=`[+m_email+]<br>`:else=``+] 
+        [+phx:if=`[+m_photo+]`:isnot=``:then=`<br/><img src="[+m_photo+]"  border="0" width="150px"><br>`:else=``+]
+    </div>
+</div>

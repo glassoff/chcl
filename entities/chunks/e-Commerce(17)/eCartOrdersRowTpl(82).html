@@ -1,0 +1,10 @@
+<tr>    
+    <td align="center">[+id+]</a></td>
+    <td align="center">[[datef? &format=`%d.%m.%Y %H:%I:%S` &date=`[+order_date+]`]]</a></td>
+    <!--td align="center"><strong>[+phx:if=`[+confirmed+]`:is=`1`:then=`Подтвержден,<br>[+status_name+]`:else=`Не подтвержден`+]</strong></td-->    
+    <td align="center">[+quantity+] шт.</td>   
+    <td align="center"><strong>[+amount+] руб.</strong></td> 
+    <!--td align="center">[+phx:if=`[+paid+]`:is=`1`:then=`Да`:else=`Нет`+]</td-->    
+    <td align="center"><a href="[~[+orderdetailshomeid+]~]?orderid=[+id+]">Детали заказа<a/></td>    
+</tr>
+

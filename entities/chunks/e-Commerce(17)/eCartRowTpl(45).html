@@ -1,0 +1,49 @@
+[+phx:if=`[+retail_block+]`:is=`1`:then=`
+<tr>
+	<td colspan="9" class="cart-col__retail"><i></i><span>Розница</span></td>
+</tr>
+`+]
+[+phx:if=`[+opt_block+]`:is=`1`:then=`
+<tr>
+	<td colspan="9" class="cart-col__opt"><i></i><span>Опт</span></td>
+</tr>
+`+]
+
+<tr>
+	<td class="cart-col__num">[+num+].</td>
+	<td class="cart-col__img">
+        <div class="cartRowHover" id="cartRowHover_[+row_id+]">
+            <img src="[+phx:phpthumb=`w=240#[+image1+]`+]" />
+        </div>    	  
+    	<a href="[~[+itemhomeid+]~]?id=[+item_id+]" target="_blank">
+    		[+phx:if=`[+image1+]`:ne=``:then=`
+    		<img class="cartRowTitle" rel="[+row_id+]" src="[+phx:phpthumb=`h=50#[+image1+]`+]" />
+    		`:else=`
+    		<img height="50" width="50" src="assets/templates/cd/i/nopic.jpg"/>
+    		`+]
+    	</a>		
+	</td>
+    <td class="cart-col__name">
+        <a class="cart-col__name__title" href="[~[+itemhomeid+]~]?id=[+item_id+]" target="_blank">[+pagetitle+]</a>
+        <div class="cart-col__name__acc">Артикул: [+acc_id+]</div>
+    </td>  
+    <td class="cart-col__color">[+color+]</td>
+    <td class="cart-col__size">[+size+]</td>    
+    <td align="center" ><span id="subtotal[+item_id+]">[+price+]</span> руб.</td>    
+    <td class="cart-col__count">    
+    <input type="text" size="3" onChange1="parseQnt([+sku+],this)" maxlength="3" id="qnt[+item_id+]" class="cart-count qnt_inp" name="cart[[+row_id+]][quantity]" value="[+quantity+]">
+    [+phx:if=`[+type+]`:is=`package`:then=`упак.`:else=`шт.&nbsp;&nbsp;&nbsp;`+]
+    </td>
+    <td align="center" class="cart-col__cost">[+cost+] руб.</td>   
+    <td align="center" class="kor_delete cart-col__delete">
+        <input type="hidden" name="cart[[+row_id+]][id]" value="[+item_id+]">
+        <!--input type="checkbox" name="cart[[+row_id+]][remove]" value="1"-->
+        <a class="cart-del-link" title="Удалить из корзины" data-id="[+row_id+]" href="[~[*id*]~]"><img src="assets/images/delete_icon_16.png" /></a>
+    </td>
+</tr>
+
+
+
+
+
+

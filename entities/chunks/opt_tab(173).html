@@ -1,0 +1,71 @@
+     [+phx:if=`[+user.opt+]`:isnot=`0`:and:if=`[+rozn+]`:isnot=`1`:then=`
+               
+
+     [+phx:if=`[+price_opt+]`:isnot=`0.00`:then=`
+                <div class="object_price">Оптовая цена ([+pagetitle+]): <span class="price">[+price_opt+]</span> руб. за 1 шт.</div>
+                <div>[+prices+]</div>
+                
+ [+phx:if=`[+package_items+]`:isnot=`0`:then=`        <br>  <div class="object_price">Количество в упаковке: <span class="price">[+package_items+] шт.</span></div>`+]
+
+ [+phx:if=`[+sku+]`:isnot=`0`:and=`[+parent+]`:is=`3134`:then=`        <br>  <div class="object_price">Количество на складе  ([+pagetitle+]): <span class="price">[+sku+]</span></div>`+]
+
+                `:else=``+]
+
+    `:else=`
+
+     [+phx:if=`[+fretail_price+]`:isnot=`0.00`:then=`
+                <div class="object_price">Розн цена ([+pagetitle+]): <span class="price">[+fretail_price+]</span> руб.</div>
+                <div>[+prices+]</div>
+                `:else=``+]
+
+
+`+]
+
+               
+                <div class="object_price">&nbsp;</div>        
+                [+phx:if=`[+sell+]`:is=`1`:then=`
+                    <form id="cart-form" action="[~84~]" method="POST" style="margin:0px;padding:0px;">
+                    <input name="addtocart" value="1" type="hidden">
+                    [+phx:if=`[+rozn+]`:is=`1`:then=`
+                    <input name="items[0][id]" value="[+id+]" type="hidden">  
+         [+phx:if=`[+size1+]`:isnot=``:then=` <br>Размер: [+size+] <br>`:else=`<input type="hidden" value="" name="items[0][size]">`+]   
+         [+phx:if=`[+color1+]`:isnot=``:then=`<br>Цвет: [+color+] <br>`:else=`<input type="hidden" value="" name="items[0][color]"><br>`+]                     
+                    <br/>
+                    <table cellpadding="0" cellspacing="0" border="0">
+                        <tr>
+                        <td><input name="items[0][quantity]"  maxlength="4" value="1" size="3" onChange="if (isNaN(parseInt(this.value))) this.value = 0; else this.value=parseInt(this.value);" class="reg_txt3" type="text"></td>
+                        <td>&nbsp;<strong>шт.</strong>&nbsp;</td>
+                        <td>
+                        <input name="button3" id="button3" value=" "  type="submit" style="cursor:pointer;border:0;width: 108px; height: 27px;background:url([(site_url)]/images/incart.gif);">
+                        </td>
+                        </tr>
+                    </table>
+                    `:else=`
+                    <!--opt-->
+                    <script type="text/javascript">
+                        var opt_price = [+price_opt+];
+                        var opt_prices = { [+prices_opt+] };
+                        
+                        var package_price = [+phx:if=`[+package_price+]`:is=``:then=`0.00`:else=`[+package_price+]`+];
+                        var package_prices = { [+package_prices+] };                        
+                    </script>
+                    <!--[+phx:if=`[+package_items+]`:isnot=`0`:then=`
+                    <b>Количество упаковок товара</b>
+                    `:else=`
+                    <b>Количество единиц товара</b>
+                    `+]-->
+                    <center><b style="font-size:13px;color:#f26805;">Ваш заказ</b></center>
+                    [+opt_table+]
+                    <br/>
+                    <input name="button3" id="button3" value=" "  type="submit" style="cursor:pointer;border:0;width: 108px; height: 27px;background:url([(site_url)]/images/incart.gif);">
+                    `+]
+                    </form>
+                `:else=`   <center>
+                 Временно нет в продаже </center>
+                
+                  <br>
+                <br> 
+                
+                
+                `+]    
+               

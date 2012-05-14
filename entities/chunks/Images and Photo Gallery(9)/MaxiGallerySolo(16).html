@@ -1,0 +1,118 @@
+<?php
+//<?/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// MaxiGallerySolo by XriS (modified by doze) v.1.1.1 (to be used with maxigallery v0.5 betas)
+//                         (modified by Dimmy, if  "&galIDs="  is not set then it wil use alle galleries
+//                                             if "&pics_to_show" is more than the images that are in the gallery
+//                                             "&pics_to_show" wil be as much as images that are in gallery)
+
+
+// -------------------------------------------------------------------------------------------
+//
+// This snippet gets the latest or random pictures from selected galleries
+//
+// Call like [!MaxiGallerySolo? &galIDs=`23,51,61` &pics_to_show=`5` &type=`random` &open=`gallery_browser`!]
+//
+// Parameters:
+// &galIDs          = Comma delimitted IDs of the documents that has [MaxiGallery] calls
+// &pics_to_show        = [ number ] : How many pics to show. Default: 1
+// &type            = [ "random" | "latest" ] : Show random pics or latest pics? Default: "latest"
+// &open            = [ "lightbox" | "gallery_browser" | "gallery_overview" ] : When clicking the link, should it open in lightbox, 
+//                  gallery browser or should it open the gallery overview where that picture is. Default: "lightbox"
+// &language                    = [ "en" | "fr" | etc.. ] : Lightboxv2 language (you have to have the language files in maxigallery ligthboxv2 folder. Defaul: "en"
+
+if(!function_exists(MGSoloRegClientScripts)) {
+
+    function MGSoloRegClientScripts($language){
+        global $modx;
+        //lightbox scripts
+        $lightboxv2_css_link = '<link rel="stylesheet" href="' . $modx->config['base_url'] . 'assets/snippets/maxigallery/lightboxv2/css/lightbox.css" type="text/css" media="screen" />';
+        $lightboxv2_script_link1 = $modx->config['base_url'] . 'assets/snippets/maxigallery/lightboxv2/js/lightbox_setup.js'; 
+        $lightboxv2_settings = 'assets/snippets/maxigallery/lightboxv2/js/lightbox_lang_'.$language.'.js';
+        if(file_exists($modx->config['base_path'].$lightboxv2_settings)){
+            $lightboxv2_script_link2 = $modx->config['base_url'] . $lightboxv2_settings;
+        }else{
+            $lightboxv2_script_link2 = $modx->config['base_url'] . 'assets/snippets/maxigallery/lightboxv2/js/lightbox_lang_en.js';
+        }
+        $lightboxv2_script_link3 = $modx->config['base_url'] . 'assets/snippets/maxigallery/lightboxv2/js/prototype.js';
+        $lightboxv2_script_link4 = $modx->config['base_url'] . 'assets/snippets/maxigallery/lightboxv2/js/scriptaculous.js?load=effects';
+        $lightboxv2_script_link5 = $modx->config['base_url'] . 'assets/snippets/maxigallery/lightboxv2/js/lightbox.js';
+    
+        $modx->regClientCSS($lightboxv2_css_link);
+        $modx->regClientStartupScript($lightboxv2_script_link1);
+        $modx->regClientStartupScript($lightboxv2_script_link2);
+        $modx->regClientStartupScript($lightboxv2_script_link3);
+        $modx->regClientStartupScript($lightboxv2_script_link4);
+        $modx->regClientStartupScript($lightboxv2_script_link5);
+    }
+}
+
+$returnstring="";
+
+//mod by Dimmy if no id is set get all id's from the database
+
+if(!isset($galIDs)){
+$result = $modx->db->select("*", $modx->getFullTableName('maxigallery')); 
+$alleids = array();
+while($info = $modx->db->getRow($result)) {
+if(!in_array($info['gal_id'],$alleids)) {
+$alleids[] = $info['gal_id'];
+}
+}
+$result = count ($alleids);
+$i=0;
+$galIDs="";
+foreach ($alleids as $value) {
+$i=$i+1;
+if ($i== $result){
+$galIDs .= "$value";
+}else{
+$galIDs .= "$value,";
+}
+}
+}
+//end mod
+
+if(isset($galIDs)){
+    $pics_to_show = isset($pics_to_show) ? $pics_to_show : 0;
+    $type = isset($type) ? $type : "latest";
+    $open = isset($open) ? $open : "lightbox";
+    $language = isset($language) ? $language : "en";
+    $galIDs = str_replace(",", "','", $galIDs);
+    $pics=$modx->getIntTableRows("*","maxigallery", "gal_id IN ('" . $galIDs . "')","pos,date","DESC");
+
+if (count($pics) <= $pics_to_show) {
+$pics_to_show = count($pics);
+}
+
+if (count($pics) == 0) {
+return;
+}
+    $i=0;
+    if($type == "random"){
+        shuffle($pics);
+    }
+    if($open=="lightbox"){
+        $forcount = count($pics);
+    }else{
+        $forcount = $pics_to_show;
+    }
+    for($i = 0; $i < $forcount; $i++) {
+        $pic = $pics[$i];
+        $path_to_gal = "assets/galleries/".$pic['gal_id']."/";
+        $file = $modx->config['site_url'] . $path_to_gal . $pic['filename'];
+        $tn_file = $modx->config['site_url'] . $path_to_gal . "tn_" . $pic['filename'];
+        if($open=="lightbox"){
+            $returnstring .= "<a href=\"$file\" rel=\"lightbox[maxigallery]\" title=\"<b>".htmlentities(stripslashes($pic['title']))."</b><br />".htmlentities(stripslashes($pic['descr']))."\">";
+        }else if($open=="gallery_browser"){
+            $returnstring .= "<a href=\"".$modx->makeUrl($pic['gal_id'], '', "&pic=".$pic['id'])."\">";
+        }else{
+            $returnstring .= "<a href=\"".$modx->makeUrl($pic['gal_id'], '', '')."\">";
+        }
+        $returnstring .= ($i > $pics_to_show ? "" : "<img src=\"$tn_file\" class=\"thumbnail\">" ) . "</a>";
+    }
+    if($open=="lightbox"){
+        MGSoloRegClientScripts($language);
+    }
+}
+return $returnstring;
+?>

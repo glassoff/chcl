@@ -1,0 +1,106 @@
+<div class="content">
+    <!--Breadcrumb -->
+    <div class="breadcrumb"> 
+    [[Breadcrumbs? &homeCrumbTitle=`Главная` &showCurrentCrumb=`1` &currentAsLink=`1` &currPageId=`[+parent+]` &startPageId=`1` &respectHidemenu=`0` &maxCrumbs=`10`]]
+    </div>
+    <!--Game Page-->
+    <div class="game_page">
+    <h1>Скриншоты для - [+pagetitle+]</h1>
+        <div class="content_body">
+        <table cellpadding="0" cellspacing="0" id="screenshots">
+            <tr>
+                <td valign="top">
+                [+phx:if=`[+image2+]`:isnot=``:then=`
+                    <a href="[+image2+]" rel="gb_imageset[nice_pics]" title="">
+                        <img src="[+phx:phpthumb=`w=140#[+image2+]`+]" alt="" class="img_link"/>
+                    </a>
+                `:else=``+]  
+                </td>
+                <td valign="top">
+                [+phx:if=`[+image3+]`:isnot=``:then=`
+                    <a href="[+image3+]" rel="gb_imageset[nice_pics]" title="">
+                        <img src="[+phx:phpthumb=`w=140#[+image3+]`+]" alt="" class="img_link"/>
+                    </a>
+                `:else=``+]  
+                </td>
+                <td valign="top">
+                [+phx:if=`[+image4+]`:isnot=``:then=`
+                    <a href="[+image4+]" rel="gb_imageset[nice_pics]" title="">
+                        <img src="[+phx:phpthumb=`w=140#[+image4+]`+]" alt="" class="img_link"/>
+                    </a>
+                `:else=``+]  
+                </td>
+                <td valign="top">
+                [+phx:if=`[+image5+]`:isnot=``:then=`
+                    <a href="[+image5+]" rel="gb_imageset[nice_pics]" title="">
+                        <img src="[+phx:phpthumb=`w=140#[+image5+]`+]" alt="" class="img_link"/>
+                    </a>
+                `:else=``+]  
+                </td>
+            </tr>
+            <tr>
+                <td valign="top">
+                [+phx:if=`[+image6+]`:isnot=``:then=`
+                    <a href="[+image6+]" rel="gb_imageset[nice_pics]" title="">
+                        <img src="[+phx:phpthumb=`w=140#[+image6+]`+]" alt="" class="img_link"/>
+                    </a>
+                `:else=``+]  
+                </td>
+                <td valign="top">
+                [+phx:if=`[+image7+]`:isnot=``:then=`
+                    <a href="[+image7+]" rel="gb_imageset[nice_pics]" title="">
+                        <img src="[+phx:phpthumb=`w=140#[+image7+]`+]" alt="" class="img_link"/>
+                    </a>
+                `:else=``+]  
+                </td>
+                <td valign="top">
+                [+phx:if=`[+image8+]`:isnot=``:then=`
+                    <a href="[+image8+]" rel="gb_imageset[nice_pics]" title="">
+                        <img src="[+phx:phpthumb=`w=140#[+image8+]`+]" alt="" class="img_link"/>
+                    </a>
+                `:else=``+]  
+                </td>
+                <td valign="top">
+                [+phx:if=`[+image9+]`:isnot=``:then=`
+                    <a href="[+image9+]" rel="gb_imageset[nice_pics]" title="">
+                        <img src="[+phx:phpthumb=`w=140#[+image9+]`+]" alt="" class="img_link"/>
+                    </a>
+                `:else=``+]  
+                </td>
+            </tr>
+              <tr>
+                <td valign="top">
+                [+phx:if=`[+image10+]`:isnot=``:then=`
+                    <a href="[+image6+]" rel="gb_imageset[nice_pics]" title="">
+                        <img src="[+phx:phpthumb=`w=140#[+image10+]`+]" alt="" class="img_link"/>
+                    </a>
+                `:else=``+]  
+                </td>
+                <td valign="top">
+                
+                </td>
+                <td valign="top">
+               
+                </td>
+                <td valign="top">
+               
+                </td>
+            </tr>
+        </table>
+        <div class="space1"></div>
+        <a href="[~[+itemhomeid+]~]?id=[+id+]">Описание диска - [+pagetitle+]</a>
+        <div class="space1"></div>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div class="space1"></div>
+</div>
+</div>
+<!--Right Sidebar-->
+<div class="right_sidebar" id="right_sidebar">
+[[Wayfinder?startId=`[[UltimateParent? &id=`[+parent+]` &topLevel=`1`]]` &hereid=`[+parent+]` &sortBy=`menuindex,pagetitle` &level=`3` &displayStart=`true` &startItemTpl=`RightMenuStart` &outerTpl=`CatMenuOuter` &rowTpl=`CatMenuRow` &innerTpl=`CatMenuInner` &innerRowTpl=`CatMenuInnerRow` &rowClass=`` &hereClass=`current` &selfClass=`current`]]
+{{RightBanners}}   
+{{StatBlock}}
+</div>
+<div class="clear"></div>
+</div>

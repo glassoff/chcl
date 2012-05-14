@@ -1,0 +1,31 @@
+<div class="content">
+    <!--Breadcrumb -->
+    <div class="breadcrumb"> 
+    [[Breadcrumbs? &homeCrumbTitle=`Главная` &showCurrentCrumb=`1` &currentAsLink=`1` &currPageId=`[+parent+]` &startPageId=`1` &respectHidemenu=`0` &maxCrumbs=`10`]]
+    </div>
+    <!--Game Page-->
+    <div class="game_page">
+    <h1>Посмотреть видеоролик - [+pagetitle+]</h1>
+        <div class="content_body">
+        <object class="playerpreview" type="application/x-shockwave-flash" data="assets/flashp/player_flv_multi.swf" width="320" height="240">
+            <param name="movie" value="assets/flashp/player_flv_multi.swf" />
+            <param name="allowFullScreen" value="true" />
+            <param name="FlashVars"  value="flv=http://www.cddiski.ru/[+movie+]&amp;title=[+pagetitle+]&amp;width=320&amp;height=240&amp;showstop=1&amp;showvolume=1&amp;showtime=1&amp;startimage=/medias/startimage_en.jpg|/medias/startimage_en.jpg&amp;showfullscreen=1&amp;" />
+        </object>
+        <div class="space1"></div>
+        <a href="[~[+itemhomeid+]~]?id=[+id+]">Описание диска - [+pagetitle+]</a>
+        <div class="space1"></div>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div class="space1"></div>
+</div>
+</div>
+<!--Right Sidebar-->
+<div class="right_sidebar" id="right_sidebar">
+[[Wayfinder?startId=`[[UltimateParent? &id=`[+parent+]` &topLevel=`1`]]` &hereid=`[+parent+]` &sortBy=`menuindex,pagetitle` &level=`3` &displayStart=`true` &startItemTpl=`RightMenuStart` &outerTpl=`CatMenuOuter` &rowTpl=`CatMenuRow` &innerTpl=`CatMenuInner` &innerRowTpl=`CatMenuInnerRow` &rowClass=`` &hereClass=`current` &selfClass=`current`]]
+{{RightBanners}}   
+{{StatBlock}}
+</div>
+<div class="clear"></div>
+</div>

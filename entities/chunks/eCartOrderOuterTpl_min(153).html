@@ -1,0 +1,96 @@
+[+message+] 
+<div class="korzina">
+    <div class="kor_objects">
+        <form action="[~[*id*]~]" method="POST" style="padding:0px;margin:0px;">
+            <input type="hidden" name="updatecart"  value="1">
+            <div class="kor_objects">
+              <table border="0" cellspacing="1" cellpadding="0">
+                <tr>
+                  <td class="objects_title">№</td>
+                  <td class="objects_title">Наименование</td>
+                  <td class="objects_title">Артикул</td>
+                  <td class="objects_title">Цвет</td>
+                  <td class="objects_title">Размер</td>
+                  <td class="objects_title">Цена</td>
+                  <td class="objects_title" width="90">Количество</td>
+                  <td class="objects_title">Стоимость</td>
+                  <td class="objects_title">Удалить</td>
+                </tr>
+                [+ec.wrapper+]
+                <tr>
+                  <td class="kor_price" colspan="5" align="right">
+                  Всего товаров: <strong><span class="cart_total">[+ec.cartquantity+] шт.</strong></span><br>    
+                  На сумму: <strong><span class="cart_total">[+ec.cartamount+] руб.</strong></span><br>
+                  С учетом скидки ([+ec.cartdiscount+]%): <strong><span class="cart_total">[+ec.dcartamount+] руб.</strong></span>         
+                  </td>      
+                </tr>    
+              </table>
+            </div>  
+            <div class="content_body">
+                <input type="submit" name="updatecart"   value=" " style="cursor:pointer;border:0;width: 171px; height: 27px;background:url([(site_url)]/images/update_cart.gif);">
+            </div>
+        </form>
+        <div class="space"></div>
+        
+        [+phx:if=`[+ec.cartamount+]`:gt=`[+ec.limit+]`:then=`
+        
+        <form action="[+240+]" method="POST" name="orderform">
+            <input type="hidden" name="from">
+            <input name="order[comment]" value="[+post.comment+]" type="hidden"/>
+            <input type="hidden" name="order[country]" class="inputBox"  value="Россия" readonly>
+            <input type="hidden" name="order[dom]" class="inputBox" value="[+house+]">
+            <input type="hidden" name="order[informcust]" value="1">
+            <input type="hidden" name="order[korpus]" class="inputBox" value="[+korpus+]">
+            <input type="hidden" name="order[kvartira]" class="inputBox" value="[+kvartira+]">
+            <input type="hidden" name="order[payment_method_id]" value="8" >
+            <input type="hidden" name="order[phone]" class="inputBox" value="[+phone+]">
+            <input type="hidden" name="order[postcode1]" class="inputBox"  value="[+postcode1+]">
+            <input type="hidden" name="order[region]" class="inputBox"  value="18825">
+            <input name="order[shipping]" value="self" type="hidden">
+            <input name="order[skudo]" value="" type="hidden">
+            <input name="order[skuwait]" value="" type="hidden">
+            <input type="hidden" name="order[state]" class="inputBox" value="[+town+]">
+            <input type="hidden" name="order[street]" class="inputBox" value="[+street+]">
+            <input type="hidden" name="order[to]" value="russia">
+            
+            <p>
+                Для оформления заказа, введите контрольный код и нажмите на кнопку "Оформить заказа".
+            </p>
+            <p>
+                <img src="[+form.captcha+]">
+                <input  name="order[formcode]" style="width:144px" type="text">
+            </p>
+               
+            
+            <div class="space1"></div>
+            <div class="content_body">
+                [+phx:if=`[+ec.overweight+]`:is=`0`:then=`
+                <input type="hidden" name="placeorder" class="" value="Оформить заказ">
+                <a onclick="$('form[name=orderform]').submit();return false;" href="#" title="Оформить заказ">
+                    <img alt="Оформить заказ" src="[(site_url)]/images/order.gif" border="0" /></a>
+                <!--input type="submit" name="placeorder" class="" value="Оформить заказ"-->`+]
+            </div>
+        </form>
+        <div class="space1"></div>
+            <!--/div>
+            </div-->
+            
+            `:else=`<div class="content_body"><b>Ваш заказ менее [+ec.limit+] рублей, дополните Ваш заказ, пожалуйста</b> 
+            <br>
+            <a href="[~5~]" title="Вернуться в каталог"><img alt="Вернуться в каталог" src="[(site_url)]/images/tocatalog.gif" border="0" /></a>
+            <!--form  action="[~5~]" method="POST">     
+            <input type="hidden" name="rozn" value="1">
+              <input type="submit"   value="В розничный магазин" class="">
+            </form-->
+            
+            </div>
+            `+]
+                    <div id="myOnPageContent" style="display:none;text-align:center;">
+                        <p style="text-align:center">Сервис временно недоступен</p>
+                        <p style="text-align:center"><input type="submit" id="Login" value="&nbsp;&nbsp;OK&nbsp;&nbsp;" onclick="tb_remove()" /></p>
+                    </div>
+            
+        </div>  </div>
+
+
+

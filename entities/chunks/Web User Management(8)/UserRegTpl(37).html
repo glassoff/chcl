@@ -1,0 +1,201 @@
+<div>
+[+wlpe.message+]
+<ul>
+[+username.empty:is=`1`:then=`<li>Email</li>`+]
+[+password.empty:is=`1`:then=`<li>Пароль</li>`+]
+[+passwordconfirm.empty:is=`1`:then=`<li>Подтверждение пароля</li>`+]
+[+fname.empty:is=`1`:then=`<li>Фамилия</li>`+]
+[+sname.empty:is=`1`:then=`<li>Имя</li>`+]
+
+[+email.empty:is=`1`:then=`<li>Email</li>`+]
+[+region.empty:is=`1`:then=`<li>Регион</li>`+]
+[+town.empty:is=`1`:then=`<li>Город</li>`+]
+[+street.empty:is=`1`:then=`<li>Улица</li>`+]
+[+house.empty:is=`1`:then=`<li>Дом</li>`+]
+[+phone.empty:is=`1`:then=`<li>Телефон</li>`+]
+[+formcode.empty:is=`1`:then=`<li>Код защити от автоматической регистрации</li>`+]
+</ul>
+</div>
+<form action="[~[*id*]~]" method="POST" name="userreg" style="padding:0px;marging:0px;">
+<input id="wlpeUserRegisterUserName" type="hidden" name="username"  value="[+post.username+]" />
+<div class="kor_objects">
+<table  border="0" cellpadding="0" cellspacing="1" class="table_cool">
+
+                <tr valign="middle" > 
+                    <td class="objects_title" align="left" colspan="2">                                 
+                         <strong>E-mail и пароль:</strong>                        
+                    </td>
+                </tr>        
+
+                <!--tr valign="middle"> 
+                    <td  align="left" width='40%' nowrap="nowrap">
+                    <span class="starrequired">*</span>
+                    Логин:
+                    </td>
+                    <td  align="left" width="60%">
+                    <input id="wlpeUserRegisterUserName" type="text" name="username"  value="[+post.username+]" />
+                    </td>
+                </tr-->  
+                <tr > 
+                    <td  align="left" valign="top" nowrap="nowrap"><font class="starrequired">*</font>&nbsp;<font class="tableheadtext">Email:</font></td>
+                    <td  align="left"><input id="wlpeUserRegisterEmail" type="text"  name="email" value="[+post.email+]" /><br>
+                    Пожалуйста указывайте правильный e-mail. На него будет приходить письмо со сылкой для потверждения заказа.
+                    </td>
+                </tr>				   
+                <tr valign="middle"> 
+                    <td  align="left" nowrap="nowrap"><font class="starrequired">*</font>&nbsp;<font class="tableheadtext">Пароль (мин. 6 символов):</font></td>
+                    <td  align="left"><input id="wlpeUserRegisterPassword"  type="password" name="password" value="" /></td>
+                </tr>
+                <tr valign="middle"> 
+                    <td  align="left" nowrap="nowrap"><font class="starrequired">*</font>&nbsp;<font class="tableheadtext">Подтверждение пароля:</font></td>
+                    <td  align="left"><input id="wlpeUserRegisterPasswordConfirm"  type="password" name="passwordconfirm" value="" /></td>
+                </tr>    
+                
+                <tr valign="middle"> 
+                    <td class="objects_title" align="left" colspan="2" >                                 
+                         <strong>Контактные данные:</strong><br>  
+                         <span class="info"><em>(Пожалуйста указывайте правильные контактные данные, чтобы мы могли отправить заказ)</em></span>                                               
+                    </td>
+                </tr>            
+                               
+                <tr > 
+                    <td  align="left" nowrap="nowrap"><font class="starrequired">*</font>&nbsp;<font class="tableheadtext">Фамилия:</font></td>
+                    <td  align="left"><input id="wlpeUserProfilefName"  type="text" name="fname" value="[+post.fname+]" /></td>
+                </tr>    
+
+                <tr > 
+                    <td  align="left" nowrap="nowrap"><font class="starrequired">*</font>&nbsp;<font class="tableheadtext">Имя:</font></td>
+                    <td  align="left"><input id="wlpeUserProfilesName"  type="text" name="sname" value="[+post.sname+]" /></td>
+                </tr>    
+
+                <tr > 
+                    <td  align="left" nowrap="nowrap"><font class="tableheadtext">Отчество:</font></td>
+                    <td  align="left"><input id="wlpeUserProfilelName"  type="text" name="lname" value="[+post.lname+]" /><br>
+                    
+                    </td>
+                </tr>    
+                   
+                <tr > 
+                    <td  align="left" valign="top" nowrap="nowrap"><font class="starrequired">*</font>&nbsp;<font class="tableheadtext">Телефон:</font></td>
+                    <td  align="left"><input id="wlpeUserRegisterPhone" type="text" name="phone"  value="[+post.phone+]" />
+                    </td>
+                </tr>
+          
+     
+
+  
+          
+                   <tr > 
+                    <td  align="left" valign="top" nowrap="nowrap"><font class="starrequired">*</font><font class="tableheadtext">Регион:</font></td>
+                    <td  align="left">[[get_region]]
+                    
+                    </td>
+                </tr>
+                      <tr > 
+                    <td  align="left" valign="top" nowrap="nowrap"><font class="starrequired">*</font>&nbsp;<font class="tableheadtext">Город:</font></td>
+                    <td  align="left"><input id="wlpeUserRegisterTown" type="text" name="town"  value="[+post.town+]" />
+                    
+                    </td>
+                </tr>
+ <tr > 
+                    <td  align="left" valign="top" nowrap="nowrap"><font class="starrequired">*</font>&nbsp;<font class="tableheadtext">Улица:</font></td>
+                    <td  align="left"><input id="wlpeUserRegisterStreet" type="text" name="street"  value="[+post.street+]" />
+                   
+                    </td>
+                </tr>
+                 <tr > 
+                    <td  align="left" valign="top" nowrap="nowrap"><font class="starrequired">*</font>&nbsp;<font class="tableheadtext">Дом:</font></td>
+                    <td  align="left"><input id="wlpeUserRegisterHouse" type="text" name="house"  value="[+post.house+]" />
+                   
+                    </td>
+                </tr>
+                 <tr > 
+                    <td  align="left" valign="top" nowrap="nowrap"><font class="tableheadtext">Корпус:</font></td>
+                    <td  align="left"><input id="wlpeUserRegisterKorpus" type="text" name="korpus"  value="[+post.korpus+]" />
+          
+                    </td>
+                </tr>
+                 <tr > 
+                    <td  align="left" valign="top" nowrap="nowrap"><font class="tableheadtext">Квартира:</font></td>
+                    <td  align="left"><input id="wlpeUserRegisterKvartira" type="text" name="kvartira"  value="[+post.kvartira+]" />
+                  
+                    </td>
+                </tr>
+                           <tr > 
+                    <td  align="left" valign="top" nowrap="nowrap"><font class="tableheadtext">Индекс:</font></td>
+                    <td  align="left"><input id="wlpeUserRegisterPostcode1" type="text" name="postcode1"  value="[+post.postcode1+]" />
+                      
+ 
+                    </td>
+                </tr>   
+
+                <tr valign="middle" > 
+                    <td class="objects_title" align="left" colspan="2">                                 
+                         <strong>Дополнительно:</strong>                        
+                    </td>
+                </tr>  
+                <tr > 
+                    <td  align="left" valign="top" nowrap="nowrap"><font class="tableheadtext">Ваш бонус-код:</font></td>
+                    <td  align="left"><input id="wlpeUserRegisterBonuscode" type="text" name="bonuscode"  value="[+post.bonuscode+]" />
+                      
+                    </td>
+                </tr> 	
+                <tr > 
+                    <td  align="left" valign="top" nowrap="nowrap"><font class="tableheadtext">Источник информации о нашей компании:</font></td>
+                    <td  align="left">
+                      	<p><label><input [+phx:if=`[+post.infosource+]`:is=`site`:then=`checked`+] type="radio" value="site" name="infosource" />Сайт</label></p>
+						<p><label><input [+phx:if=`[+post.infosource+]`:is=`telephone`:then=`checked`+] type="radio" value="telephone" name="infosource" />Телефонный звонок</label></p>
+						<p><label><input [+phx:if=`[+post.infosource+]`:is=`other`:then=`checked`+] type="radio" value="other" name="infosource" />Другое</label></p>
+						<script>
+							$(function(){
+								function changeSource(radio_elem){
+									var othersourceblock = $("#othersourceblock");
+									if(radio_elem.val() == 'other')
+										othersourceblock.css('display', 'block');
+									else
+										othersourceblock.css('display', 'none');
+								}
+								
+								$("input[name=infosource]").change(function(){
+									changeSource($(this));
+								});
+								
+								changeSource($("input[name=infosource]:checked"));
+							});
+						</script>
+						<p id="othersourceblock" style="display:none;">
+							<input type="text" name="infosource_other" value="[+post.infosource_other+]" />
+						</p>
+                    </td>
+                </tr> 								                   
+                
+                <tr valign="middle"> 
+                    <td  align="left" nowrap="nowrap" width="1%">
+                        <font class="starrequired">*</font>&nbsp;<font class="tablebodytext">Введите слово на картинке:</font>
+                    </td>
+                    <td  align="left" width="99%">
+                    <img id="wlpeCaptchaImage" src="manager/includes/veriword.php" width="148" height="60" alt="If you have trouble reading the code, click on the code itself to generate a new random code." />
+                    <br>
+                    <input type="text"  id="wlpeUserRegisterCaptcha" name="formcode" >
+<input id="wlpeUserRegisterOpt" type="hidden" name="opt"  value="0" />
+</td>
+
+                </tr>
+                
+                <tr> 
+                   
+                    <td align="right" nowrap="nowrap" colspan="2" valign="middle" >
+                        <button type="submit" id="wlpeSaveRegisterButton" class="btn" name="service" value="register">Регистрация</button>
+                        <button type="submit" id="wlpeCancelRegisterButton" class="btn" name="service" value="cancel">Отмена</button>
+                        <p class="info">(*)&nbsp;<em>Обязательные поля</em></p>
+                        
+                    </td>
+                </tr>               
+            </tbody>
+            </table>
+            </div>
+</form>         
+
+
+
+

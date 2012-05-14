@@ -1,0 +1,299 @@
+<a name="tovar"></a>
+<!-- filter form -->
+<form action="" method="POST" id="filter_form" name="filter_form">
+
+    <input type="hidden" name="ucf_gr" value="[+ucf_gr+]">
+    <input type="hidden" name="ucf_gr2" value="[+ucf_gr2+]">
+
+    <div style="display:none;">[[words_filter]]</div>
+
+    <input type="hidden" value="[+ucf_price+]" name="ucf_price">
+    <input type="hidden" value="[+ucf_price2+]" name="ucf_price2">
+    
+    <input type="hidden" value="[+ucf+]" name="ucf">
+    
+    <input type="hidden" value="[+ucs+]" name="ucs">
+    
+    <input type="hidden" value="[+ucsd+]" name="ucsd">
+    
+    <input type="hidden" value="[+parents+]" name="parents" >
+    
+    <input type="hidden" value="[+search+]" name="type" >
+    
+</form>
+<!-- filter form -->
+
+<div class="content">
+    <!--Breadcrumb -->
+    <div class="breadcrumb"> 
+    [[Breadcrumbs? &homeCrumbTitle=`Главная` &id=`breadCrumbsAtItemPage` &cache=`0` $cacheScale=`folder` &showCurrentCrumb=`1` &currentAsLink=`1` &currPageId=`[+parent+]` &startPageId=`1` &respectHidemenu=`0` &maxCrumbs=`10`]]
+    </div>
+    <div id="a-arrows">
+        [+phx:if=`[+previd+]`:ne=`0`:then=`
+        <a title="Переход к предыдущему товару" class="prev-tovar" onclick="document.filter_form.action=this.href;document.filter_form.submit();return false;" href="[~[+itemhomeid+]~]?id=[+previd+]#tovar"></a>
+        `+]
+        [+phx:if=`[+nextid+]`:ne=`0`:then=`
+        <a title="Переход к следующему товару" class="next-tovar" onclick="document.filter_form.action=this.href;document.filter_form.submit();return false;" href="[~[+itemhomeid+]~]?id=[+nextid+]#tovar"></a>
+        `+] 
+        <div style="clear:both;height:0;">&nbsp;</div>  
+    </div>
+       <div class="tovar_page">
+          <h1>[+pagetitle+]</h1>
+          
+   <table cellpadding="0" cellspacing="0" border="0">       
+    <tr>
+     <td valign="top">
+     	
+     	<div class="c-tovar-photo">
+       
+       		<div class="c-tovar-photo__main">
+       			<div class="c-tovar-photo__main__wrapper">
+		        	<a id="tovar-zoom" rel="tovar-zoom" class="c-tovar-photo__main__a [+phx:if=`[+image1+]`:ne=``:then=`tovar-image`+]" href="[+image1+]">
+		                 <img width="350" height="350" src="[+phx:if=`[+image1+]`:ne=``:then=`[+phx:phpthumb=`w=350#[+image1+]`+]`:else=`/assets/images/noimage.jpg`+]" alt="[+phx:input=`[+pagetitle+]`:esc+]"/>
+		                 <i class="image-zoom"></i>
+		            </a>
+            	</div>
+            	<div style="clear:both;"></div>
+        	</div>            
+        
+        	[+phx:if=`[+image1+]`:ne=``:then=`
+        	<div class="c-tovar-photo__list">
+        		<a class="prev browse left c-tovar-photo__list__left"></a>
+        		<div class="scrollable">
+        			<div class="items">
+						[+images_list+]
+					</div>        			
+        		</div>
+        		<a class="next browse right c-tovar-photo__list__right"></a>
+        		<br clear="all"/>
+        	</div>
+        	`+]
+     	</div>
+     
+     	<div class="tovar-description">
+               [+phx:if=`[+longtitle+]`:isnot=``:then=`
+                    <div  class="object_prog"><b> [+longtitle+]</b></div>
+                    `:else=``+] 
+
+       <div class="object_manuf">
+  [+phx:if=`[+country+]`:isnot=``:then=`<b>Страна:</b> [+country+] `+]   
+<br><b>Артикул:</b> [+acc_id+] 
+       
+         
+         [+phx:if=`[+material+]`:isnot=``:then=`<br><b>Материал:</b> [+material+]`:else=``+]      
+         [+phx:if=`[+composition+]`:isnot=``:then=`<br><b>Состав:</b> [+composition+]`:else=``+]
+         
+         [+phx:if=`[+retail_size+]`:isnot=``:then=`<br><b>Размеры:</b> [+retail_size1+]`:else=`
+            [+phx:if=`[+size+]`:isnot=``:then=`<br><b>Размеры:</b> [+size1+]`+]
+         `+]     
+         
+  		[+phx:if=`[+color1+]`:isnot=``:then=`<br><b>Цвет:</b> [+color1+]<br>`:else=``+] 
+        
+       
+        </div>
+        
+		</div>               
+     </td>
+     <td valign="top">   
+                <div class="buy-tabs">     
+                    <ul class="buy-tabs__header">
+                        [+phx:if=`[+price_opt+]`:isnot=`0.00`:then=`
+                        <li class="[+phx:if=`[+activetab+]`:is=`opt-tab`:then=`current`+]" id="opt-tab">
+                            <div>
+                                <div class="buy-tabs__header_icon buy-tabs__header_icon_opt"></div>
+                                <div class="buy-tabs__header_title">
+                                    <div class="buy-tabs__header_title__name">Опт</div>
+                                    <div class="buy-tabs__header_title__price">[+price_opt+] руб</div>
+                                </div>  
+                            </div>                      
+                        </li>`+][+phx:if=`[+fretail_price+]`:isnot=`0.00`:then=`<li class="[+phx:if=`[+activetab+]`:is=`retail-tab`:then=`current`+]" id="retail-tab">
+                            <div>
+                                <div class="buy-tabs__header_icon buy-tabs__header_icon_rozn"></div>
+                                <div class="buy-tabs__header_title">
+                                    <div class="buy-tabs__header_title__name">Розница</div>
+                                    <div class="buy-tabs__header_title__price">[+fretail_price+] руб</div>
+                                </div>  
+                            </div>                      
+                        </li>`+]
+                    </ul>
+                    [+phx:if=`[+price_opt+]`:isnot=`0.00`:then=`
+                    <div class="buy-tabs__content [+phx:if=`[+activetab+]`:is=`opt-tab`:then=`buy-tabs__content_visible`+]">
+                        <!-- start opt tab -->
+        <div class="object_price">Оптовая цена ([+pagetitle+]): <span class="price">[+price_opt+]</span> руб. за 1 шт.</div>
+        <div>[+prices_opt_str+]</div>
+                
+ [+phx:if=`[+package_items+]`:isnot=`0`:then=`        <br>  <div class="object_price">Количество в упаковке: <span class="price">[+package_items+] шт.</span></div>`+]
+
+ [+phx:if=`[+sku+]`:isnot=`0`:and=`[+parent+]`:is=`3134`:then=`        <br>  <div class="object_price">Количество на складе  ([+pagetitle+]): <span class="price">[+sku+]</span></div>`+]
+
+                <div class="object_price">&nbsp;</div>        
+                [+phx:if=`[+sell+]`:is=`1`:then=`
+                    <form id="cart-form" action="[~84~]" method="POST" style="margin:0px;padding:0px;">
+                    <input name="addtocart" value="1" type="hidden">
+                    <input name="type" value="opt" type="hidden">
+                    <!--opt-->
+                    <script type="text/javascript">
+                        var opt_price = [+price_opt+];
+                        var opt_prices = { [+prices_opt+] };
+                        
+                        var package_price = [+phx:if=`[+package_price+]`:is=``:then=`0.00`:else=`[+package_price+]`+];
+                        var package_prices = { [+package_prices+] };                        
+                    </script>
+                    <center><b style="font-size:13px;color:#f26805;">Ваш заказ</b></center>
+                    [+opt_table+]
+                    <br/>
+                    <input name="button3" id="button3" value=" "  type="submit" style="cursor:pointer;border:0;width: 108px; height: 27px;background:url([(site_url)]/images/incart.gif);">
+                    </form>
+                `:else=`   <center>
+                 Временно нет в продаже </center>
+                
+                  <br>
+                <br> 
+                
+                
+                `+]                  
+                        <!-- end opt tab -->
+                    </div>`+]
+                    [+phx:if=`[+fretail_price+]`:isnot=`0.00`:then=`
+                    <div class="buy-tabs__content [+phx:if=`[+activetab+]`:is=`retail-tab`:then=`buy-tabs__content_visible`+]">
+                        <!-- start retail tab -->
+                <div class="object_price">Розничная цена ([+pagetitle+]): <span class="price">[+fretail_price+]</span> руб.</div>
+                <div>[+prices_retail_str+]</div>
+                
+                [+phx:if=`[+sell+]`:is=`1`:then=`
+                    <form id="cart-form-retail" action="[~84~]" method="POST" style="margin:0px;padding:0px;">
+                        <input name="addtocart" value="1" type="hidden">
+                        <input name="type" value="retail" type="hidden">
+                    
+                        <input name="items[0][id]" value="[+id+]" type="hidden">  
+                        
+                        <table class="retail-attrs-table">
+                            <tr>
+                                <td>
+                                    [+phx:if=`[+retail_size1+]`:isnot=``:then=`<div class="attr-name">Размер:</div>[+retail_size+]`:else=`<input type="hidden" value="" name="items[0][size_z]">`+] 
+                                </td>
+                                <td class="colors-selector">
+                                    [+phx:if=`[+color1+]`:isnot=``:then=`<div class="attr-name">Цвет:</div>[+color+]`+]
+                                    <input type="hidden" value="" name="items[0][color_z]">
+                                </td>
+                            </tr>
+                        </table>
+                        
+                        <input name="items[0][quantity]"  maxlength="4" value="1" size="3" onChange="if (isNaN(parseInt(this.value))) this.value = 0; else this.value=parseInt(this.value);" class="reg_txt3" type="text">
+                        &nbsp;<strong>шт.</strong>&nbsp;
+                        <input name="button3" id="button3" value=" "  type="submit" style="cursor:pointer;border:0;width: 108px; height: 27px;background:url([(site_url)]/images/incart.gif);">
+                        
+                    </form>
+                `:else=`   <center>
+                 Временно нет в продаже </center>
+                
+                  <br>
+                <br> 
+                
+                
+                `+]     
+                        <!-- end retail tab -->                                                     
+                    </div>`+]
+                </div>  
+     </td>   
+    </tr>
+    <tr>
+
+    <td valign="top" colspan="2">                   
+        <!--Object description end -->    
+        <div class="game_page_des_content2">
+     <br><br>
+        
+            [+phx:if=`[+tovarinfo+]`:isnot=``:then=`                        
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="disk_block">
+              <tr>
+                <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td><img src="assets/templates/cd/i/bl_st.gif" width="6" height="35"/></td>
+                    <td width="100%" class="header_back" ><h5>О товаре</h5></td>
+                    <td><img src="assets/templates/cd/i/bl_end.gif" width="6" height="35" /></td>
+                  </tr>
+                </table></td>
+              </tr>
+              <tr>
+                <td style="padding:5px;">[+tovarinfo+]
+
+</td>
+              </tr>
+            </table>
+            <div class="space1"></div>        
+            `:else=``+]      
+
+            <!--recommend items-->
+            [+phx:if=`[+recommenditemsrows+]`:isnot=``:then=`
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="disk_block">
+              <tr>
+                <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td><img src="assets/templates/cd/i/bl_st.gif" width="6" height="35"/></td>
+                    <td width="100%" class="header_back" ><h5>Рекомендуемые товары</h5></td>
+                    <td><img src="assets/templates/cd/i/bl_end.gif" width="6" height="35" /></td>
+                  </tr>
+                </table></td>
+              </tr>
+              <tr>
+                <td style="padding:5px;">[+recommenditemsrows+]
+
+</td>
+              </tr>
+            </table>
+             
+                        
+            <div class="space1"></div>                   
+            `+]
+     
+            <!--similar items-->
+            [+phx:if=`[+similaritemsrows+]`:isnot=``:then=`
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="disk_block">
+              <tr>
+                <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td><img src="assets/templates/cd/i/bl_st.gif" width="6" height="35"/></td>
+                    <td width="100%" class="header_back" ><h5>Похожие товары</h5></td>
+                    <td><img src="assets/templates/cd/i/bl_end.gif" width="6" height="35" /></td>
+                  </tr>
+                </table></td>
+              </tr>
+              <tr>
+                <td style="padding:5px;">[+similaritemsrows+]
+
+</td>
+              </tr>
+            </table>
+             
+                        
+            <div class="space1"></div>                   
+            `+]
+     
+            <br>          <br>
+    [[Breadcrumbs?  &homeCrumbTitle=`В каталог` &id=`breadCrumbsAtItemPage` &cache=`0`  &showCurrentCrumb=`1` &currentAsLink=`0` &currPageId=`[+id+]` &startPageId=`[+parent+]` &respectHidemenu=`0` &maxCrumbs=`1`]]
+    &nbsp;&nbsp;&nbsp;&nbsp; <noindex><a href="/[~2921~]?t_id=[+id+]" rel="nofollow">Пожаловаться на цену</a></noindex>   
+            <!-- <br><a class="anone" href="javascript: history.back()">&larr;&nbsp; назад</a>    -->
+                    
+          </div>        
+        <!--/div-->
+        </td>
+        </tr>
+        </table>
+    
+    
+    
+    
+       
+       
+       </div>
+
+</div>
+
+
+
+
+
+
+
+

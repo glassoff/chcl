@@ -1,0 +1,17 @@
+[+phx:if=`[+wf.docid+]`:is=`[[UltimateParent? &id=`[+wf.hereid+]` &topLevel=`2`]]`:then=`
+<li class="cat_sec">
+<span class="cat_sec_title">[+wf.linktext+]</span>
+<!--<a href="[+wf.link+]" class="cat_sec_title" title="[+wf.title+]">[+wf.linktext+]</a>-->
+[+wf.wrapper+]
+</li>
+`:else=`
+<li>
+<a href="[+wf.link+]" class="[+wf.classnames+]" title="[+wf.title+]">[+wf.linktext+]</a>
+</li>
+`+]
+
+
+
+
+
+

@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd" /> 
+[!client!]
+<html> 
+<head>
+    <META Name="description" Content="[*description*]">
+    <title>[+phx:if=`[*id*]`:ne=`219`:then=`[+phx:if=`[*longtitle*]`:ne=``:then=`[*longtitle*]`:else=`[*pagetitle*]`+]`+][+itemtitle+]</title>
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+    <META Name="copyright" Content="CHCL">
+    <META Name="Publisher-URL" Content="http://www.chcl.ru">
+    <META HTTP-EQUIV="Content-language" Content="ru">
+    <META Name="Document-state" content="Dynamic">
+    <meta name="keywords" content="[*pagekeywords*]">
+    
+    <meta name="google-site-verification" content="gAHpVvWtkHTZJGAEB5ILpFpbWXpSw55qwxgHD0IMMVs" >
+    
+    <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="[~3164~]" >    
+    
+    <base href="[(site_url)]" />   
+    <link rel="stylesheet" type="text/css" href="assets/templates/kidsdream/css/yui/reset-min.css">
+    <link rel="stylesheet" type="text/css" href="assets/templates/kidsdream/css/yui/fonts-min.css">
+    
+    <link media="all" rel="stylesheet" type="text/css" href="assets/templates/kidsdream/css/template.css" />
+    <link media="all" rel="stylesheet" type="text/css" href="assets/templates/kidsdream/css/elements.css" />
+    <link media="all" rel="stylesheet" type="text/css" href="assets/templates/kidsdream/css/basic_dd.css" />
+    
+    <link href="assets/templates/cd/css/css.css" rel="stylesheet" type="text/css">
+    
+    <link rel="shortcut icon" href="images/favicon.ico" >
+
+    <script type="text/javascript">var MODX_MEDIA_PATH = "media";</script>
+    
+    {{top_js}}
+</head>
+<body>
+    <div class="c-page">
+        <!-- header -->
+        <div class="header">
+            <div class="header__left">
+                <div class="header__right">
+                    <div class="header__body">
+                        <div class="header__body__left">
+                            <a href="[(site_url)]" title="Перейти на гланую страницу"><img class="logo" width="164" height="197" src="assets/templates/kidsdream/images/logo.png" alt=""/></a>
+                        </div>
+                        <div class="header__body__center">
+                            <div class="header_phone">
+                                <img width="218" height="27" src="assets/templates/kidsdream/images/phone.png" alt="+7(495)649-67-39"/>
+                            </div>  
+                            <div class="header_recall">
+                                <a href="#" id="recall-link">Мы перезвоним вам</a>
+                                {{recallForm}}
+                            </div>                      
+                            <img class="sitename" src="assets/templates/kidsdream/images/name.png" alt="Оптовый магазин детской одежды"/>
+
+                        </div>
+                        <div class="header__body__right">
+                            <div class="header_icons">
+                                <a class="header_icons__home" href="[(site_url)]" title="Главная">Главная</a>
+                                <a class="header_icons__fav" rel="sidebar" href="[(site_url)]" onclick="if (document.all){window.external.addFavorite(this.href, 'Детская одежда оптом и в розницу');return false;}if($.browser.webkit || !window.sidebar.addPanel){alert('Для добавления в избранное нажмите Ctrl+D');return false;}" title="Избранное: Детская одежда оптом и в розницу">Добавить в избранное</a>
+                                <a class="header_icons__contacts" href="[~2577~]" title="Обратная связь">Обратная связь</a>
+                                <a class="header_icons__search" href="[~1308~]" title="Поиск">Поиск</a>
+                                <a class="header_icons__map" href="[~1309~]" title="Карта сайта">Карта сайта</a>
+                                <div style="clear:both;"></div>
+                            </div>
+                            <div class="header_search">
+                                <form action="/catalog/search" method="get">
+                                    <div class="header_search__input_wrapper"><input class="g-placeholder" type="text" name="searchtxt" placeholder="Поиск по каталогу"/></div>
+                                    <div class="header_search__submit_wrapper"><input type="submit" name="search" value="" /></div>
+                                </form>
+                            </div>
+                        </div>
+                        
+                        <div class="auth__cart">
+                            <div class="auth__cart__content">
+                                {{LoginForm}}
+                            </div>
+                        </div>
+                        <div style="clear:both;"></div>
+                    </div>              
+                </div>
+            </div>
+        </div>
+        
+        <div class="page_middle">
+            <div class="page_middle__top">
+                <div class="page_middle__bottom">   
+                    <div class="page_middle__body">
+                        <!-- content -->
+                        <div class="c-content">
+                            <div class="c-content__body content_body">
+                                <!-- -->
+                                [*#content*]
+                                <!-- -->
+                            </div>
+                        </div>  
+                        <!-- left sidebar -->
+                        <div class="c-left_sidebar">
+                            <div class="c-left_sidebar__body">
+                                    <div id="sidebar_block-first" class="sidebar_block">        
+                                        <div class="sidebar_block__header">
+                                            <img src="assets/templates/kidsdream/images/spec-title.png" alt="Спецпредложения" />
+                                        </div>                                  
+                                        <div class="sidebar_block__body spec_list">
+                                            [!Wayfinder?startId=`5` &includeDocs=`[[withChildren? &id=`3119`]],[[withChildren? &id=`3134`]],[[withChildren? &id=`3183`]]` &level=`3` &id=`rightMenuOnIndex` &cache=`0` &cacheScale=`global` &displayStart=`0` &startItemTpl=`LeftMenuStart` &outerTpl=`CatMenuOuter` &rowTpl=`CatMenuRow` &innerTpl=`CatMenuInner` &innerRowTpl=`CatMenuInnerRow` &rowClass=`` &hereClass=`current` &selfClass=`current`!]
+                                        </div>                  
+                                    </div>
+                                    <div class="sidebar_block">
+                                        <div class="sidebar_block__header">
+                                            <img src="assets/templates/kidsdream/images/catalog-title.png" alt="Каталог" />
+                                        </div>                  
+                                        <div class="sidebar_block__body catalog_list">
+                                            [!Wayfinder?startId=`5` &excludeDocs=`3119,3134,3183` &level=`3` &id=`rightMenuOnIndex` &cache=`0` &cacheScale=`global` &displayStart=`0` &startItemTpl=`LeftMenuStart` &outerTpl=`CatMenuOuter` &rowTpl=`CatMenuRow` &innerTpl=`CatMenuInner` &innerRowTpl=`CatMenuInnerRow` &rowClass=`` &hereClass=`current` &selfClass=`current`!]
+                                        </div>                  
+                                    </div>  
+                                    <div class="sidebar_block">
+                                        <div class="sidebar_block__header">
+                                            <img src="assets/templates/kidsdream/images/managers-title.png" alt="Наши менеджеры" />
+                                        </div>                  
+                                        <div class="sidebar_block__body">
+                                            <div class="managers_list">
+                                                [[Ditto? &id=`managersList` &startID=`2889` &tpl=`ManagersBlockTpl`]]                              
+                                            </div>
+                                        </div>                  
+                                    </div>                                                                  
+                                </div>
+            
+                        </div>
+                        <div style="clear:both;"></div> 
+                    
+                    </div>
+                </div>
+            </div>              
+        </div>
+        
+        <!-- top menu -->
+        <div class="top_menu"> 
+            <div class="top_menu__body">
+                {{TopMenu}}
+            </div>
+        </div>
+        
+        <div class="c-footer">
+            <div class="c-footer__top">
+                <div class="c-footer__middle">
+                    <div class="c-footer__body">
+                        <div class="c-socials">
+                            <a href="http://ru-ru.facebook.com/people/Alexey-Shutov/100002489070888" title="Мы в Facebook" target="_blank" class="socials__facebook">Мы в Facebook</a>
+                            <a href="http://twitter.com/ChildrenClub1" target="_blank" title="Мы в Twitter" class="socials__twitter">Мы в Twitter</a>
+                            <a href="/[~3164~]" title="RSS лента новостей" target="_blank" class="socials__rss">RSS лента новостей</a>
+                            <a href="http://www.youtube.com/user/chclru" title="Канал YouTube" target="_blank" class="socials__youtube">Канал YouTube</a>
+                            <a href="http://www.odnoklassniki.ru/group/55902433640487" title="Наша группа в Одноклассниках" target="_blank" class="socials__odnoklassniki">Наша группа в Одноклассниках</a>
+                            <a href="http://vk.com/club35686650" title="Наша группа в Вконтакте" target="_blank" class="socials__vk">Наша группа в Вконтакте</a>                            
+                            <div style="clear:both;"></div>
+                        </div>
+                        <div class="c-copyright">
+                            &copy; 2009-2012 CHCL
+                        </div> 
+                        <div class="c-counters">
+                            {{counters}}
+                        </div>
+                        <div style="clear:both;"></div>
+                        <p style="color:#D9F4A9;">
+                        121357, г. Москва, ул. Верейская, д.29, стр.153, 1 этаж, помещение I, комната №1, +7 (495) 649-67-39<br/>
+                            196066, г. Санкт-Петербург, Московский пр. 212 Бизнес Центр "МОСКОВСКИЙ", северный вход, +7(921) 796-81-61
+                        </p>
+                    </div>  
+                </div>          
+            </div>
+        </div>
+
+    </div>
+    {{bottom_js}}
+    {{pInfo}}
+</body>
+</html>
+

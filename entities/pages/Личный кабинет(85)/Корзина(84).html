@@ -1,0 +1,10 @@
+<div id="cart-content">
+	[+phx:if=`[[web_user_id]]`:is=``:then=`
+	[!eCart? &type=`pagecart` &sort=`eci.id` &itemhomeid=`219` &cartHomeId=`[*id*]` &activateorderhomeid=`221` &cartOuterTpl=`eCartOuterTpl` &cartRowTpl=`eCartRowTpl`!]
+	`:else=`
+	[!eCart? &type=`makeorder` &sort=`eci.id` &itemhomeid=`219` &checkouthomeid=`88` &cartHomeId=`[*id*]` &confirmorderhomeid=`221` &cartOrderOuterTpl=`eCartOrderOuterTpl` &cartRowTpl=`eCartRowTpl` &cartAddressTpl=`eCartAddressTpl` &cartPaymentOuterTpl=`eCartPaymentOuterTpl` &cartPaymentRowTpl=`eCartPaymentRowTpl`!]
+	<script>
+	    var update_cart_url = "[~2960~]"; 
+	</script>
+	`+]
+</div>

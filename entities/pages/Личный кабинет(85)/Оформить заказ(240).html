@@ -1,0 +1,37 @@
+[+phx:if=`[[cartEmpty]]`:is=`1`:then=` 
+    <div class="message1">
+        Ваша корзина пока пуста
+    </div>
+`:else=`                
+
+    [+phx:if=`[[web_user_id]]`:is=``:then=`
+    <p>
+        Если Вы являетесь зарегистрированным пользователем, пожалуйста, введите логин и пароль:
+    </p>
+
+    [!WebLoginPE? &amp;type=`simple` &amp;groups=`Customers` &amp;loginFormTpl=`LoginAndOrderForm` &disableServices=`register,users,profile,manager`!]
+
+
+    <p>Забыли свой пароль?</p> 
+    <p>Следуйте <a href="[~80~]">на форму для запроса пароля.</a></p>
+    <p>&nbsp;</p>
+    <p>
+        Если Вы не являетесь зарегистрированным пользователем, пожалуйста, пройдите несложную регистрацию:
+    </p>
+    <h3>Регистрация оптового и розничного покупателя</h3>
+    [!u_reg_set_username!]
+    [!WebLoginPE? &amp;type=`register` &amp;loginHomeId=`1` &amp;regSuccessId=`85` &amp;groups=`Customers` &amp;registerTpl=`UserRegTpl2` &amp;registerSuccessTpl=`registerSuccessTpl` &amp;regRequired=`username,password,passwordconfirm,formcode,email,type,company,town,phone` &disableServices=`login`!]
+    
+     
+    `:else=`
+    <div id="cart-content">
+    [!eCart? &type=`makeorder` &sort=`eci.id` &itemhomeid=`219` &checkouthomeid=`88` &cartHomeId=`[*id*]` &confirmorderhomeid=`221` &cartOrderOuterTpl=`eCartOrderOuterTpl` &cartRowTpl=`eCartRowTpl` &cartAddressTpl=`eCartAddressTpl` &cartPaymentOuterTpl=`eCartPaymentOuterTpl` &cartPaymentRowTpl=`eCartPaymentRowTpl`!]
+    <script>
+        var update_cart_url = "[~2960~]"; 
+    </script>
+   </div>
+    `+]
+
+`+]
+
+

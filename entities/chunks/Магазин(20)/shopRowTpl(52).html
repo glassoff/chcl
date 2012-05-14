@@ -1,0 +1,14 @@
+<tr>
+    <td align="left">    
+         [+phx:if=`[+shop_map+]`:isnot=``:then=`<a href="[+shop_map+]" rel="lightbox[roadtrip]" title="">
+         <img src="[+phx:phpthumb=`w=100#[+shop_map+]`+]" alt="" align="absmiddle"/></a>`:else=``+]     
+         
+    </td>       
+    <td align="left" valign="top"  width="90%">
+         <strong>[+pagetitle+]</strong>         
+         <p>[+shop_address+]</p>
+         <p>[+shop_phone+]</p>
+         [+phx:if=`[+shop_icq+]`:isnot=``:then=`<p><img src="assets/templates/fotoplus/i/icq.gif" hspace="2">[+shop_icq+]</p>`:else=``+]
+    </td>
+</tr>
+

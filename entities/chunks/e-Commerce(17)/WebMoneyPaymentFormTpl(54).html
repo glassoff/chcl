@@ -1,0 +1,14 @@
+[+message+]
+<strong>Выберите валюту:</strong>
+<form method="POST" action="https://merchant.webmoney.ru/lmi/payment.asp" name="wm" style="margin:0px;padding:0px">
+<label for="wmr">[+wmr_amount+] WMR</label>
+<input type="radio" id="wmr" checked name="LMI_PAYMENT_AMOUNT" onchange="document.wm.LMI_PAYEE_PURSE.value='[+wmr_purse+]'" value="[+wmr_amount+]">
+<br>
+<label for="wmz">[+wmz_amount+] WMZ</label>
+<input type="radio" id="wmz" name="LMI_PAYMENT_AMOUNT" onchange="document.wm.LMI_PAYEE_PURSE.value='[+wmz_purse+]'" value="[+wmz_amount+]">
+<div class="content_wrapper"></div>
+<input type="hidden" name="LMI_PAYMENT_DESC" value="[+order_summary+]">
+<input type="hidden" name="LMI_PAYEE_PURSE" value="[+wmr_purse+]">
+<input type="hidden" name="user_order_id" value="[+user_order_id+]">
+<input type="submit" value="Перейти к оплате">
+</form>
