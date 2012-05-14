@@ -1,0 +1,84 @@
+<a name="jf[+jot.link.id+]"></a>
+<h3>[+form.edit:is=`1`:then=`Редактировать отзыв`:else=``+]</h3>
+[+form.error:isnt=`0`:then=`
+<div class="jot-err">
+[+form.error:select=`
+&-3=Вы пытаетесь отправить сообщение повторно. Вы вероятно нажимали кнопку отправки более одного раза.
+&-2=Вам отказано в публикации вашего отзыва.
+&-1=Ваш отзыв отправлен, он будет опубликован после проверки администратора.
+&1=Вы пытаетесь отправить сообщение повторно. Вы вероятно нажимали кнопку отправки более одного раза.
+&2=Вы ввели неправильный антиспам код.
+&3=Вы можете оставить отзыв только один раз в [+jot.postdelay+] секунду.
+&4=Вам отказано в публикации вашего отзыва.
+&5=[+form.errormsg:ifempty=`Вы не заполнили все обязательные поля`+]
+`+]
+</div>
+`:strip+]
+[+form.confirm:isnt=`0`:then=`
+<div class="jot-cfm">
+[+form.confirm:select=`
+&1=Ваш отзыв опубликован.
+&2=Ваш отзыв отправлен,будет опубликован после проверки администратора.
+&3=Отзыв сохранен.
+`+]
+</div>
+`:strip+]
+<div id="CommentForm" [+form.edit:is=`0`:then=`style="display:none"`+]>
+<img [+form.edit:is=`1`:then=`style="display:none"`+]src="assets/templates/cd/i/x.jpg" align="right" style="cursor:pointer;padding:0px;margin:0px" onclick="closeMessage()">
+
+<div style="margin:4px;">
+[+form.edit:is=`1`:then=``:else=`<h3>Оставить отзыв</h3>`+]
+<form method="post" action="[+form.action:esc+]#jf[+jot.link.id+]" class="jot-form">
+	
+	<input name="JotForm" maxlength="" type="hidden" value="[+jot.id+]" />
+	<input name="JotNow" type="hidden" value="[+jot.seed+]" />
+	<input name="parent" type="hidden" value="[+form.field.parent+]" />
+	<div style="margin:10px;">
+	[+form.moderation:is=`1`:then=`
+		<div class="jot-row">
+			<b>Cоздан в:</b> [+form.field.createdon:date=`%d.%m.%Y, %H:%M:%S`+]<br />
+			<b>Автор:</b> [+form.field.createdby:userinfo=`username`:ifempty=`[+jot.guestname+]`+]<br />
+			<b>IP адрес:</b> [+form.field.secip+]<br />
+			<b>Опубликован:</b> [+form.field.published:select=`0=No&1=Yes`+]<br />
+			[+form.field.publishedon:gt=`0`:then=`
+				<b>Опубликован в:</b> [+form.field.publishedon:date=`%d.%m.%Y, %H:%M:%S`+]<br />
+				<b>Опубликовал:</b> [+form.field.publishedby:userinfo=`username`:ifempty=` - `+]<br />
+			`+]
+			[+form.field.editedon:gt=`0`:then=`
+				<b>Изменен в:</b> [+form.field.editedon:date=`%d.%m.%Y, %H:%M:%S`+]<br />
+				<b>Изменил:</b> [+form.field.editedby:userinfo=`username`:ifempty=` -`+]<br />
+			`+]
+		</div>
+	`:strip+]
+	
+	[+form.guest:is=`1`:then=`
+		<label for="name" class="white">Имя:<br />
+		<input tabindex="[+jot.seed:math=`?+1`+]" name="name" type="text" size="40" value="[+form.field.custom.name:esc+]" />
+		</label>
+		<label for="email" class="white">Email:<br />
+		<input tabindex="[+jot.seed:math=`?+2`+]" name="email" type="text" size="40" value="[+form.field.custom.email:esc+]" />
+		</label>
+	`:strip+]
+	
+	<label for="title" class="white">Тема:<br />
+	<input tabindex="[+jot.seed:math=`?+3`+]" name="title" type="text" size="40" value="[+form.field.title:esc+]" />
+	</label>
+	<label for="content" class="white">Отзыв: *<br />
+	<textarea tabindex="[+jot.seed:math=`?+4`+]" name="content" cols="41" rows="4">[+form.field.content:esc+]</textarea>
+	</label>
+	
+   <a href="[+jot.link.current:esc+]">
+		<img src="[(base_url)]manager/includes/veriword.php?rand=[+jot.seed+]" width="150" height="60" alt="Если вам трудно читат кода, нажмите на рисунок кода  чтобы обновить рисунку кода." style="border: 1px solid #003399" /></a>
+		<br><span class="white">Введите код * :</span><input type="text" name="vericode" style="width:100px;" size="20" />
+	
+<br>
+	<input tabindex="[+jot.seed:math=`?+5`+]" name="submit" type="submit" value="[+form.edit:is=`1`:then=`Сохранить отзыв`:else=`Отправить отзыв`+]" />
+	[+form.edit:is=`1`:then=`
+		<input tabindex="[+jot.seed:math=`?+5`+]" name="submit" type="submit" value="Отмена" onclick="history.go(-1);return false;" />
+	`+] 
+	
+	
+</form>
+</div>
+</div>
+</div>

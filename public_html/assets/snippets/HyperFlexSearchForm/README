@@ -1,0 +1,23 @@
+
+HOW TO INSTALL HYPERFLEXSEARCHFORM :
+
+- COPY ALL FILES TO "assets/snippets/HyperFlexSearchForm"
+- CREATE A NEW SNIPPET CALLED "HyperFlexSearchForm" AND COPY THE FOLLOWING CODE :
+
+<?php
+// snippet name$snipName_t = "HyperFlexSearchForm";
+// snippet description
+$snipDesc_t = "<strong>v3r2</strong> Add advanced search features to the original FlexSeachForm snippet";
+// setting snippet path$snipPath_t = $modx->config["rb_base_dir"].'snippets/';// including the main filereturn require $snipPath_t.$snipName_t."/".$snipName_t.".inc.php";?>
+
+
+ADD PARAMETERS TO YOUR ORIGINAL FLEXSEARCHFORM SNIPPET CALL !
+
+
+ORIGINAL CALL :
+
+[!FlexSearchForm? &FSF_landing=`2` &FSF_showResults=`1`!]
+
+BECOMES :
+
+[!HyperFlexSearchForm? &FSF_landing=`2` &FSF_showResults=`1` &templateSearch=`Minimal Template` &templateSearchMode=`1`!]

@@ -1,0 +1,18 @@
+.kiwee-msc {
+	width: 261px;
+	padding-top: 3px;
+	padding-right: 1%;
+	float: right;
+}
+
+.searchbar {
+	height: 30px;
+}
+
+.searchbar div {
+	padding-left: 10px;
+	padding-right: 0px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	float: left;
+}

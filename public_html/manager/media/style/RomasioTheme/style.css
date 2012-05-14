@@ -1,0 +1,1188 @@
+@import 'reset-fonts-grids.css';
+@import 'base-min.css';
+@import 'forms.css';
+
+/*
+MAIN COLORS:
+#00008B - BLUE
+#EAEAEA - SILVER
+*/
+
+/* =========================================================
+		GENERAL
+========================================================= */
+html {
+  
+ /*   font-family: "Lucida Grande", Helvetica, Arial, sans-serif !important;  IE ignores this and renders Arial better */
+    font-family: Arial, Tahoma, Helvetica, sans-serif;
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+    height: 100%;
+    color: #333333;
+}
+body {
+	text-align: left;
+}
+
+li {
+	margin: 2px;
+	list-style: url(images/misc/li.gif) disc;
+}
+table, td {
+	border-width: 0;
+	margin: 0;
+	padding: 0;
+}
+
+a img {
+	border: 0;
+}
+/* ---- Miscellaneous conveniences ---- */
+/* use with a <br class="cls" /> to clear floats without extra space */
+.clearfix, .cls {
+    clear: both;
+    height: 0 !important;
+    margin: 0;
+    font-size: 1px;
+    overflow: hidden;
+}
+.clear { clear: both; }
+.contentPad {
+    height: 20px !important;
+    clear: both;
+}
+.hide, .skip, .printonly { display: none; }
+
+.inline { display: inline; }
+
+
+
+/* ---- HEADERS and PARAGRAPHS ---- */
+h1, h2, h3, h4, h5, h6, .subTitle {
+    font-weight: normal;
+}
+
+h1 { font-size: 167%; text-transform: uppercase; }
+h2 { font-size: 164%; }
+h3 { font-size: 145%; }
+h4 { font-size: 118%; }
+h5 { font-size: 100%; font-weight: bold; }
+h6 { font-size: 86%; font-weight: bold; }
+
+p.caption, p.comment { font-size: 86%; color: #888; }
+
+.warning{
+    color: #00008B;
+    font-weight: bolder;
+	font-size: 85%;
+}
+.success{
+    color: #090;
+    font-weight: bold;
+}
+hr {
+	color: #777;
+	background-color: #777;
+	height: 1px;
+	border: 0;
+}
+
+.split {
+	/*background: #821517 url(images/misc/line.gif) repeat-x;*/
+	height: 1px;
+	font-size: 0;
+	clear: both;
+	padding: 0;
+}
+
+#previewIframe {
+    width:100%;
+    height:500px;
+}
+
+/* =========================================================
+		TABLES & SORTABLES
+========================================================= */
+table#table-1 {
+	border: 1px solid silver !important;
+}
+table#table-1 td {
+	padding: 6px 4px 6px 4px;
+}
+table#table-1 thead th {
+	background: #E3E3E3;
+	border: 0;
+	padding: 6px 4px 6px 4px;
+}
+/* ---- New sortable table class ---- */
+.sortabletable {
+	font-size: 85%;
+	border: 0 solid ThreeDShadow !important;
+	color: WindowText;
+}
+
+.sortabletable thead th {
+	height: 18px !important;
+	background-color: #EAEAEA;
+	color: #00008B !important;
+}
+
+.sortabletable tr td {
+	background: #fff;
+}
+
+.sortabletable tr.even td{
+	background: #EEF0CA;
+}
+
+.sortabletable td, .sortabletable th {
+	padding: 2px 5px;
+}
+
+.sortabletable th {
+	text-align: left;
+	cursor: pointer;
+	color: #000;
+}
+
+.sortabletable th a {
+	text-decoration: none;
+	color: #000;
+}
+
+.sortabletable th:active {
+	background: #F0E68C;
+	padding: 3px 4px 1px 6px;
+}
+
+/* -------- */
+
+thead, .fancyrow {
+   color: #000;
+	height: 18px !important;
+	background-color: #E4E4E4;
+
+}
+
+thead td {
+	color:#00008B;
+	padding: 3px;
+	
+}
+tbody td {
+	padding: 4px 3px 4px 3px;
+}
+
+.fancyrow2 {
+	height: 18px !important;
+	background-color: #F0A62F;
+	background-position: top;
+	background-repeat: repeat-x;
+	border-bottom: 1px solid #fff;
+	color: #fff;
+}
+
+
+.screen {
+	border: 1px solid #ddd;
+	text-align: center;
+}
+.even {
+	background: #D9E7C2;
+}
+.odd {
+	background: #fff;
+}
+/* =========================================================
+		TOP BAR (right top corner)
+========================================================= */
+#topbar {
+   
+    color: #000;
+ 	padding: 5px;
+	font-size: 100%;
+}
+#topbar #topbar-container {
+	
+}
+#topbar * {
+    vertical-align: middle;
+}
+#topbar a,
+#topbar a:link,
+#topbar a:visited {
+    font-weight: bold;   
+    text-decoration: underline;
+
+}
+#topbar a:hover {
+    text-decoration: underline;
+}
+span#msgCounter {
+	text-decoration: none;
+	font-weight: normal;
+}
+#tocText {
+	position: absolute;
+	left: 3px;
+	top: 50px;
+	z-index: 1000;
+}
+
+#tocText,
+#buildText,
+#workText {
+    font-weight: bold;
+    line-height: 16px;
+    margin-right: 15px;
+}
+#tocText,
+#buildText img,
+#workText img {
+    margin-right: 5px;
+}
+
+#statusbar {
+	position:absolute;
+	right:0px;
+	top:23px;
+}
+
+#supplementalNav {
+    float: right;
+    background: transparent;
+    height:20px;
+}
+/* =========================================================
+		MISC STUFF
+========================================================= */
+.fakefieldset {
+	border: 0;
+	background: #fff;
+	font-size: 12px;
+	padding: 10px;
+}
+
+.fakefieldset strong, .fakefieldsettitle {
+	color: #903;
+	font-weight: bold;
+}
+
+.sectionHeader, .showHideVisible {
+	margin: 0 10px 4px 0;
+	padding: 5px 3px 5px 0;
+	font-weight: bold;
+	color: #000;
+
+}
+div.sectionHeader {
+	 margin: 0px 5px 5px 0;
+    padding: 5px 3px 5px 10px;
+	 color: #00008B;
+	 font-size: 138.5%;
+}
+div.tmplvars {
+	background-color: #F4F4F4;
+}
+div.tmplvars td {
+	padding: 3px;
+}
+.sectionBody, .layerVisible {
+	position: relative;
+	top: -5px;
+	
+	
+	background: #fff;
+	border: 0px solid #e3e3e3;
+	border-top-color: #ccc;
+	margin: 0 10px 20px;
+	padding: 10px;
+	/*background: #fff url(images/misc/tabareabg.gif) repeat-x top;*/
+}
+
+.showHideVisible, .layerVisible {
+	margin: 0 10px 4px 10px;
+}
+
+.comment {
+	font-size: 85%;
+	color: #000;
+	margin: 2px 0 2px 0;
+}
+div.stay span.comment {
+	font-size: 85%;
+	color: #000;
+	font-weight: bold;
+	}
+
+.messageRead {
+	color: #000;
+}
+
+.messageUnread {
+	color: #3CB371;
+	font-weight: bold;
+}
+
+
+.stay {
+	margin: 5px 0 5px 0;
+}
+div.subTitle {
+	width: 100%;
+	display: block;
+	clear: both;
+	padding: 10px 5px;
+	background-color: #EAEAEA;	
+	z-index: 10322;	
+	overflow: visible;
+}
+.right {
+	font-weight: bold;
+	text-transform: uppercase;
+	color: #00008B;
+	/*float: left;*/
+	padding: 6px 5px;
+	font-size: 100%;
+}
+
+span#parentName {
+	margin: 0 0 0 10px;
+}
+/*	end sortable table */
+
+.disabledImage {
+    width: 20px;
+    opacity: 0.3;
+    filter: alpha(opacity=30);
+}
+
+.disabledImage img {
+    border: 0;
+}
+
+.editorCell {
+	border-top: 1px solid #808080;
+	text-align: left;
+	vertical-align: baseline;
+}
+
+.row1, .row2, .row3 { background-color: #fff; color: #000;}
+.row2 { background-color: #D9F0DC;}
+.row2 span {
+	font-size: 100% !important;
+}
+.row3 { background-color: #F4F4F4;}
+
+.fframebody {
+    background-color: #f4f4f4;
+}
+/* =========================================================
+		TREE MENU
+========================================================= */
+body.treeframebody {
+	border: 0;
+}
+#treeMenu {
+  /*  background: url(images/misc/treebuttonbg.gif);*/
+  background: #EAEAEA;
+/*  border-bottom: 1px solid #ddd;*/
+}
+#treeMenu * {
+    vertical-align: middle;
+}
+
+#treeHolder {
+	cursor: default;
+	height: 100%;
+	padding: 5px 10px 0 10px;
+ 	/*background: #355FD4;*/
+	background: #0001AA;
+	color: #CACACA;
+	font-size: 85%;
+}
+#treeSplitter {
+	display: none;
+	width:3px;
+	height:100%;
+	position:absolute;
+	right:0px;
+	background-color: #0C76C7;
+}
+#floater {
+    display: none;
+    position: absolute;
+    width: 200px;
+    height: 50px;
+    top: 43px;
+    left: 1px;
+    background: #EAEAEA;
+    border: 1px solid #585858;
+    z-index: 500;
+	padding: 3px;
+}
+#floater a#button7 {
+	background-color: #FFFFFF;
+	color: #00008B;
+	border: 1px solid silver;
+	border-width: 1px 1px 1px 1px;
+	border-color: #D4D0C8 #959595 #959595 #D4D0C8;
+	background-color: #F5F5F5; 
+	padding: 2px;
+	text-decoration: none;
+}
+#floater a#button7:hover {
+	background-color: #F0E68C; 
+}
+#floater a#button7:active {
+	background: #FFA500;
+}
+/* ---- TREE BUTTONS ---- */
+.treeButton {
+    display:block;
+    cursor: default;
+    color: #F5F5F5;
+    border: 1px;
+    padding: 3px 5px;
+    white-space: nowrap;
+    vertical-align: middle;
+	 margin-top: 2px;
+}
+.treeButton:hover {
+    border: 1px solid #4169E1;
+    padding: 2px 4px;
+    background: #F0E68C;
+}
+
+.treeButtonDisabled {
+    cursor: default;
+	 white-space: nowrap;
+    padding: 3px 5px;
+    color: #777;
+	    vertical-align: middle;
+    border-width: 0;
+    opacity: .3;
+    filter: alpha(opacity=30);
+}
+
+/* ---- NODES ---- */
+.rootNode, .treeNode, .treeNodeHover, .treeNodeSelected, .emptyNode {
+    color: #F0E68C;
+    padding: 4px;
+    cursor: pointer;
+    width: auto;
+}
+span.treeNode  {
+	/*color: #DCDCDC;*/
+}
+
+span.treeNodeHover  {
+    /*border-bottom: 1px dotted #7795EC;*/
+	padding-left: 0;
+	color: #FF0000 !important;
+}
+
+.treeNodeSelected {
+	  padding: 0px;
+	 font-weight: bold;
+	 /* border-bottom: 1px dotted #7795EC;*/
+	  color: #FFC230; 
+}
+
+.deletedNode {
+    color: #F08080;
+    text-decoration: line-through;
+}
+
+.publishedNode {
+    color: #E6EAD4;
+}
+.unpublishedNode {
+    color: #F08080;
+}
+
+.emptyNode {
+    color: #aaa;
+    cursor: default;
+}
+
+.notInMenuNode {
+    color: #95CEFF;
+    text-decoration: none;
+}
+
+
+
+/* ---- Contextual Menu used in the Tree Menu ---- */
+#mx_contextmenu {
+    position: absolute;
+    height: auto;
+    visibility: hidden;
+    z-index:10000;
+    width: 170px;
+    background: #EAEAEA;
+    margin: 0;
+    padding: 1px;
+  	font-size: 85%;
+    overflow: hidden;
+    line-height: 11px; 
+	border: 1px solid #EAEAEA;
+	 border-color: #eaeaea #909090 #707070 #eaeaea;
+	}
+
+#mx_contextmenu .menuLink {
+    cursor: pointer;
+    color: #222;
+    padding: 3px 16px 3px 2px; }
+
+#mx_contextmenu .menuLinkOver {
+    background: #FFFFFF;
+    color: #000; }
+
+#mx_contextmenu .menuLinkOver,
+#mx_contextmenu .menuLinkDisabled {
+    cursor: auto;
+    padding: 3px 16px 3px 2px;}
+
+#mx_contextmenu .menuLinkDisabled {
+    cursor: default;
+    color: #787878; }
+
+#mx_contextmenu .menuLink img,
+#mx_contextmenu .menuLinkOver img,
+#mx_contextmenu .menuLinkDisabled img {
+	margin-right: 8px; }
+
+#mx_contextmenu .menuLink img,
+#mx_contextmenu .menuLinkDisabled img {
+    opacity: .6;
+    filter: alpha(opacity=60);
+}
+
+#mx_contextmenu .menuLinkOver img { }
+
+#mx_contextmenu #nameHolder {
+   
+	color: #00008B;
+    text-align: left;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 4px;
+    margin-bottom: 2px;
+	text-transform: uppercase;
+	background: url(images/icons/delete.gif) right no-repeat;
+}
+
+#mx_contextmenu .seperator {
+    font-size: 0;
+    height: 1px;
+    background-color: silver;
+    overflow: hidden;
+    margin: 3px 1px 3px 28px;
+}
+
+/* =========================================================
+		GRID STYLES
+========================================================= */
+table.grid {
+    width: 100%;
+	margin-top: 10px;
+    background-color: #C0C0C0;
+    border: 0px solid silver;
+	}
+table thead.gridHeader {
+	border: 0 !important;
+}
+table.grid img {
+	width: 16px !important;
+	height: 16px !important;
+}
+table.grid thead th{
+	border: 0;
+}
+table.grid td {
+	border: 0;
+}
+.gridHeader {
+    color: #00008B;
+    font-weight: bold;
+   background-color: #E4E4E4;
+    height: 25px;
+	 padding: 4px 4px 4px 4px;
+	 border: 0;
+     }
+
+.gridItem {
+    background-color: #fff;
+    padding: 3px; }
+
+.gridAltItem {
+    background-color: #F4F4F4;
+    padding: 3px; }
+
+.gridRowIcon:hover {
+    background-color: #C9C9C9;
+}
+
+
+/* =========================================================
+		SEARCH BAR
+========================================================= */
+.searchbar {
+    width: 100%;
+    border: 1px solid silver;
+    background-color: #F5F5F5; }
+
+.searchtext {
+    height: 18px;
+    padding: 2px;
+    border: 1px solid silver; }
+
+a.searchbutton {
+  	
+    padding: 4px;
+	display: block;
+    text-decoration: none;
+	border: 1px solid silver;
+	border-width: 1px 1px 1px 1px;
+	border-color: #D4D0C8 #959595 #959595 #D4D0C8;
+	background-color: #F5F5F5; 
+	}
+.searchbutton:hover {
+    text-decoration: none;
+    background-color: #F0E68C;
+}
+.searchbutton:active {
+	background: #F0E68C;
+}
+.searchtoolbarbtn {
+	color: #00008B;   
+    padding: 4px;
+	display: block;
+	margin-left: 5px;
+    text-decoration: none;
+ 	border: 1px solid silver !important;
+	border-width: 1px 2px 2px 1px !important;
+	border-color: #D4D0C8 #959595 #959595 #D4D0C8;
+	background-color: #F5F5F5; 
+	 
+	  }
+
+.searchtoolbarbtn:hover {
+	text-decoration: none;
+	border: 1px solid silver;
+	border-width: 1px 2px 2px 1px;
+	border-color: #D4D0C8 #959595 #959595 #D4D0C8;
+	background-color: #F0E68C;  }
+.searchtoolbarbtn:active {
+		background: #F0E68C;
+}
+.searchtoolbarbtn:link {
+	
+	}
+
+
+/* =========================================================
+		PRELOADER
+========================================================= */
+.notice {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #eee;
+    background-color: #F4F4F4;
+    color: #707070;}
+
+#preLoader {
+    position: relative;
+    z-index: 50000;
+	top: 50px;
+	left: 100px;
+	width: 500px;
+    text-align: center;
+	display: block;
+    vertical-align: middle;
+}
+.preLoaderText {
+    background-color: #F4F4F4;
+    width: 300px;
+    height: 150px;
+
+    padding: 50px;
+    border: 2px solid #00008B;
+}
+
+/* =========================================================
+		CONTEXT MENU
+========================================================= */
+.contextMenu {
+     background: #EAEAEA;
+    margin: 0;
+    padding: 0;
+    border: 1px solid #696969;
+    border-color: #eaeaea #909090 #707070 #eaeaea;
+    position: absolute;
+    z-index: 10000; }
+
+.cntxMnuItem {
+    background-image: url(images/_tx_.gif);
+    cursor: pointer;
+    color: #000;
+    padding: 3px 16px 3px 2px; }
+
+.cntxMnuItemOver {
+    cursor: pointer;
+    color: #000;
+    background: #FFFFFF;
+      padding: 3px 16px 3px 2px;
+}
+
+.cntxMnuItemDisabled {
+    cursor: default;
+    padding: 3px 16px 3px 2px;
+    color: #111;
+}
+.cntxMnuItem img, .cntxMnuItemOver img, .cntxMnuItemDisabled img {
+    margin-right: 8px;
+}
+
+.cntxMnuItem img, .cntxMnuItemDisabled img {
+    opacity: .3;
+    filter: alpha(opacity=30);
+}
+
+.cntxMnuSeparator {
+    font-size: 0;
+    height: 1px;
+    background-color: silver;
+    overflow: hidden;
+    margin: 3px 1px 3px 28px; }
+/* =========================================================
+		TOP NAVIGATION BAR (MAIN MENU)
+========================================================= */
+#topMenu {
+    background: #e4e4e4 url(images/misc/menubg.jpg) repeat-x;
+}
+#Navcontainer {
+    padding-left: 10px;
+    color: #fff;
+	font-size: 100%;
+}
+
+ul#nav {
+    margin: 0;
+    padding: 0;
+    height: 25px;
+    width: 100%;
+    position: absolute;
+    top: 18px;
+    overflow: visible !important;
+}
+
+#nav ul {
+    display: none;
+    height: 25px;
+    position: relative;
+    z-index: 500;
+    margin: 0 0 0 -10px;
+    padding: 0 0 0 10px;
+}
+
+#nav li {
+    list-style: none;
+    float: left;
+    width: auto;
+    margin: 0 3px 0 0;
+    padding: 0;
+    }
+#nav li a {
+	display: block;
+    font-weight: bold;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+	overflow: hidden;
+    float: left;
+	border: 1px solid silver;
+	border-width: 1px 1px 1px 1px;
+	border-color: #D4D0C8 #959595 #959595 #D4D0C8;
+	background-color: #F5F5F5; 
+	padding: 5px 8px 5px 8px;
+	color: #00008B;
+    
+}
+#nav li a:hover {
+	background: 	#F0E68C;
+	color: #355FD4;
+}
+#nav li a:active {
+	color: #00008B;	
+	 background: #F0E68C;
+}
+#nav li ul li a {
+    background: #d4d4d4;
+    float: left;
+    width: auto;
+}
+
+#nav a:hover {
+    color: #FFFFFF; 
+}
+
+#nav a:active {
+   color: #000;
+   background: #FF8C00;
+}
+
+#nav li.active  {
+}
+
+#nav li.active a {
+    color: #00008B;
+    position: relative;
+    z-index: 999999;   
+	
+	background: #FFFFFF;
+	border: 1px solid #FFA500;
+	
+	border-color: #D4D0C8 #959595 #959595 #D4D0C8;
+	
+}
+
+#nav li.active a:hover {
+    cursor: pointer;
+}
+
+#nav li.active ul.subnav {
+    font-size: 93%;
+	display: block;
+    position: absolute;
+	top: 25px;
+	height: 22px;
+    left: 0;
+    width: 200%;
+    background: transparent;
+  /*  border-top: 3px solid #0C76C7;*/
+	padding-bottom: 3px;
+	margin-left: 5px;
+}
+#nav li.active ul.subnav li {
+
+}
+#nav li.active ul.subnav li a {
+    color: #00008B;
+	border: 0;
+    font-weight: normal;    
+    background: url(images/icons/folder.png) no-repeat left bottom ;
+	text-decoration: none;
+	margin: 2px 10px 3px 0;
+	padding: 5px 0 0 18px;
+	display: block;
+}
+#nav li.active ul.subnav li a:hover {
+    color: #4169E1; 
+	/*background: url(images/misc/bullet_red.png) no-repeat left bottom;*/
+	margin: 2px 10px 3px 0;
+	display: block;
+	 background: url(images/icons/folder_blue.png) no-repeat left bottom ;
+	text-decoration: underline;
+}
+#nav li.active ul.subnav li a:active {
+	
+}
+
+
+
+/* Settings Table
+---------------------------------------------------------- */
+.settings {
+    width: 600px;
+}
+.settings tr {
+    width: 100% !important;
+}
+.settings td, .settings th {
+    background: transparent;
+}
+.settings td {
+}
+.settings th {
+    width: 200px !important;
+    text-align: left;
+    color: #555;
+    font-size: 120%;
+}
+.settings textarea, .settings input {
+}
+
+
+
+/* =========================================================
+		TABS
+========================================================= */
+div.tab-page { border: 1px solid #e4e4e4; }
+div.tab-pane ul, div.tab-pane li {
+	list-style: url(images/misc/li.gif) disc;
+}
+
+.dynamic-tab-pane-control.tab-pane {
+    position: relative;
+    width: 100%;
+}
+
+.dynamic-tab-pane-control .tab-row .tab{
+    color: #00008B;
+    font-weight: bold;
+    font-size: 100%;
+    cursor: pointer;
+    display: inline;
+    margin: 3px 3px 1px 0px;
+    float: left;
+    padding: 4px 15px 7px;
+    z-index: 1;
+    position: relative;
+    top: 0;
+    background: #EAEAEA;
+	border-top: 2px solid #CCC8CA;
+}
+
+.dynamic-tab-pane-control .tab-row .tab.hover {
+   
+   background: #F0E68C;
+   text-decoration: none; }
+
+.dynamic-tab-pane-control .tab-row .tab.selected {
+    color: #4169E1;
+    z-index: 3;
+    top: 0;
+    background: #fff url(images/form-input-bg.jpg) repeat-x;
+    border: 1px solid #e4e4e4;
+    border-color: #e0e0e0 #c0c0c0 #fff #e0e0e0;
+	border-top: 2px solid orange;
+}
+.dynamic-tab-pane-control .tab-row .tab.selected span{
+    color: #00008B;
+  	font-weight: bold;
+}
+
+.dynamic-tab-pane-control .tab-row .tab span {
+    font-weight: bold;
+	font-size: 85%;
+    font-weight: normal;
+    text-decoration: none;
+}
+
+.dynamic-tab-pane-control .tab-page {
+    clear: both;
+    background: #fff;
+    border-top: 1px solid #c0c0c0;
+    z-index: 2;
+    position: relative;
+    top: -2px;
+    padding: 0px;
+	 padding-top: 8px;
+	 text-align: left;
+}
+
+.dynamic-tab-pane-control .tab-row {
+    z-index: 1;
+    white-space: nowrap;
+}
+.dynamic-tab-pane-control li {
+    margin-left: 10px;
+}
+#documentPane td {
+	padding: 3px;
+}
+h2.tab img {
+	height: 14px !important;
+	width: 14px !important;
+}
+
+
+/*
+ WebFX cool buttons... must also remove these...
+---------------------------------------------------------- 
+.coolButton,
+.coolButtonHover,
+.coolButtonActiveHover,
+.coolButtonActive,
+.coolButtonActiveDisabled,
+.coolButtonDisabled,
+.coolButtonUpDisabled {
+    cursor: default;
+    color: #000;
+    border: 1px;
+    border-bottom-color: #809c47;
+    padding: 3px 5px;
+    white-space: nowrap;
+    vertical-align: middle;
+}
+.coolButtonHover {
+    
+    padding: 2px 4px;
+    background: #dee9c6;
+}
+
+.coolButtonActive,
+.coolButtonActiveHover {
+    border: 1px solid #000;
+    border-color: #444 #ccc #ccc #444;  ButtonShadow ButtonHighlight ButtonHighlight ButtonShadow 
+    padding: 2px 3px 2px 5px;
+}
+
+.coolButtonUpDisabled,
+.coolButtonActiveDisabled,
+.coolButtonDisabled {
+    border: 1px solid #006400;
+    padding: 2px 4px;
+    color: #777;
+    border-width: 0;
+}
+
+.coolButtonActiveDisabled {
+    border: 1px solid #006400;
+    padding: 0 4px 3px 4px;
+}
+
+.coolButtonUpDisabled img,
+.coolButtonActiveDisabled img,
+.coolButtonDisabled img {
+    opacity: .3;
+    filter: alpha(opacity=30);
+}
+
+
+*/
+/* =========================================================
+		WELCOME PAGE
+========================================================= */
+
+a.hometblink {
+	text-decoration: none !important;
+	display: block;
+	padding: 5px;
+	border: 1px solid #EFEFEF;
+	color: #00008B !important;
+}
+a.hometblink:hover {
+	border: 1px solid #EFEFEF;
+	color: #0002D5 !important;
+	
+}
+a.hometblink:active {
+	background: #F0E68C;
+}
+a.hometblink img { 
+    border: 0 !important;
+    text-decoration: none !important;
+}
+.wm_button {
+    float: left;
+    margin: 2px;
+    text-align: center;	
+    }
+img.welcomeLogo {
+		float: left;
+	}
+div.welcomeMessageInfo {
+	margin: 10px;
+}
+
+
+/* ---- WELCOME PAGE LINKS ---- */
+a.hometblink, a.hometblink:active, a.hometblink:visited, a.hometblink:link, .hometblink {
+    text-decoration: underline;
+    color: #000;
+    font-weight: bold;
+}
+a.hometblink:hover {
+    text-decoration: underline;
+    color: Gray; }
+	
+#mainActionPages {
+    background: #f4f4f4 url(images/misc/mainbg.gif) repeat-x top;
+}
+
+/* ---- TABS when editing ---- */
+
+
+/* Section body */
+.sectionBody .tab-page { border-width: 1px 0 0;}
+
+/* New Action Buttons
+---------------------------------------------------------- */
+div.bttnheight {
+	float:left;
+	
+}
+.actionButtons a {
+	padding: 5px;
+	margin-right: 5px;
+	white-space: nowrap;
+	display: block;
+	text-decoration: none;
+
+	border: 1px solid silver;
+	border-width: 1px 2px 2px 1px;
+	border-color: #D4D0C8 #959595 #959595 #D4D0C8;
+	background-color: #F5F5F5; 
+}
+.actionButtons a img {
+	float: left; vertical-align: middle;
+	margin: 0 5px 0 0;
+}
+.actionButtons a:link,.actionButtons a:visited {
+	color: #000000;
+	text-decoration: none;
+}
+
+.actionButtons a:hover {
+ 	 background-color: #F0E68C;
+}
+
+.actionButtons a:active {
+	background-color: #9ACD32;
+}
+
+.actionButtons a.disabled {
+    border: 1px solid #006400;
+    padding: 2px 4px;
+    color: #777;
+    border-width: 0;
+}
+
+.actionButtons a.disabled img {
+    opacity: .3;
+    filter: alpha(opacity=30);
+}
+
+
+.tvimage {
+	width: 120px;
+}
+/* ---- For document manager ---- */
+div.go img {
+	margin: 0 5px 0 5px;
+}
+div.go a{
+	cursor: pointer !important;
+	padding: 5px !important;
+	border: 1px solid silver !important;
+	border-width: 1px 2px 2px 1px !important;
+	border-color: #D4D0C8 #959595 #959595 #D4D0C8 !important;
+	background-color: #F5F5F5 !important; 
+}
+div.go a:hover {
+	padding: 5px !important;
+	border: 1px solid silver !important;
+	border-width: 1px 2px 2px 1px !important;
+	border-color: #D4D0C8 #959595 #959595 #D4D0C8 !important;
+	background: #F0E68C !important;
+}
+
+
+
+
+
+
+
+

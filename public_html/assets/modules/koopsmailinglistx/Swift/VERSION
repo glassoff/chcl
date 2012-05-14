@@ -1,0 +1,91 @@
+ Swift Mailer 1.3.0
+ 24th June 2006
+ 
+ ---------------------------
+ 
+ HISTORY
+ 
+ 29th April 2006: 0.0.0
+ First working version, support for SMTP authentication needed.
+
+ 8Th May 2006: 0.0.1
+ First official release - Features added:
+  * SMTP Authentication (PLAIN, LOGIN, CRAM-MD5)
+  * Separated connection handling into classes
+  * Support for SSL included
+  * Emails now locally cached in send() when delivering to
+     multiple recipients
+  * Response codes tracked and checked throughout. 
+
+ 15th May 2006: 0.0.2
+ Corrected an issue with attachments not displaying in Thunderbird
+  This issue was *not* due to the implmentation of MIME in Swift -
+  but rather, Thunderbird seems not to handle the multipart/alternative
+  MIME type very well when combined with a mixed MIME type.
+
+ 16th May 2006: 0.0.3
+ Added the LFtoCRLF() method.
+ 
+ 20th May 2006: 0.0.4
+ Made second constructor paramter optional (now defaults to $_SERVER['SERVER_NAME'])
+ Added an option to automatically convert line longer than 76 characters to be
+ compliant.
+ Included interfaces for PHP5 version.
+ (PHPDocumentor comments added)
+
+ 25th May 2006: 1.0.0
+ Added wrappers for Bcc, Cc and multiple To addresses.
+ Speed improvements.
+ More refactored further to make plugin development more flexible.
+ Releases early to fix a bug with MTA parsing of addresses.
+
+ 31st May 2006: 1.0.1
+ Bugfix: ChunkSplitLines() wasn't replacing the exisiting CRLF
+
+ 1st June 2006: 1.1.0
+ Support for TLS encryption added.  Gmail servers!!
+ Better error reporting.
+ Embedded image support
+ autoFlush() along with individula flush methods added
+ autoResizeLines() prettied up more
+ Addresses can now be given in 3 ways (list of addresses, single addresss,
+  "address, name" or any combination of these).
+
+ 4th June 2006: 1.1.2
+ Connection/handshake procedure refactored into a connect()
+ method in Swift.
+ Minor (really minor) bugfix with commandKeyword not being emptied where
+ no command in being sent.
+ Anti-flood plugin included with package.
+
+ 8th June 2006: 1.1.3
+ Added POP3 Before SMTP Authenticator.
+ 
+ 8th June 2006: 1.2.0
+ Ermmm.. Oops, the 1.1.3 release was actually 7th June 2006.
+ Moving on Swiftly (no pun intended)....
+ Some speed/memory improvements by removing some preg_ calls
+ that were used several times.
+ Added setPriority() and requestReadReceipt() methods.
+ Added a check to make sure close() isn't executed if Swift
+ is not connected.
+ Improved error reporting a little further.
+ Bundled a verbose errors plugin (Swift_Errors_Plugin).
+
+ 22nd June 2006: 1.2.3
+ Corrected a bug with TLS on Gmail servers.  Thanks to Jonathon Foote
+ and Andres Usera for spotting the issue and offering a fix.
+ The problem was that Gmail, operating with TLS enabled does not respond to the
+ QUIT command so fgets() was giving TLS protocol errors.  A simple @ supression
+ combined with boolean false return check corrected this.
+
+ 24th June 2006: 1.3.0
+ Corrected a bug in the makeSafe() method.
+ Optimized makeSafe() by calling LFtoCRLF() before processing.
+ Added 8bit and binary encoding types.
+ Default to 8bit transfer encoding with UTF-8.
+ Added VERSION constant.
+ Added ability to override plugin names at load-time.
+ Restricted size of "transactions" array to 100 by default, settable
+ using setMaxLogSize().
+ Massively optimized buildMail() (Half the memory!)

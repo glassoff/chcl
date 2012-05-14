@@ -1,0 +1,9 @@
+
+
+
+$output_add='<br><br><br>
+				<blockquote><b>
+				<a href=http://www.cddiski.ru/cabinet/confirmorder?user_order_id='.$order_id.'&confirm='.$confirm_key.'>
+				“акже можно подтвердить  свой заказ здесь. ѕереход по этой ссылке означает автоматическое подтверждение заказа.</a>
+				</b><blockquote>';
+				$output=$output.$output_add;

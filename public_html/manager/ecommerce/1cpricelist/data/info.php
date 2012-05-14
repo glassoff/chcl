@@ -1,0 +1,10 @@
+a:2:{s:7:"regions";a:2:{i:0;a:2:{s:6:"region";s:8:"Moskva
+";s:5:"shops";a:4:{i:0;a:4:{s:2:"id";s:1:"1";s:4:"name";s:7:"Shop1
+";s:14:"model_quantity";i:6;s:14:"total_quantity";i:190;}i:1;a:4:{s:2:"id";s:1:"5";s:4:"name";s:12:"Shop2asasa
+";s:14:"model_quantity";i:6;s:14:"total_quantity";i:165;}i:2;a:4:{s:2:"id";s:2:"56";s:4:"name";s:13:"Shop2asasas
+";s:14:"model_quantity";i:9;s:14:"total_quantity";i:180;}i:3;a:4:{s:2:"id";s:1:"5";s:4:"name";s:15:"Shop2asasasas
+";s:14:"model_quantity";i:6;s:14:"total_quantity";i:165;}}}i:1;a:2:{s:6:"region";s:7:"Piter
+";s:5:"shops";a:3:{i:0;a:4:{s:2:"id";s:1:"3";s:4:"name";s:9:"ShopPoP
+";s:14:"model_quantity";i:6;s:14:"total_quantity";i:91;}i:1;a:4:{s:2:"id";s:1:"4";s:4:"name";s:11:"ShopArean
+";s:14:"model_quantity";i:6;s:14:"total_quantity";i:104;}i:2;a:4:{s:2:"id";s:1:"5";s:4:"name";s:30:"ShopArean5555555555555555555
+";s:14:"model_quantity";i:6;s:14:"total_quantity";i:304;}}}}s:11:"last_upload";s:10:"09.29.2007";}

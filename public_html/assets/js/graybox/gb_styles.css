@@ -1,0 +1,155 @@
+/* Last-Modified: 28/06/06 00:08:22 */
+#GB_overlay {
+    background-color: #000;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+#GB_window {
+    left: 0;
+    top: 0;
+    font-size: 1px;
+    position: absolute;
+    overflow: visible;
+    z-index: 150;
+}
+#GB_window .content {
+    width: auto;
+    margin: 0;
+    padding: 0;
+}
+#GB_frame {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+    white-space: nowrap;
+}
+.GB_Gallery {
+    margin: 0 22px 0 22px;
+}
+
+.GB_Gallery .content {
+    background-color: #fff;
+    border: 3px solid #ddd;
+}
+
+.GB_header {
+    top: 10px;
+    left: 0;
+    margin: 0;
+    z-index: 500;
+    position: absolute;
+    border-bottom: 2px solid #555;
+    border-top: 2px solid #555;
+}
+
+.GB_header .inner {
+    background-color: #333;
+    font-family: Arial, Verdana, sans-serif;
+    padding: 2px 20px 2px 20px;
+}
+
+.GB_header table {
+    margin: 0;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.GB_header .caption {
+    text-align: left;
+    color: #eee;
+    white-space: nowrap;
+    font-size: 20px;
+}
+
+.GB_header .close {
+    text-align: right;
+}
+
+.GB_header .close img {
+    z-index: 500;
+    cursor: pointer;
+}
+
+.GB_header .middle {
+    white-space: nowrap;
+    text-align: center;
+}
+
+
+#GB_middle {
+    color: #eee;
+}
+
+#GB_middle img {
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+#GB_middle .disabled {
+    cursor: default;
+}
+
+#GB_middle .left {
+    padding-right: 10px;
+}
+
+#GB_middle .right {
+    padding-left: 10px;
+}
+
+
+.GB_Window .content {
+    background-color: #fff;
+    border: 3px solid #ccc;
+    border-top: none;
+}
+
+.GB_Window .header {border-bottom: 1px solid #aaa;border-top: 1px solid #999;border-left: 3px solid #ccc;border-right: 3px solid #ccc;
+    margin: 0;
+    height: 22px;
+    font-size: 12px;
+    padding: 3px 0;
+    color: #333;
+}
+
+.GB_Window .caption {font-size: 12px;text-align: left;font-weight: bold;white-space: nowrap; padding-right: 20px;}
+.GB_Window .close { text-align: right; }
+.GB_Window .close span {font-size: 12px;cursor: pointer;}
+.GB_Window .close img {cursor: pointer;padding: 0 3px 0 0;}
+.GB_Window .on { border-bottom: 1px solid #333; }
+.GB_Window .click { border-bottom: 1px solid red; }
+/*Jot*/
+.jot-err {border: 1px solid red;font-weight: bold;color: red;padding: 5px;margin-bottom: 10px;}
+.jot-cfm {border: 1px solid green;font-weight: bold;color: green;padding: 5px;margin-bottom: 10px;}
+.jot-row {border: 1px solid #CCCCCC;margin-bottom: 10px;background-color: #e9e9e9;}
+.jot-row-alt {background-color: #f9f9f9;}
+.jot-row-author {background-color: #EFEFEF;}
+.jot-row-me {background-color: #EFEFEF;}
+.jot-row-up {border: 1px dotted red;}
+.jot-row-new {border: 1px dotted green;}
+.jot-comment {padding: 3px;}
+.jot-comment hr {border: 0px; border-bottom: 1px solid #cccccc;}
+.jot-posticon {float: left;width: 20px;height: 20px;padding-top: 8px;padding-right: 3px;}
+.jot-posticon img {border: 0px;}
+.jot-mod {float: right;width: 100px;text-align: right;color: #666666;font-weight: bold;}
+.jot-mod img {border: 0px;}
+.jot-mod a {float: right;padding: 1px;padding-left: 2px;padding-right: 2px;}
+.jot-mod a:hover {background-color: #666666;color: #666666;}
+.jot-subject {color: #618200;font-weight: bold;font-size: larger;}
+.jot-message {padding: 2px;overflow: auto;}
+.jot-poster {padding: 0px;text-align: left;font-size: 10px;}
+.jot-nav {padding: 0px;text-align: center;margin: 10px;}
+.jot-list ul {margin:0px; padding: 0px;text-align: left;margin-bottom: 10px;list-style-position: inside;}
+.jot-list li {list-style:none;margin:0px; padding: 0px;}
+.jot-subscribe {margin-bottom: 10px;}
+.jot-form {margin-bottom: 10px;}
+.jot-form fieldset {border: 0px;}
+.jot-form label {display: block;}
+.jot-user {float: left;width: 80px; }
+.jot-content {margin-left: 80px;}
+.jot-extra {text-align: right;}
+.jot-editby {font-size: 10px;color: #666666;font-style: italic;}

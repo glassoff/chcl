@@ -1,0 +1,13 @@
+User-agent: *
+Sitemap: http://www.chcl.ru/sitemap.xml
+Dissalow: /ascomp
+Allow: /assets/images
+Dissalow: /assets
+Dissalow: /cgi-bin
+Dissalow: /counter
+Dissalow: /images
+Dissalow: /images22
+Dissalow: /manager
+Dissalow: /Scripts
+Dissalow: /userfiles
+Host: www.chcl.ru

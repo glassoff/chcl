@@ -1,0 +1,13 @@
+[+jot.subscription.enabled:is=`1`:then=`
+<div class="jot-list">
+<ul>
+	[+jot.subscription.status:is=`0`:then=`
+	<li><a href="[+jot.link.subscribe:esc+]#jf[+jot.link.id+]" onclick="return confirm('Вы уверены что хотите подписаться на оповещение о новых ответах?');">Подписаться</a> на получение новых ответов.</li>
+	`+]
+
+	[+jot.subscription.status:is=`1`:then=`
+	<li><a href="[+jot.link.unsubscribe:esc+]#jf[+jot.link.id+]" onclick="return confirm('Вы уверени что хотите отписаться от получения оповешений о новых ответах ?');">Отписаться</a> от получения новых ответов.</li>
+	`+]
+</ul>
+</div>
+`:strip+]

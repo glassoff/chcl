@@ -1,0 +1,54 @@
+/* This file contains the CSS data for the editable area(iframe) of TinyMCE */
+/* You can extend this CSS by adding your own CSS file with the the content_css option */
+/* RTL TinyMCE Styles Applied by: MotSmart | www.modxcms.ir | 16 jan 2008 */
+body, td, pre {
+	font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif; /* changed */
+	font-size: 10px;
+}
+body {
+	background-color: #FFFFFF;
+}
+.mceVisualAid {
+	border: 1px dashed #BBBBBB !important;
+}
+div.mceVisualAid {
+	background-image:url('../images/spacer.gif');
+	visibility: visible !important;
+}
+.mceItemAnchor {
+	width: 12px;
+	line-height: 6px;
+	overflow: hidden;
+	padding-right: 12px; /* changed */
+	background-image: url('../images/anchor_symbol.gif');
+	background-position: bottom;
+	background-repeat: no-repeat;
+}
+/* Important is needed in Gecko browsers inorder to style links */
+/*
+a {
+	color: green !important;
+}
+*/
+
+/* Style selection range colors in Gecko browsers */
+/*
+::-moz-selection {
+	background-color: red;
+	color: green;
+}
+*/
+
+/* MSIE specific */
+
+* html body {
+	direction: rtl;
+	scrollbar-3dlight-color: #F0F0EE;
+	scrollbar-arrow-color: #676662;
+	scrollbar-base-color: #F0F0EE;
+	scrollbar-darkshadow-color: #DDDDDD;
+	scrollbar-face-color: #E0E0DD;
+	scrollbar-highlight-color: #F0F0EE;
+	scrollbar-shadow-color: #F0F0EE;
+	scrollbar-track-color: #F5F5F5;
+}

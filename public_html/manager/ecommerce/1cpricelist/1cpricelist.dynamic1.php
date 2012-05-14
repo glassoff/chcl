@@ -1,0 +1,552 @@
+<?php
+if(IN_MANAGER_MODE!="true") die('<b>' . $_lang['kiwee_include_order_error'] . '</b>');
+if ($_SESSION['mgrPermissions']['settings'] != "1") { echo 'Insufficient permissions for this module.'; exit; }		
+$theme = $manager_theme ? "$manager_theme/":"";
+$_1c_data_dir = MODX_BASE_PATH.'manager/ecommerce/1cpricelist/data/';
+
+function upload1CItems() {
+	global $theme;
+	global $modx,$ec_settings;
+	global $_lang;
+    global $_1c_data_dir;
+	global $_FILES;
+	$updateError = '';
+	$output = '';
+	include_once(MODX_BASE_PATH.'manager/ecommerce/1cpricelist/fileUpload.class.php'); 
+	$max_size = 1024*250*10000; // the max. size for uploading		
+	$fu = new fileUpload($_lang);
+	$fu->upload_dir = $_1c_data_dir; 
+	$fu->extensions = array(".txt"); 	
+	$fu->max_length_filename = 100; 
+	$fu->rename_file = true;
+	$fu->the_temp_file = $_FILES['upload_file']['tmp_name'];
+	$fu->the_file = $_FILES['upload_file']['name'];	
+	$fu->http_error = $_FILES['upload_file']['error'];
+	$fu->replace = 'y'; 
+	$fu->do_filename_check = "y"; 
+	$new_name = '1c_data';
+	$tv_id = 56;
+	
+	
+	if ($fu->upload($new_name)) { 
+		$full_path = $fu->upload_dir.$fu->file_copy;
+		$uploadError = false;		
+		$fp = fopen($full_path, "r");
+		$total_quantity = 0;
+		$model_quantity = 0;
+		$codes = array();
+		$added = 0;
+		$error = '';
+		$acc_ids = array();		
+		while(!feof($fp)) {
+			$line = fgets($fp);			
+			$row = explode("#",$line);
+			$row = str_replace('\r\n','',$row);
+			if (count($row) == 2  || count($row) != 11) {
+				$errors .= '<div>Could not export the item - <b>'.$line.'</b></div>';
+				continue;
+			}
+			$code = trim($row[0]);						
+			if (!empty($code)) {				
+				$acc_id =  !empty($row[1]) ? mysql_escape_string($row[1]) : '';
+				if (in_array($acc_id,$acc_ids))	 echo 'DUBLICATED:'.$acc_id.'<br>';
+				$acc_ids[] = $acc_id;
+				$pagetitle =  !empty($row[2]) ? mysql_escape_string($row[2]) : '';				
+				$retail_price = !empty($row[6]) ? floatval($row[6]) : 0;	
+				$mdealer_price = !empty($row[7]) ? floatval($row[7]): 0;
+				$dealer_price = !empty($row[8]) ? floatval($row[8]): 0;
+				
+				if (!empty($row[5])) {
+					list ($d, $m, $Y) = sscanf($row[5], "%2d.%2d.%2d");
+					$date_issue = mktime(0, 0, 0, $m, $d, $Y);					
+				} else $date_issue = 0;				
+					
+				if (!isset($codes[$code])) {  
+					$sql = "SELECT contentid FROM ".$modx->getFullTableName('site_tmplvar_contentvalues');
+					$sql.= " WHERE value = '$code' AND tmplvarid=$tv_id";					
+			
+					$rs = mysql_query($sql);
+					$limit = mysql_num_rows($rs);					
+					if($limit===1) {
+						$item = mysql_fetch_assoc($rs);
+						$codes[$code] = $item['contentid'];						  
+					} else {	
+						$codes[$code] = 227;			
+					}
+				} 
+				
+				if (!empty($row[5])) {
+					list ($d, $m, $Y) = sscanf($row[5], "%2d.%2d.%2d");
+					$date_issue = mktime(0, 0, 0, $m, $d, $Y);					
+				} else $date_issue = 0;
+				
+				if (!empty($row[4])) {
+					$brand = mysql_escape_string(trim($row[4]));
+					$sql = "select * from ".$modx->getFullTableName('site_ec_brands')." WHERE name LIKE '%$brand%'";
+                	$rs = mysql_query($sql);           	
+	            	$row1 = mysql_fetch_assoc($rs);
+	            	if (isset($row1['id'])) $brand_id = $row1['id'];
+	            	else $brand_id = 0;
+				} else $brand_id = 0;
+				
+				
+				if (!empty($row[10])) {
+					$pack = mysql_escape_string(trim($row[10]));
+					$sql = "select * from ".$modx->getFullTableName('site_ec_packs')." WHERE name LIKE '%$pack%'";
+                	$rs = mysql_query($sql);           	
+	            	$row2 = mysql_fetch_assoc($rs); 
+					if (isset($row2['id'])) $pack_id = $row2['id'];
+	            	else $pack_id = 0;	
+				} else $pack_id = 0;		
+				
+				
+				$folder_id = $codes[$code];								
+				$sql = "INSERT INTO ".$modx->getFullTableName('site_ec_items')."(folder_code,parent,acc_id,pagetitle,retail_price,mdealer_price,dealer_price,template,published,sell,brand_id,pack_id,date_issue,createdon,createdby) ";
+				$sql.= "VALUES('$code',$folder_id,'$acc_id','$pagetitle','$retail_price','$mdealer_price','$dealer_price','$ec_settings[def_model]',0,'$ec_settings[def_sell]','$brand_id','$pack_id',$date_issue,".time().",".$modx->getLoginUserID().")";
+				$rs = mysql_query($sql);				
+				if ($rs) $added++;								
+			}
+		}	
+		fclose($fp);		
+		$error == '';		
+	} else {
+		$uploadError = true;
+		$upload_errors = $fu->message;
+	} 
+	
+	if ($error == '' && $uploadError === false) {
+		$output .= '<h2>' . $_lang['1C_update_done'].'<br>';
+		$output .= $_lang['1C_added'].' '.$added.' '.$_lang['1C_items'].'';
+		$output .= '</h2>';	
+	} else {
+		$output .= '<h2>' . $_lang[18] . '</br>';				
+		foreach ($upload_errors as $upload_error) {
+			$output.= ''.$upload_error.'</br>';
+		}
+		$output.= '</h2>';	
+	}	
+	return $output.$errors;
+}
+
+
+function upload1CFolders() {
+	global $theme;
+	global $modx,$ec_settings;
+	global $_lang;
+    global $_1c_data_dir;
+	global $_FILES;
+	$updateError = '';
+	$output = '';
+	include_once(MODX_BASE_PATH.'manager/ecommerce/1cpricelist/fileUpload.class.php'); 
+	$max_size = 1024*250; // the max. size for uploading		
+	$fu = new fileUpload($_lang);
+	$fu->upload_dir = $_1c_data_dir; 
+	$fu->extensions = array(".txt"); 	
+	$fu->max_length_filename = 100; 
+	$fu->rename_file = true;
+	$fu->the_temp_file = $_FILES['upload_file']['tmp_name'];
+	$fu->the_file = $_FILES['upload_file']['name'];	
+	$fu->http_error = $_FILES['upload_file']['error'];
+	$fu->replace = 'y'; 
+	$fu->do_filename_check = "y"; 
+	$new_name = '1c_data';	
+	
+	if ($fu->upload($new_name)) { 
+		$full_path = $fu->upload_dir.$fu->file_copy;
+		$uploadError = false;		
+		$fp = fopen($full_path, "r");				
+		$root_folder_id = 5;
+		$tv_id = 56;		
+		$i = 0;
+		$added = 0;
+		$updated = 0;
+		$acc_ids = array();	
+		// updating tree.	
+		while(!feof($fp)) {
+			$line = fgets($fp);			
+			$row = explode("#",$line);
+			if (count($row) != 2) {
+				$output .= '<h2>' . $_lang['1C_update_wrong_format'].'</h2>';				
+				return $output;
+			}
+			$codes = $row[0];
+			$folder_title = $row[1];
+			$code_arr = explode("/",$codes);
+			
+			if (count($code_arr)>1) $code = $code_arr[count($code_arr)-1];
+			else $code = $codes;
+						
+			$code = trim($code);		
+			if (!empty($code) ) {
+				$pagetitle =  mysql_escape_string(trim($folder_title));				
+				$sql = "SELECT * FROM ".$modx->getFullTableName('site_tmplvar_contentvalues');
+				$sql.= " WHERE value = '$code' AND tmplvarid='$tv_id'";					
+			
+				$rs = mysql_query($sql);
+				$limit = mysql_num_rows($rs);					
+				if($limit===1) {
+					$item = mysql_fetch_assoc($rs);
+					$contentid = $item['contentid'];
+					
+					
+					$sql = "UPDATE ".$modx->getFullTableName('site_content')."SET "; 
+					$sql.= "pagetitle = '$pagetitle' WHERE id = '$contentid' LIMIT 1;";				
+					$rs = mysql_query($sql);				
+						
+					if ($rs) $updated++;							  
+				} else {							
+					$introtext = '';
+					$content = '';
+					$pagetitle = $pagetitle; //replace apostrophes with ticks :(
+					$description = '';
+					$alias = '';
+					$link_attributes = '';
+					$isfolder = 1;
+					$richtext = 0;
+					$published = 1;
+					
+					$parent = $root_folder_id;
+					$template = 8;
+					$menuindex = 0;
+					$searchable = 1;
+					$cacheable = 0;
+					$syncsite = 1;
+					$pub_date = 0;
+					$unpub_date = 0;
+					$document_groups = 0;
+					$type = 'document';
+					$keywords = 0;
+					$metatags = 0;
+					$contentType = 'text/html';
+					$contentdispo = 0;
+					$longtitle = $pagetitle;
+					$donthit = 0;
+					$menutitle = '';
+					$hidemenu = 0;						
+					
+					$sql = "INSERT INTO ".$modx->getFullTableName('site_content')." (introtext,content, pagetitle, longtitle, type, description, alias, link_attributes, isfolder, richtext, published, parent, template, menuindex, searchable, cacheable, createdby, createdon, editedby, editedon, publishedby, publishedon, pub_date, unpub_date, contentType, content_dispo, donthit, menutitle, hidemenu)
+						    VALUES('" . $introtext . "','" . $content . "', '" . $pagetitle . "', '" . $longtitle . "', '" . $type . "', '" . $description . "', '" . $alias . "', '" . $link_attributes . "', '" . $isfolder . "', '" . $richtext . "', '" . $published . "', '" . $parent . "', '" . $template . "', '" . $menuindex . "', '" . $searchable . "', '" . $cacheable . "', '" . $modx->getLoginUserID() . "', " . time() . ", '" . $modx->getLoginUserID() . "', " . time() . ", " . $modx->getLoginUserID() . ", " . time() . ", '$pub_date', '$unpub_date', '$contentType', '$contentdispo', $donthit, '$menutitle', $hidemenu)";
+					$rs = mysql_query($sql);		
+					$contentid = mysql_insert_id();
+					
+					$sql = "UPDATE ".$modx->getFullTableName('site_ec_items')."SET "; 
+					$sql.= "parent = $contentid WHERE folder_code = '$code';";				
+					$rs = mysql_query($sql);								 
+					
+					$sql = "INSERT INTO ".$modx->getFullTableName('site_tmplvar_contentvalues')." (tmplvarid,contentid, value)
+						    VALUES(" . $tv_id . "," .$contentid . ", '" . $code . "')";
+					if ($rs) {
+						$rs1 = mysql_query($sql);
+						if ($rs1) $added++;
+					}
+											
+				} 				
+				if (!empty($code) && !empty($contentid)) $ids[$code] = $contentid;			
+			}
+		}
+		
+		// building parent relation.
+		//var_dump($ids);
+		fseek($fp, 0);
+		while(!feof($fp)) {
+			$line = fgets($fp);			
+			$row = explode("#",$line);
+			$codes = $row[0];
+			$folder_title = $row[1];
+			$code_arr = explode("/",$codes);			
+			if (count($code_arr)>1) {
+				$code = trim($code_arr[count($code_arr)-1]);
+				$parent_code = trim($code_arr[count($code_arr)-2]);
+				$id = isset($ids[$code]) ? $ids[$code] : 0;
+				$parent = isset($ids[$parent_code]) ? $ids[$parent_code] : 0;
+			} else { 
+				$code = trim($codes);
+				$id = isset($ids[$code]) ? $ids[$code] : 0;
+				$parent = $root_folder_id;				
+			}			
+			if ($id==2441 or $id==2440 or $id==2442 or $id==2225 or $id==2150 or $id==2471 )
+					$parent = 0;
+			if (($id != 0 && $parent != 0) or $id==2441 or $id==2440 or $id==2442 or $id==2225 or $id==2150 or $id==2471 ) {										
+				$sql = "UPDATE ".$modx->getFullTableName('site_content')."SET "; 
+				$sql.= "parent = '$parent',editedon='".time()."',editedby='".$modx->getLoginUserID()."' WHERE id = '$id' LIMIT 1;";				
+				$rs = mysql_query($sql); 			 									
+			}
+		}
+		
+		fseek($fp, 0);
+		while(!feof($fp)) {
+			$line = fgets($fp);			
+			$row = explode("#",$line);
+			$codes = $row[0];
+			$folder_title = $row[1];
+			$code_arr = explode("/",$codes);
+			
+			if (count($code_arr)>1) {
+				$code = trim($code_arr[count($code_arr)-1]);
+				$parent_code = trim($code_arr[count($code_arr)-2]);
+				$id = isset($ids[$code]) ? $ids[$code] : 0;
+				$parent = isset($ids[$parent_code]) ? $ids[$parent_code] : 0;
+			} else { 
+				$code = trim($codes);
+				$id = isset($ids[$code]) ? $ids[$code] : 0;
+				$parent = $root_folder_id;				
+			}			
+			if ($id != 0 && $parent != 0) {					
+				$sql = "SELECT * FROM ".$modx->getFullTableName('site_content');
+				$sql.= " WHERE parent= $id";		
+				$rs = mysql_query($sql);
+				$limit = mysql_num_rows($rs);									
+				if ($limit > 0) $isfolder = 1;	else $isfolder = 0;			
+				$sql = "UPDATE ".$modx->getFullTableName('site_content')."SET "; 
+				$sql.= "isfolder='$isfolder',editedon=".time().",editedby=".$modx->getLoginUserID()." WHERE id = $id LIMIT 1;";				
+				$rs = mysql_query($sql); 			 									
+			}
+		}			
+		fclose($fp);		
+		$error == '';			
+	} else {
+		$uploadError = true;
+		$upload_errors = $fu->message;
+	} 
+	
+	if ($error == '' && $uploadError === false) {
+		$output .= '<h2>' . $_lang['1C_update_done'].'<br>';
+		$output .= $_lang['1C_added'].' '.$added.' '.$_lang['1C_items'].'';
+		$output .= '</h2>';	
+	} else {
+		$output .= '<h2>' . $_lang[18] . '</br>';				
+		foreach ($upload_errors as $upload_error) {
+			$output.= ''.$upload_error.'</br>';
+		}
+		$output.= '</h2>';	
+	}	
+		
+	return $output;
+}
+
+
+function upload1CPriceList() {
+	global $theme;
+	global $modx;
+	global $_lang;
+    global $_1c_data_dir;
+	global $_FILES,$ec_settings;
+	$updateError = '';
+	$output = '';
+	include_once(MODX_BASE_PATH.'manager/ecommerce/1cpricelist/fileUpload.class.php'); 
+	$max_size = 1024*250; // the max. size for uploading		
+	$fu = new fileUpload($_lang);
+	$fu->upload_dir = $_1c_data_dir; 
+	$fu->extensions = array(".txt"); 	
+	$fu->max_length_filename = 100; 
+	$fu->rename_file = true;
+	$fu->the_temp_file = $_FILES['upload_file']['tmp_name'];
+	$fu->the_file = $_FILES['upload_file']['name'];	
+	$fu->http_error = $_FILES['upload_file']['error'];
+	$fu->replace = 'y'; 
+	$fu->do_filename_check = "y"; 
+	$new_name = '1c_data';
+	if ($fu->upload($new_name)) { 
+		$full_path = $fu->upload_dir.$fu->file_copy;
+		$uploadError = false;		
+		$fp = fopen($full_path, "r");
+		$total_quantity = 0;
+		$model_quantity = 0;
+		$updated = 0;
+		while(!feof($fp)) {
+			$line = fgets($fp);			
+			$row = explode("#",$line);
+			if (count($row) == 2  || count($row) != 11) {
+				$output .= '<h2>' . $_lang['1C_update_wrong_format'].'</h2>';				
+				return $output;
+			}
+			$code = $row[1];
+			$code = trim($code);
+			if (!empty($code)) {				
+				$retail_price = !empty($row[6]) ? floatval($row[6]) : 0;	
+				$mdealer_price = !empty($row[7]) ? floatval($row[7]): 0;
+				$dealer_price = !empty($row[8]) ? floatval($row[8]): 0;
+				$sql = "UPDATE ".$modx->getFullTableName('site_ec_items')."SET "; 
+				$sql.= "retail_price=$retail_price, mdealer_price=$mdealer_price, dealer_price=$dealer_price,editedon=".time().",editedby=".$modx->getLoginUserID()." ";
+				$sql.= "WHERE acc_id='$code';";				
+				$rs = mysql_query($sql);
+				if ($rs) $updated++;
+			}
+		}		
+		fclose($fp);		
+		$error == '';		
+	} else {
+		$uploadError = true;
+		$upload_errors = $fu->message;
+	} 
+	
+	if ($error == '' && $uploadError === false) {
+		$output .= '<h2>' . $_lang['1C_update_done'].'<br>';
+		$output .= $_lang['1C_updated'].' '.$updated.' '.$_lang['1C_items'].'';
+		$output .= '</h2>';	
+	} else {
+		$output .= '<h2>' . $_lang[18] . '</br>';				
+		foreach ($upload_errors as $upload_error) {
+			$output.= ''.$upload_error.'</br>';
+		}
+		$output.= '</h2>';	
+	}	
+		
+	return $output;
+}
+
+function upload1COrders() {
+	global $theme;
+	global $modx;
+	global $_lang;
+    global $_1c_data_dir;
+	global $_FILES,$ec_settings;
+	$updateError = '';
+	$output = '';
+	include_once(MODX_BASE_PATH.'manager/ecommerce/1cpricelist/fileUpload.class.php'); 
+	$max_size = 1024*250; // the max. size for uploading		
+	$fu = new fileUpload($_lang);
+	$fu->upload_dir = $_1c_data_dir; 
+	$fu->extensions = array(".txt"); 	
+	$fu->max_length_filename = 100; 
+	$fu->rename_file = true;
+	$fu->the_temp_file = $_FILES['upload_file']['tmp_name'];
+	$fu->the_file = $_FILES['upload_file']['name'];	
+	$fu->http_error = $_FILES['upload_file']['error'];
+	$fu->replace = 'y'; 
+	$fu->do_filename_check = "y"; 
+	$new_name = '1c_data';
+	if ($fu->upload($new_name)) { 
+		$full_path = $fu->upload_dir.$fu->file_copy;
+		$uploadError = false;		
+		$fp = fopen($full_path, "r");
+		$total_quantity = 0;
+		$model_quantity = 0;
+		$updated = 0;
+		while(!feof($fp)) {
+			$line = fgets($fp);			
+			$row = explode("#",$line);
+			if (count($row) != 3 ) {
+				$output .= '<h2>' . $_lang['1C_update_wrong_format'].'</h2>';				
+				return $output;
+			}
+			
+			$order_id = $row[0];
+			$order_id = trim($order_id);
+			
+			$sql = "SELECT * FROM ".$modx->getFullTableName('site_ec_orders')." WHERE id = '$order_id' LIMIT 1";					
+			$rs = mysql_query($sql);
+			$limit = mysql_num_rows($rs);					
+			if($limit===1) {
+				$status = $row[1];
+				$status = trim($status);
+				
+				$paid = $row[2];
+				$paid = trim($paid);
+				
+				$order = mysql_fetch_assoc($rs);
+				
+				if ($order['informcust'] == 1 && $status == $ec->config['order_complate_status']) {
+					include_once $modx->config['base_path']."assets/snippets/ecart/ecart.inc.php";
+					$ec = new eCart();
+					$ec->init();
+					//$ec->sendOrderSentMessage($order);
+				}		
+				if ($status==7) { $paid=1;}					
+				$sql = " UPDATE ".$modx->getFullTableName('site_ec_orders')." SET "; 
+				$sql.= " status='$status', paid='$paid' WHERE id='$order_id'; ";				
+				$rs = mysql_query($sql);
+				if ($rs) $updated++;			
+			}			
+			
+		}		
+		fclose($fp);		
+		$error == '';		
+	} else {
+		$uploadError = true;
+		$upload_errors = $fu->message;
+	} 
+	
+	if ($error == '' && $uploadError === false) {
+		$output .= '<h2>' . $_lang['1C_update_done'].'<br>';
+		$output .= $_lang['1C_updated'].' '.$updated.' '.$_lang['1C_orders'].'';
+		$output .= '</h2>';	
+	} else {
+		$output .= '<h2>' . $_lang[18] . '</br>';				
+		foreach ($upload_errors as $upload_error) {
+			$output.= ''.$upload_error.'</br>';
+		}
+		$output.= '</h2>';	
+	}	
+	
+	return $output;
+}
+
+if ($_REQUEST['a'] == 5101) {
+   	$upload_msg3 = upload1CPricelist();
+}   
+if ($_REQUEST['a'] == 5102) {
+	$upload_msg2 = upload1CItems();
+}	
+if ($_REQUEST['a'] == 5103) {
+	$upload_msg1 = upload1CFolders();
+}	
+if ($_REQUEST['a'] == 5104) {
+	$upload_msg4 = upload1COrders();
+}	
+?>
+<script type="text/javascript">
+</script>
+<br>
+<div class="sectionHeader"><?php echo $_lang["ec_manage_1c"]; ?></div>
+<div class="sectionBody">
+
+   		
+   		<?php   		
+   		
+   		$output_str  =  '<br /><p>' . $_lang['1C_upload_folders_form'] . '</p>';
+		$output_str .= $upload_msg1;				   		
+		$output_str .= ' 
+					<form action="index.php?a=5103" name=\'upload_data\' method="POST" enctype="multipart/form-data"> 
+					<input type="hidden" name="tabAction" value="_1c_upload_data" /> 										
+					<input name="upload_file" type="file" size="60"/>';	
+		$output_str .= '<div class="go" style="margin-top:10px;">
+					<input type="submit" value="' . $_lang['1C_go'] . '"/>
+					</div></form><br><div class="stay"></div>';
+   		
+   		$output_str .=  '<br /><p>' . $_lang['1C_upload_data_form'] . '</p>';
+		$output_str .= $upload_msg2;			   		
+		$output_str .= ' 
+					<form action="index.php?a=5102" name=\'upload_data\' method="POST" enctype="multipart/form-data"> 
+					<input type="hidden" name="tabAction" value="_1c_upload_data" /> 						
+					<input name="upload_file" type="file" size="60"/>';	
+		$output_str .= '<div class="go" style="margin-top:10px;">
+					<input type="submit" value="' . $_lang['1C_go'] . '"/>
+					</div></form><br><div class="stay"></div>';
+		
+		
+		$output_str .=  '<br /><p>' . $_lang['1C_upload_pricelist_form'] . '</p>';
+   		$output_str .= $upload_msg3;		   		
+		$output_str .= ' 
+					<form action="index.php?a=5101" name=\'upload_data\' method="POST" enctype="multipart/form-data"> 
+					<input type="hidden" name="tabAction" value="_1c_upload_data" /> 						
+					<input name="upload_file" type="file" size="60"/>';	
+		$output_str .= '<div class="go" style="margin-top:10px;">
+					<input type="submit" value="' . $_lang['1C_go'] . '"/>
+					</div></form><br>';	
+		
+		
+		$output_str .=  '<br /><p>' . $_lang['1C_upload_orders_form'] . '</p>';
+   		$output_str .= $upload_msg4;		   		
+		$output_str .= ' 
+					<form action="index.php?a=5104" name=\'upload_data\' method="POST" enctype="multipart/form-data"> 
+					<input type="hidden" name="tabAction" value="_1c_upload_data" /> 						
+					<input name="upload_file" type="file" size="60"/>';	
+		$output_str .= '<div class="go" style="margin-top:10px;">
+					<input type="submit" value="' . $_lang['1C_go'] . '"/>
+					</div></form><br>';	
+		
+		
+		echo $output_str;   		
+   		?>
+</div>

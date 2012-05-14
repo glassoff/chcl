@@ -1,0 +1,47 @@
+ 	<a name="jc[+jot.link.id+][+comment.id+]"></a>
+	<table width="99%" cellspacing="0" cellpadding="0" border="0">
+		<tr>			
+			<td  valign="top">
+		    <span class="news_title">
+		    [+comment.createdby:userinfo=`username`:ifempty=`[+comment.custom.name:ifempty=`[+jot.guestname+]`:esc+]`+]
+		    </span>: [+comment.title+]
+			</td>
+		 	<td align="right">
+		 	<span style="font-size:9px;color:#bbbbbb"> 
+			[+comment.createdon:date=`%d.%m.%Y, %H:%M:%S`+]
+		 	</span>&nbsp;
+		 	[+jot.user.canedit:is=`1`:and:if=`[+comment.createdby+]`:is=`[+jot.user.id+]`:or:if=`[+jot.moderation.enabled+]`:is=`1`:then=`
+				 <a href="[+jot.link.edit:esc+][+jot.querykey.id+]=[+comment.id+]#jf[+jot.link.id+]" onclick="return confirm('Вы уверены что хотите редактировать этот отзыв?')" title="Редактировать отзыв"><img src="assets/templates/cd/i/edit.gif" alt="Редактировать отзыв" border="0" /></a>
+   		 	
+				[+comment.published:is=`0`:then=`
+				<a href="[+jot.link.publish:esc+][+jot.querykey.id+]=[+comment.id+]#jotmod[+jot.link.id+]" onclick="return confirm('Вы уверены что хотите опубликовать этот отзыв?')" title="Опубликовать отзыв"><img src="assets/templates/cd/i/publish.gif" alt="Опубликовать отзыв" border="0" /></a>
+				`+]
+				[+comment.published:is=`1`:then=`
+				<a href="[+jot.link.unpublish:esc+][+jot.querykey.id+]=[+comment.id+]#jotmod[+jot.link.id+]" onclick="return confirm('Вы уверены что хотите отменить публикацию?')" title="Отменить публикацию"><img src="assets/templates/cd/i/unpublish.gif" alt="Отменить публикацию" border="0" /></a>
+				`+]
+			`:strip+]
+			[+jot.moderation.enabled:is=`1`:then=`
+			<a href="[+jot.link.delete:esc+][+jot.querykey.id+]=[+comment.id+]#jotmod[+jot.link.id+]" onclick="return confirm('Вы уверены что хотите удалить этот отзыв?')" title="Удалить отзыв"><img src="assets/templates/cd/i/delete.gif" alt="Удалить отзыв" border="0" /></a>
+			`:strip+] 
+					
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">[+comment.content:wordwrap:esc:nl2br+]</td>
+		</tr>
+		<tr>
+			<td colspan="2" height="10"></td>
+		</tr>
+		<tr>
+			<td colspan="2" height="1" valign="middle" style="width:100%;height:1px;background-color:#eeeeee">				
+			</td>
+		</tr>	
+		<tr>
+			<td colspan="2" height="10"></td>
+		</tr>	
+	</table>
+	
+	
+ 	
+ 	
+ 	

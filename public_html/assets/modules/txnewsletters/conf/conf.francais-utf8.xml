@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<form>
+
+  <field type="text" name="Name" mandatory="no" display="yes" filter="yes">
+    <label>Nom</label>
+    <default></default>
+    <errormessage>Merci d'entrer votre nom.</errormessage>
+    <size>80</size>
+    <maxlength>255</maxlength>
+  </field>
+  
+  <field type="text" name="Firstname" mandatory="no" display="yes" filter="yes">
+    <label>Prénom</label>
+    <default></default>
+    <size>80</size>
+    <maxlength>255</maxlength>
+  </field>
+  
+  <field type="text" name="Zipcode" mandatory="no" display="yes" filter="yes">
+    <label>Code Postal</label>
+    <default></default>
+    <errormessage>Merci d'entrer le code postal.</errormessage>
+    <size>80</size>
+    <maxlength>255</maxlength>
+  </field>
+  
+  <field type="text" name="City" mandatory="no" display="no" filter="no">
+    <label>Ville</label>
+    <default></default>
+    <errormessage>Merci d'entrer votre ville.</errormessage>
+    <size>80</size>
+    <maxlength>255</maxlength>
+  </field>
+  
+  <field type="text" name="Country" mandatory="no" display="yes" filter="yes">
+    <label>Pays</label>
+    <default></default>
+    <errormessage>Merci d'entrer votre pays.</errormessage>
+    <size>80</size>
+    <maxlength>255</maxlength>
+  </field>
+  
+  <field type="list" name="Language" mandatory="no" display="yes" filter="yes">
+    <label>Langue</label>
+    <errormessage>Merci de sélectionner votre langue.</errormessage>
+    <default>English</default>
+    <listtype>list</listtype>
+    <values>
+      <value id="French">Français</value>
+      <value id="English">Anglais</value>
+      <value id="German">Allemand</value>     
+    </values>
+  </field>
+  
+  <field type="text" name="Phone" mandatory="no" display="yes" filter="yes">
+    <label>Telephone</label>
+    <default></default>
+    <errormessage>Merci d'entrer votre telephone.</errormessage>
+    <size>80</size>
+    <maxlength>255</maxlength>
+  </field>
+  
+  <field type="email" name="Email" mandatory="yes" display="yes" filter="yes">
+    <label>E-mail</label>
+    <default></default>
+    <errormessage>Merci d'entrer un e-mail valide</errormessage>
+    <size>80</size>
+    <maxlength>255</maxlength>
+  </field>
+  
+  <field type="list" name="Example1" mandatory="no" display="yes" filter="yes">
+    <label>Example 1</label>
+    <errormessage>Merci de sélectionner une option.</errormessage>
+    <default>option1</default>
+    <listtype>list</listtype>
+    <values>
+      <value id="option1">Option 1</value>
+	  <value id="option2">Option 2</value>
+	  <value id="option3">Option 3</value>
+    </values>
+  </field>
+  
+  <field type="list" name="Example2" mandatory="no" display="yes" filter="yes">
+    <label>Example 2</label>
+    <errormessage>Merci de sélectionner une option.</errormessage>
+    <default>option1</default>
+    <listtype>checkbox</listtype>
+    <values>
+      <value id="option1">Option 1</value>
+	  <value id="option2">Option 2</value>
+	  <value id="option3">Option 3</value>
+    </values>
+  </field> 
+  
+  <field type="list" name="Example3" mandatory="no" display="yes" filter="yes">
+    <label>Example 3</label>
+    <errormessage>Merci de sélectionner une option.</errormessage>
+    <default>option1</default>
+    <listtype>radio</listtype>
+    <values>
+      <value id="option1">Option 1</value>
+	  <value id="option2">Option 2</value>
+	  <value id="option3">Option 3</value>
+    </values>
+  </field>  
+  
+  <field type="checkbox" name="Checkbox1" mandatory="no" display="yes" filter="yes">
+    <label>Option</label>
+    <default></default>
+    <errormessage>Merci de cocher la case pour approuver.</errormessage>
+  </field>
+  
+  <field type="subscribe" name="Subscribe" mandatory="no" display="yes" filter="yes">
+    <label>Choisissez la/les newsletter(s)</label>
+    <errormessage>Merci de sélectionner au moins une newsletter</errormessage>
+    <listtype>checkbox</listtype>
+    <values>
+      <value id="TXNewsletter1">Newsletter 1</value>
+	  <value id="TXNewsletter2">Newsletter 2</value>
+    </values>
+  </field>
+  
+</form>

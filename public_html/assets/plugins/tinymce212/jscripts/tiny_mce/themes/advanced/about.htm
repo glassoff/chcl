@@ -1,0 +1,52 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head> <!-- TinyMCE RTL Applied by: MotSmart | www.modxcms.ir | 16 jan 2008 -->
+	<title>{$lang_about_title}</title>
+	<script language="javascript" type="text/javascript" src="../../tiny_mce_popup.js"></script>
+	<script language="javascript" type="text/javascript" src="../../utils/mctabs.js"></script>
+	<script language="javascript" type="text/javascript" src="jscripts/about.js"></script>
+	<base target="_self" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head>
+<body id="about" onLoad="tinyMCEPopup.executeOnLoad('init();');" style="display: none">
+		<div class="tabs">
+			<ul>
+				<li id="general_tab" class="current"><span><a href="javascript:mcTabs.displayTab('general_tab','general_panel');" onMouseDown="return false;">{$lang_about}</a></span></li>
+				<li id="help_tab"><span><a href="javascript:mcTabs.displayTab('help_tab','help_panel');" onMouseDown="return false;">{$lang_help}</a></span></li>
+				<li id="plugins_tab"><span><a href="javascript:mcTabs.displayTab('plugins_tab','plugins_panel');" onMouseDown="return false;">{$lang_plugins}</a></span></li>
+			</ul>
+		</div>
+
+		<div class="panel_wrapper">
+			<div id="general_panel" class="panel current">
+				<h3>{$lang_about_title}</h3>
+				<p>نسخه: {$tinymce_version} ({$tinymce_releasedate})</p>
+				<p>نرم افزار TinyMCE ابزاری است مبتنی بر وب که توان ویرایش و حالت دهی به نوشته ها را دارد. طبق زبان JavaScript نوشته شده و متن باز است <a href="../../license.txt" target="_blank">LGPL</a> را برای اطلاع از قوانین آن بخوانید.
+				توسط Moxiecode Systems AB نوشته شده. توانایی ویرایش و تبدیل فیلدهای HTML TEXTAREA یا دیگر المنتهای HTML به متغیرهای ویرایشگر را دارد.</p>
+				<p><a href="http://www.moxiecode.com" target="_blank">Moxiecode Systems AB</a>, Copyright &copy; 2003-2007,  کلیه حقوق محفوظ.</p>
+				<p>برای کسب اطلاعات بیشتر درباره این نرم افزار از <a href="http://tinymce.moxiecode.com" target="_blank">وبگاه TinyMCE</a> دیدن فرمائید.</p>
+
+				<div id="buttoncontainer"></div>
+			</div>
+
+			<div id="plugins_panel" class="panel">
+				<div id="pluginscontainer">
+					<h3>{$lang_loaded_plugins}</h3>
+
+					<div id="plugintablecontainer">
+					</div>
+
+					<p>&nbsp;</p>
+				</div>
+			</div>
+
+			<div id="help_panel" class="panel noscroll" style="overflow: visible;">
+				<div id="iframecontainer"></div>
+			</div>
+		</div>
+
+		<div class="mceActionPanel">
+			<div style="float: left">
+				<input type="button" id="cancel" name="cancel" value="{$lang_close}" onClick="tinyMCEPopup.close();" />
+			</div>
+		</div>
+</body>
+</html>

@@ -1,0 +1,119 @@
+	snippets:
+	siteMap ??
+  	recall add
+  	insertTemplate
+    withChildren add
+	eCart
+  	WebLoginPE
+
+	chunks:
+  	managersList add
+	ProductItemTpl
+  	ProductCellTpl
+  	similarItemRowTpl
+  	UserRegTpl2 173
+  	UserProfileTpl 142
+	top_icon
+  	recallForm add
+  	similarItemRowTpl
+  	ManagersBlockTpl
+	managersList
+  	LoginForm
+  	LoginSideBarFormTpl
+  	SuccessTpl
+  	eCartSideBarTpl
+  	top_js add
+  	bottom_js add
+  	counters add
+  	ProductCellForIndexTpl
+  	PreOrderBannerTpl
+	shareIcons
+    homePageTpl
+  	catalogPageTpl
+  	tovarPageTpl
+  	securePageTpl
+  	PageTpl
+  	itemScreenshotsTpl not valid
+  	recallForm
+	eCartOrderOuterTpl_min
+  	eCartOuterTpl
+  	eCartOrderOuterTpl
+  	eCartRowTpl
+  	eCartBody add
+  	cartAmounts add
+  	cartLimitMess add
+	eCartPaymentRowTpl
+  	
+  	templates:
+    kidsdream(54)
+  	Кааталог(8)
+  	Страница товара(16)
+  	Медицинские учреждения(44)
+  	Стандартная страница(11)
+  	Новости(24)
+  	Производители(48)
+  	страница с разделением(46)
+  	Личный кабинет(21)
+
+	files:
+	elements.css
+  	template.css
+  	assets/images/nocolor.png	
+  	assets/templates/kidsdream/
+	\manager\ecommerce\actions\list_ec.items.dynamic.php
+	\manager\ecommerce\actions\list_ec.orders.dynamic.php
+  	\manager\ecommerce\processors\group_ec_item.processor.php	
+  	manager/actions/web_user_management.static.php	
+  	manager/includes/document.parser.class.inc.php  	
+  	eclist.inc.php
+  	ecart.inc.php
+  	1cpricelist.dynamic.php
+  	\manager\ecommerce\actions\mutate_ec.item.dynamic.php
+  	\manager\ecommerce\actions\save_ec_item.processor.php
+  	\manager\ecommerce\processors\save_ec_item.processor.php
+	webloginpe.class.php 632, 847
+  	constructor.php
+  	list.php
+  	css.css
+  	images/buy-tabs.png
+  	cart.js
+	cloud-zoom/*
+  	/assets/images/active_image.png
+  	assets/templates/kidsdream/css/basic_dd.css
+  	assets/templates/kidsdream/css/elements.css
+  	jquery-1.4.4.min.js
+  	/assets/images/scrolls.png
+  	jqzoom/*
+  	assets/images/noimage.png  	
+  	assets/images/nocolor.png
+  	assets/images/icon-no.gif  	
+  	assets/images/attention.png
+  	assets/images/delete_icon_16.png
+  	assets/images/do_not_disconnect_icon_sm.gif
+  	assets/templates/cd/i/buy-types.png
+
+
+	pages:
+  	1309
+  	3178 add
+  	2959
+  	84
+  	240
+  	2960
+3284 add
+
+	mysql:
+  	add 'subscribe' to modx_web_user_attributes
+  	add 'recommenditems' to modx_site_ec_items
+  	add 'type' to modx_site_ec_shopping_cart по умолчанию сделать package
+  	add 'type' to modx_site_ec_order_items по умолчанию сделать package
+  	add 'retail_size' to modx_site_ec_items  
+  	alt 'size_z' in modx_site_ec_shopping_cart	
+  	add table modx_site_ec_colors
+  	modx_site_ec_delivery_types
+
+  	change on order mail to admin
+
+
+
+

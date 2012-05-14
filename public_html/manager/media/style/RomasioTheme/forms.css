@@ -1,0 +1,66 @@
+/* =========================================================
+		FORM CONTROLS
+========================================================= */
+fieldset {
+	border: none;
+}
+form input, 
+form textarea {
+	border: 1px solid #CACACA;
+	padding: 2px 4px 2px 4px;
+	background: #FAFAFA;
+	color: #404040;
+}
+form input.hidden {
+	display: none !important;
+	position: absolute;
+}
+input, .inputBox {
+	padding: 2px;
+	margin: 2px;
+}
+input.radio, input.checkbox, form input[type=checkbox] {
+	height: auto !important;
+	width: auto !important;
+	vertical-align: middle;	
+	color: #FF8C00;
+}
+input[type=radio] {
+	border: none;
+	background: none;
+	color: #FFA500;
+}
+input.submit {
+	display: block !important;
+	float: none !important;
+	/*margin: 20px 0 0 140px !important;*/
+}
+
+button {
+	color: #821517;
+	font-weight: bold;
+	width: 112px;
+	margin-right: 5px;
+	cursor: pointer;
+}
+select {
+	border: 1px solid #BFC3FF !important;
+	background: #fcfcfc;
+}
+.button, input[type=button], input[type=submit] {
+	/*margin-left: 143px;*/
+	border: 1px solid silver;
+	border-width: 1px 2px 2px 1px;
+	border-color: #D4D0C8 #959595 #959595 #D4D0C8;
+	background-color: #F5F5F5; /*padding: 5px 8px 5px 8px;*/
+}
+input[type=button]:hover, input[type=submit]:hover {
+	background: #F0E68C;
+}
+#ta, .tmplvars textarea {
+	font-size: 100%;
+}
+
+
+
+

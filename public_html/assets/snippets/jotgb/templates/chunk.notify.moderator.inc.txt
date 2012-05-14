@@ -1,0 +1,11 @@
+Получено новое сообщение с сайта.
+
+-----
+Имя: [+comment.custom.name+]
+Email: [+comment.custom.email+] 
+Тема: [+comment.title+]
+Сообщение:
+[+comment.content+]
+-----
+
+Вы можете посмотреть сообщение через эту ссылку [+jot.link.edit+][+jot.querykey.id+]=[+comment.id+]#jf[+jot.link.id+]

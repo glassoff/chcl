@@ -1,0 +1,36 @@
+#image_menu {background:url(../i/image_menu_back.gif); height:101px; width:1800px}
+#image_menu a:hover {background-position:bottom}
+#image_menu a {background-position:top}
+#image_menu ul {padding:2px 0 0 0}
+#image_menu li {float:left; margin: 0 2px}
+
+.image_menu_mp3 {background:url(../i/button_2.jpg);background-position:top; width:194px; height:92px; display:block; margin:0 0px}
+.image_menu_mp3:hover {background-position:bottom}
+
+.image_menu_audio_books {background:url(../i/button_8.jpg);background-position:top; width:194px; height:92px; display:block; margin:0 0px}
+.image_menu_audio_books:hover {background-position:bottom}
+
+.image_menu_playstations {background:url(../i/button_7.jpg);background-position:top; width:194px; height:92px; display:block; margin:0 0px}
+.image_menu_playstations:hover {background-position:bottom}
+
+.image_menu_kidgames {background:url(../i/button_1_2.jpg);background-position:top; width:194px; height:92px; display:block; margin:0 0px}
+.image_menu_kidgames:hover {background-position:bottom}
+
+.image_menu_pcgames {background:url(../i/button_1.jpg);background-position:top; width:194px; height:92px; display:block; margin:0 0px}
+.image_menu_pcgames:hover {background-position:bottom}
+
+.image_menu_education {background:url(../i/button_9.jpg);background-position:top; width:194px; height:92px; display:block; margin:0 0px}
+.image_menu_education:hover {background-position:bottom}
+
+.image_menu_soft {background:url(../i/button_4.jpg);background-position:top; width:194px; height:92px; display:block; margin:0 0px}
+.image_menu_soft:hover {background-position:bottom}
+
+.image_menu_wiki {background:url(../i/button_10.jpg);background-position:top; width:194px; height:92px; display:block; margin:0 0px}
+.image_menu_wiki:hover {background-position:bottom}
+
+.image_menu_movies {background:url(../i/button_3.jpg);background-position:top; width:194px; height:92px; display:block; margin:0 0px}
+.image_menu_movies:hover {background-position:bottom}
+.image_menu_demo {background:url(../i/button_11.jpg);background-position:top; width:194px; height:92px; display:block; margin:0 0px}
+
+.image_menu_demo:hover {background-position:bottom}
+.image_menu_current {background-position:bottom}

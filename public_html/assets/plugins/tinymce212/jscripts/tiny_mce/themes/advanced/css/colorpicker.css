@@ -1,0 +1,46 @@
+/* Colorpicker dialog specific CSS */
+/* RTL TinyMCE Applied by: MotSmart | www.modxcms.ir | 16 jan 2008 */
+#preview {
+	float: right;
+	width: 50px;
+	height: 14px;
+	line-height: 1px;
+	border: 1px solid black;
+	margin-right: 5px; /* changed */
+}
+#colorpicker {
+	float: right; /* changed */
+	cursor: crosshair;
+}
+#light {
+	border: 1px solid gray;
+	margin-right: 5px; /* changed */
+	float: right; /* changed */
+	width: 15px;
+	cursor: crosshair;
+}
+#light div {
+	overflow: hidden;
+}
+#previewblock {
+	float: left; /* changed */
+	padding-right: 10px; /* changed */
+	height: 20px;
+}
+.panel_wrapper div.current {
+	height: 175px;
+}
+#namedcolors {
+	width: 150px;
+}
+#namedcolors a {
+	display: block;
+	float: right; /* changed */
+	width: 10px;
+	height: 10px;
+	margin: 1px 0 0 1px; /* changed */
+	overflow: hidden;
+}
+#colornamecontainer {
+	margin-top: 5px;
+}

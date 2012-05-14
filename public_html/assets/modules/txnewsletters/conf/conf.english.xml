@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<form>
+
+  <field type="text" name="Name" mandatory="no" display="yes" filter="yes">
+    <label>Name</label>
+    <default></default>
+    <errormessage>Please enter your name.</errormessage>
+    <size>80</size>
+    <maxlength>255</maxlength>
+  </field>
+  
+  <field type="text" name="Firstname" mandatory="no" display="yes" filter="yes">
+    <label>Firstname</label>
+    <default></default>
+    <size>80</size>
+    <maxlength>255</maxlength>
+  </field>
+  
+  <field type="text" name="Zipcode" mandatory="no" display="yes" filter="yes">
+    <label>ZipCode</label>
+    <default></default>
+    <errormessage>Please enter your Zip Code</errormessage>
+    <size>80</size>
+    <maxlength>255</maxlength>
+  </field>
+  
+  <field type="text" name="City" mandatory="no" display="no" filter="no">
+    <label>City</label>
+    <default></default>
+    <errormessage>Please enter your city.</errormessage>
+    <size>80</size>
+    <maxlength>255</maxlength>
+  </field>
+  
+  <field type="text" name="Country" mandatory="no" display="yes" filter="yes">
+    <label>Country</label>
+    <default></default>
+    <errormessage>Please enter your country.</errormessage>
+    <size>80</size>
+    <maxlength>255</maxlength>
+  </field>
+  
+  <field type="list" name="Language" mandatory="no" display="yes" filter="yes">
+    <label>Language</label>
+    <errormessage>Please select your language.</errormessage>
+    <default>English</default>
+    <listtype>list</listtype>
+    <values>
+      <value id="French">French</value>
+      <value id="English">English</value>
+      <value id="German">German</value>      
+    </values>
+  </field>
+  
+  <field type="text" name="Phone" mandatory="no" display="yes" filter="yes">
+    <label>Phone</label>
+    <default></default>
+    <errormessage>Please enter your phone number.</errormessage>
+    <size>80</size>
+    <maxlength>255</maxlength>
+  </field>
+  
+  <field type="email" name="Email" mandatory="yes" display="yes" filter="yes">
+    <label>E-mail</label>
+    <default></default>
+    <errormessage>Please enter your e-mail.</errormessage>
+    <size>80</size>
+    <maxlength>255</maxlength>
+  </field>
+  
+  <field type="list" name="Example1" mandatory="no" display="yes" filter="yes">
+    <label>Example 1</label>
+    <errormessage>Please select an option.</errormessage>
+    <default>option1</default>
+    <listtype>list</listtype>
+    <values>
+      <value id="option1">Option 1</value>
+	  <value id="option2">Option 2</value>
+	  <value id="option3">Option 3</value>
+    </values>
+  </field>
+  
+  <field type="list" name="Example2" mandatory="no" display="yes" filter="yes">
+    <label>Example 2</label>
+    <errormessage>Please select an option.</errormessage>
+    <default>option1</default>
+    <listtype>checkbox</listtype>
+    <values>
+      <value id="option1">Option 1</value>
+	  <value id="option2">Option 2</value>
+	  <value id="option3">Option 3</value>
+    </values>
+  </field>  
+  
+  <field type="list" name="Example3" mandatory="no" display="yes" filter="yes">
+    <label>Example 3</label>
+    <errormessage>Please select an option.</errormessage>
+    <default>option1</default>
+    <listtype>radio</listtype>
+    <values>
+      <value id="option1">Option 1</value>
+	  <value id="option2">Option 2</value>
+	  <value id="option3">Option 3</value>
+    </values>
+  </field>  
+  
+  <field type="checkbox" name="Checkbox1" mandatory="no" display="yes" filter="yes">
+    <label>Option</label>
+    <default></default>
+    <errormessage>Please check this to approuve.</errormessage>
+  </field>
+  
+  <field type="subscribe" name="Subscribe" mandatory="no" display="yes" filter="yes">
+    <label>Choose newsletter(s)</label>
+    <errormessage>Please choose one newsletter at least.</errormessage>
+    <listtype>checkbox</listtype>
+    <values>
+      <value id="TXNewsletter1">Newsletter 1</value>
+	  <value id="TXNewsletter2">Newsletter 2</value>
+    </values>
+  </field>
+  
+</form>

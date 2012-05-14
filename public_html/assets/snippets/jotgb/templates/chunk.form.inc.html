@@ -1,0 +1,119 @@
+<a name="jf[+jot.link.id+]"></a>
+<a name="jotsendmsg"></a>
+<h3>[+form.edit:is=`1`:then=`Редактировать сообщение`:else=``+]</h3>
+
+[+form.error:isnt=`0`:then=`
+<div class="jot-err">
+[+form.error:select=`
+&-3=Вы пытаетесь отправить сообщение повторно. Вы вероятно нажимали кнопку отправки более одного раза.
+&-2=Вам отказано в публикации вашего сообщение.
+&-1=Ваше сообщение отправлено, оно будет опубликовано после проверки администратора.
+&1=Вы пытаетесь отправить сообщение повторно. Вы вероятно нажимали кнопку отправки более одного раза.
+&2=Вы ввели не правильный антиспам код.
+&3=Вы можете оставить сообщение только один раз в [+jot.postdelay+] секунду.
+&4=Вам отказано в публикации вашего сообщение.
+&5=[+form.errormsg:ifempty=`Вы не заполнили все обязательные поля`+]
+`+]
+</div>
+`:strip+]
+
+[+form.confirm:isnt=`0`:then=`
+<div class="jot-cfm">
+[+form.confirm:select=`
+&1=Ваше сообщение опубликовано.
+&2=Ваше сообщение отправлено,будет опубликовано после проверки администратора.
+&3=Сообщение сохранено.
+`+]
+</div>
+`:strip+]
+
+<div id="CommentForm">
+[+form.edit:is=`1`:then=``:else=`<h3>Оставить сообщение</h3>`+]
+<form method="post" action="[+form.action:esc+]#jf[+jot.link.id+]" class="jot-form">
+	
+	<input name="JotForm" maxlength="" type="hidden" value="[+jot.id+]" />
+	<input name="JotNow" type="hidden" value="[+jot.seed+]" />
+	<input name="parent" type="hidden" value="[+form.field.parent+]" />
+	<div style="margin:10px;">
+	[+form.moderation:is=`1`:then=`
+		<div class="jot-row">
+			<b>Cоздан в:</b> [+form.field.createdon:date=`%d.%m.%Y, %H:%M:%S`+]<br />
+			<b>Автор:</b>
+			[+phx:if=`[+form.field.createdby:userinfo=`sname`+]`:is=``:then=`
+				[+phx:if=`[+form.field.createdby:userinfo=`fullname`+]`:is=``:then=`
+					[+phx:if=`[+form.field.custom.name+]`:is=``:then=`
+						[+jot.guestname+]
+					`:else=`
+						[+form.field.custom.name+]
+					`+]
+				`:else=`
+					[+form.field.createdby:userinfo=`fullname`+]
+				`+]	
+			`:else=`
+				[+form.field.createdby:userinfo=`sname`+] [+form.field.createdby:userinfo=`fname`+]
+			`+]	
+			<br />
+			<b>Город:</b> [+form.field.createdby:userinfo=`town`:ifempty=`[+form.field.custom.town+]`+]<br />
+			<b>Телефон:</b> [+form.field.createdby:userinfo=`phone`:ifempty=`[+form.field.custom.phone+]`+]<br />
+			<b>IP адрес:</b> [+form.field.secip+]<br />
+			<b>Опубликовано:</b> [+form.field.published:select=`0=No&1=Yes`+]<br />
+			[+form.field.publishedon:gt=`0`:then=`
+				<b>Опубликовано в:</b> [+form.field.publishedon:date=`%d.%m.%Y, %H:%M:%S`+]<br />
+				<b>Опубликовал:</b> [+form.field.publishedby:userinfo=`username`:ifempty=` - `+]<br />
+			`+]
+			[+form.field.editedon:gt=`0`:then=`
+				<b>Изменено в:</b> [+form.field.editedon:date=`%d.%m.%Y, %H:%M:%S`+]<br />
+				<b>Изменил:</b> [+form.field.editedby:userinfo=`username`:ifempty=` -`+]<br />
+			`+]
+		</div>
+	`:strip+]
+	
+	[+form.guest:is=`1`:then=`
+		<label for="name" class="white">Имя: *<br />
+		<input tabindex="[+jot.seed:math=`?+1`+]" name="name" type="text" size="40" value="[+form.field.custom.name:esc+]" />
+		</label><br />
+		<label for="email" class="white">Email: <br />
+		<input tabindex="[+jot.seed:math=`?+2`+]" name="email" type="text" size="40" value="[+form.field.custom.email:esc+]" />
+		</label><br />
+		<label for="town" class="white">Город:<br />
+		<input tabindex="[+jot.seed:math=`?+3`+]" name="town" type="text" size="40" value="[+form.field.custom.town:esc+]" />
+		</label><br />
+		<label for="phone" class="white">Контактный телефон:<br />
+		<input tabindex="[+jot.seed:math=`?+3`+]" name="phone" type="text" size="40" value="[+form.field.custom.phone:esc+]" />
+		</label><br />			
+	`:strip+]
+		
+	<label for="title" class="white">Тема:<br />
+	<input tabindex="[+jot.seed:math=`?+3`+]" name="title" type="text" size="40" value="[+form.field.title:esc+]" />
+	</label><br />
+	<label for="content" class="white">Сообщение: *<br />
+	<textarea tabindex="[+jot.seed:math=`?+4`+]" name="content" cols="41" rows="6">[+form.field.content:esc+]</textarea>
+	</label><br />
+	
+	[+form.moderation:is=`1`:then=`
+	<label for="reply" class="white">Ответ администратора: *<br />
+	<textarea tabindex="[+jot.seed:math=`?+4`+]" name="reply" cols="41" rows="6">[+form.field.reply:esc+]</textarea>
+	</label><br />
+	<label for="notify" class="white">Уведомить пользователя:&nbsp;
+	<input name="notify" value="0" type="hidden">
+	<input name="notify" value="1" type="checkbox">
+	</label><br />
+	`:strip+]
+	
+    [+jot.captcha:is=`1`:then=`
+		<div style="width:150px;margin-top: 5px;margin-bottom: 5px;"><a href="[+jot.link.current:esc+]">
+		<img src="[(base_url)]manager/includes/veriword.php?rand=[+jot.seed+]" width="148" height="60" alt="Если вам трудно читать кода, нажмите на рисунок кода  чтобы обновить рисунку кода." style="border: 1px solid #003399" /></a></div>
+		<span class="white">Анти-спам код:</span><br /><input type="text" name="vericode" style="width:150px;" size="20" />&nbsp;
+	`:strip+]
+	
+	<div style="float:right;width: 100px;"></div>
+	<input tabindex="[+jot.seed:math=`?+5`+]" name="submit" type="submit" value="[+form.edit:is=`1`:then=`Сохранить`:else=`Отправить`+]" />
+	[+form.edit:is=`1`:then=`
+		<input tabindex="[+jot.seed:math=`?+5`+]" name="submit" type="submit" value="Отмена" onclick="history.go(-1);return false;" />
+	`+] 
+	<div class="jot-list white" style="margin-top:10px">
+	Звездочкой отмечены обязательные для заполнения поля <b>*</b>.
+	</div>
+</div>	
+</form>
+</div>

@@ -1,0 +1,79 @@
+.menu {
+	font-family: arial, sans-serif; 
+	/*width:1010px;*/ 
+	margin:0; 
+	margin:0px 0 0px 0;
+	/*position:relative;*/
+	z-index:9999;
+	/*border:1px solid black;*/
+	border-top:1px solid #7bbb02;
+}
+.menu ul {
+	padding:0; 
+	margin:0;
+	list-style:none outside none;
+	font-size:0;
+	position:relative;
+	
+	
+}
+.menu ul li {
+	list-style:none outside none;
+	display:block;
+	padding:0;
+	margin:0;
+	float:left; 
+	position:relative;
+	
+	font-size:12px;
+	height:30px;
+	line-height:30px;
+	border:1px solid #7bbb02;
+	border-width:0px 1px 0 0;
+	
+	background:#51980a;
+	white-space: nowrap;
+}
+	
+.menu ul li a, .menu ul li a:visited {
+	display:block;
+	padding:0 15px;
+	text-decoration:none;
+	color:#ffffff;
+}
+.menu ul li:hover a, .menu ul li.menuover a{
+	color:#000;
+	background:#f26805;
+}
+/*second level*/
+.menu ul li ul {
+	display: none;
+	position:absolute;
+	left:0;
+	top:30px;
+	/*border:1px solid black;*/
+}
+.menu ul li ul li{
+	float:none;
+	border:1px solid #7bbb02;
+	border-width:1px 0 0 0;
+	
+	font-size:0;
+	
+	_width:1px;
+}
+.menu ul li ul li a{
+	font-size:12px;
+}
+.menu ul li:hover ul li a, .menu ul li.menuover ul li a{
+	background:#51980a;
+}
+.menu ul li ul li a:hover{
+	background:#7bbb02;
+}
+.menu ul li:hover ul li, .menu ul li.menuover ul li{
+	width: expression(this.parentNode.clientWidth + "px");
+}
+.menu ul li:hover ul, .menu ul li.menuover ul {
+	display:block; 
+}

@@ -1,0 +1,46 @@
+<?php require_once('/home/chclru82/public_html/conn.php');  
+
+	error_reporting(1);	
+				
+mysql_select_db($database_fp, $fp);
+mysql_query("set CHARACTER SET cp1251");
+
+
+$sql = "DELETE From modx_site_ec_items Where published=0 or deleted=1";
+$del= mysql_query($sql, $fp);
+
+
+/* $sql = "Select id From modx_site_ec_items";
+$tovar= mysql_query($sql, $fp) or die(mysql_error());
+$row_tovar = mysql_fetch_assoc($tovar);
+
+do { 
+
+$ids=$row_tovar['id'];
+
+$sql1 = "Select * From  modx_site_tmplvar_ec_itemvalues WHERE itemid='$ids'";
+$itemval= mysql_query($sql1, $fp);
+$row = mysql_fetch_assoc($itemval);
+
+if (!$row) {
+
+
+$sql = "DELETE From modx_site_ec_items Where modx_site_ec_items.id='$ids'";
+$del= mysql_query($sql, $fp);
+
+
+}
+
+
+ } while ($row_tovar = mysql_fetch_assoc($tovar));
+
+
+*/
+
+
+
+
+
+
+
+?>
