@@ -1006,7 +1006,7 @@ $output_add='<br><br><br>
 			
 			if($order['region']==18825) $order['state'] = 'Москва';
 			
-			$required = array('region' => 'Регион', 'state' => 'Город', 'shipping' => 'Способ доставки', 'postcode1' => 'Почтовый индекс', 'street' => 'Улица', 'dom' => 'Дом', 'kvartira' => 'Квартира', 'phone' => 'Контактный телефон', 'sname' => 'Контактное лицо');
+			$required = array('region' => 'Регион', 'state' => 'Город', 'shipping' => 'Способ доставки', 'postcode1' => 'Почтовый индекс', 'street' => 'Улица', 'dom' => 'Дом'/*, 'kvartira' => 'Квартира'*/, 'phone' => 'Контактный телефон', 'sname' => 'Контактное лицо');
 			
 			$order_datas = array_merge($this->getOrderDatas(), $order);
 			//получаем доступные способы доставки и текущий способ
@@ -1150,7 +1150,7 @@ $output_add='<br><br><br>
 			}
 		
 			
-			$output = str_replace('[+ec.payment.types+]',$this->buildPaymentTypes($order_payment_id), $output);	
+			//$output = str_replace('[+ec.payment.types+]',$this->buildPaymentTypes($order_payment_id), $output);	
 			$user_id = $this->user['id'];
 			$user_info = $this->user;
 			
@@ -1197,6 +1197,45 @@ $output_add='<br><br><br>
             	'<$1$2 class="invalidField" name="order['.$fieldName.']" $3>', $output);
         }
 
+		return $output;
+	}
+
+	/**
+	 * Страница оплаты заказа
+	 */
+	function buildCheckoutPage($order_id)
+	{
+		global $modx;
+		
+		$output = '';
+		
+		$modx->setPlaceholder('order.id', $order_id);
+		
+		$order = $this->getOrderInfo($order_id);
+		
+		if($_POST['payment']){
+			$payment_id = $_POST['payment']['id'];
+			if($payment_id)
+			{
+				$item = $this->getPaymentType($payment_id);
+				
+				$class = $item['class'];
+				
+				$classname = $class.'Payment';
+				$classFile = $classname . '.class.php';
+									
+				require_once($modx->config['base_path'].'/assets/snippets/ecart/payments/'.$classFile);
+				
+				$Payment = new $classname($item);	
+				
+				$output .= $Payment->postForm($_POST['payment']);			
+			} 		
+		}
+		
+		$paymentsList = $this->buildPaymentTypes($payment_id, $order);
+		
+		$output .= $paymentsList;
+		
 		return $output;
 	}
 	
@@ -2157,41 +2196,64 @@ $query55= "select postcode from modx_site_ec_regions where name='$region' LIMIT 
 		else return true;		
 	}
 	
-function buildPaymentTypes($id) {
+function buildPaymentTypes($id, $order) {
 		global $modx;
 		
 		$outerTpl = $this->getTemplate($this->templates['cartPaymentOuterTpl']);
 		$rowTpl = $this->getTemplate($this->templates['cartPaymentRowTpl']);
+		$formTpl = $this->getTemplate('eCartPaymentFormTpl');
+		
 		$payment_types = $this->getPaymentTypes();		
-		$_rows = '';	
+		$_rows = '';
+		$_forms = '';	
 		$i = 0; 
 		$first = false;
 		
-		if (count($payment_types) > 0) {						
+		if (count($payment_types) > 0) {
+			if(!$id){
+				$id = $payment_types[0]['id'];	
+			}	
+								
 			foreach($payment_types as $v => $item) {	
-				if ((isset($_POST['order']) && $_POST['order']['region'] != '18825') && $item['id'] == 7) {
-					if ($first == false) $i = 0;
-					continue;
-				}
 				$_rowTpl = $rowTpl;			
 				$i++;
 				if ($id == $item['id']) {
 					$_rowTpl = str_replace('[+checked+]','checked',$_rowTpl);
-				} elseif ($i == 1) {
+				} /*elseif ($i == 1) {
 					$modx->setPlaceholder('ec.default.payment.auto', $item['auto']);	
 					$_rowTpl = str_replace('[+checked+]','checked',$_rowTpl);
 					$first = true;
-				}
+				}*/
 				
 				foreach($item as $_k => $_v) {		
 					$_rowTpl = str_replace('[+'.$_k.'+]', $_v, $_rowTpl);
 				}				
 				$_rows .= $_rowTpl;	
-				//echo 	$_rowTpl;
-				//exit;						
-			}		
-			//echo $quantity;
-			$output = str_replace('[+ec.wrapper+]',$_rows, $outerTpl);		
+				
+				//forms
+				$_formTpl = $formTpl;
+				$class = $item['class'];
+				
+				$classname = $class.'Payment';
+				$classFile = $classname . '.class.php';
+									
+				require_once($modx->config['base_path'].'/assets/snippets/ecart/payments/'.$classFile);
+				
+				$Payment = new $classname($item, $order);
+				
+				$form = $Payment->showForm();
+				
+				if ($id == $item['id']){
+					$_formTpl = str_replace('[+active+]', true, $_formTpl);
+				}
+				$_formTpl = str_replace('[+payment.id+]', $item['id'], $_formTpl);
+				$_formTpl = str_replace('[+content+]', $form, $_formTpl);
+				
+				$_forms .= $_formTpl;
+
+			}
+			$output = str_replace('[+ec.list+]',$_rows, $outerTpl);
+			$output = str_replace('[+ec.forms+]',$_forms, $output);
 		} else {			
 			$output = $this->lang[0];
 		}
@@ -2205,7 +2267,6 @@ function buildPaymentTypes($id) {
 		$sql = "SELECT * FROM ".$modx->getFullTableName("site_ec_payment_methods")." WHERE active = 1 ";
 	    $sql.= "GROUP BY id ORDER BY listindex,id; ";
 		//run the query
-		//echo $sql;		
 		$result = $modx->dbQuery($sql);	        
 		$numResults = @$modx->recordCount($result);
 		$rows = false;

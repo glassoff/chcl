@@ -1123,3 +1123,45 @@ a.next-tovar{
 	height:28px;
 	overflow: hidden;
 }
+
+/* checkout */
+.b-checkout{
+	clear:both;
+}
+	.b-checkout__header{
+		list-style: none outside none;
+		width:200px;
+		display:block;
+		float:left;
+	}
+		.b-checkout__header__item{
+			list-style: none outside none;
+			
+			height:36px;
+			/*background-color: #d7f2aa;*/
+			
+			padding:4px 10px 0px 10px;
+			
+			cursor:pointer;
+			
+			font-size:14px;	
+			
+			margin-top:5px;		
+		}
+		.b-checkout__header__item.current{
+			border:1px solid #b8d57c;	
+			border-right:none;		
+		}
+	.b-checkout__content{
+		float:left;
+		
+		border:1px solid #b8d57c;
+		
+		width:522px;
+		
+		padding:5px 5px 5px 8px;
+	}
+		.b-checkout__content__item{
+			display: none;
+			min-height:300px;
+		}

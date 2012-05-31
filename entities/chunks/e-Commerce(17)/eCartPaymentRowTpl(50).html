@@ -1,10 +1,4 @@
-<tr>
-    <td align="left" width="90%">
-        <label for="[+id+]_radio"><b>[+name+]</b><div class="payment_note">[+description+]</div></label>        
-    </td>       
-    <td align="center">
-         <input type="radio" name="order[payment_method_id]" [+checked+] alt="[+auto+]" id="[+id+]_radio" onclick="submitForm()" value="[+id+]">
-    </td>
-</tr>
-
-
+<li class="b-checkout__header__item [+phx:if=`[+checked+]`:ne=``:then=`current`+]">
+    <input type="radio" name="order[payment_method_id]" [+checked+] value="[+id+]">
+    [+name+] [+description_+]
+</li>

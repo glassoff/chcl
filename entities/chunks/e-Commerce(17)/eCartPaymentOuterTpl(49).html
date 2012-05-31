@@ -1,8 +1,27 @@
-<table cellpadding="0" cellspacing="0" width="100%">
-    <tr height="25">
-        <td align="left" class="objects_title" colspan="2">Способ оплаты заказа</td>                   
-    </tr>
-    [+ec.wrapper+]     
-</table>
+<script>
+	$(function(){
+		$('.b-checkout__header').each(function() {
+			$(this).find('li').each(function(i) {
+			  $(this).click(function(){
+			    $(this).addClass('current').siblings().removeClass('current')
+			      .parents('.b-checkout').find('.b-checkout__content__item').hide()
+			      .end().find('.b-checkout__content__item:eq('+i+')').fadeIn(150);
+			    $(this).find('input[type=radio]').attr('checked', 'checked');
+			  });
+			});
+		});		
+	});	
+</script>
 
+<h2>Заказ № [+order.id+]</h2>
+<p>Выберете удобный для вас способ оплаты заказа и следуйте инструкциям для выбранного способа для совершения оплаты.</p>
 
+<div class="b-checkout korzina orderpage">
+    <ul class="b-checkout__header">
+        [+ec.list+]
+    </ul>
+    <div class="b-checkout__content">
+    	[+ec.forms+]
+    </div>
+    <div style="clear:both;"></div>
+</div>

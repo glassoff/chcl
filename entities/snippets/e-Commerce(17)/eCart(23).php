@@ -197,8 +197,10 @@ switch ($type) {
                 $output = str_replace('[+message+]',$ec->lang[16], $messageTpl);
                 return $output;
             }
-                        
-            $paymentMethodId = $order_datas['payment_type'];
+            
+			$output = $ec->buildCheckoutPage($order_id);
+			            
+            /*$paymentMethodId = $order_datas['payment_type'];
             include_once("$ec_base/payments/payment".$paymentMethodId.".inc.php"); 
             $pm = new Payment($paymentMethodId,$ec);
             $pm->order = $order_datas;
@@ -208,7 +210,7 @@ switch ($type) {
                 $messageTpl = $ec->getTemplate($ec->templates['messageTpl']);               
                 $message = str_replace('[+message+]',$ec->lang[11], $messageTpl);
                 $output = str_replace('[+message+]',$message, $output);             
-            }   
+            }*/   
             return $output;
         }      
    case "confirmorder": 

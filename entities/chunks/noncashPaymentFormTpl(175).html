@@ -1,0 +1,35 @@
+<table cellspacing="1" cellpadding="0" width="100%" class="content_table">
+     <tbody><tr valign="middle"> 
+        <td align="left" colspan="2" class="">                                 
+        <strong>Данные плательщика</strong>  <br>
+        <em>Укажите данные лица, которое будет оплачивать квитанцию</em>                                               
+        </td>
+    </tr>
+       
+    <tr>
+        <td>Ф.И.О.</td>
+        <td align="left">
+            <input type="text" value="[+payment.name+]" class="inputBox" name="payment[name]" size="60">
+        </td>
+    </tr>
+    
+    <tr>
+        <td>Адрес:</td>
+        <td align="left"><textarea class="inputBox" name="payment[address]" style="width:328px;">[+payment.address+]</textarea></td>
+    </tr>
+          
+    <tr>
+    	<td colspan="2">
+    		<input type="submit" name="payment[submit]" value="Получить квитанцию" />
+    	</td>
+    </tr>          
+</tbody></table>
+
+<script id="noncachScript">
+	$(function(){
+		$('#noncachScript').parents('form').submit(function(){
+			window.open('[~3285~]?' + $(this).serialize(), 'pd4', 'width=800, scrollbars=yes');
+			return false;
+		});
+	});
+</script>

@@ -113,6 +113,8 @@
   	modx_site_ec_delivery_types
 
   	change on order mail to admin
+  	
+ALTER TABLE `modx_site_ec_payment_methods`  ADD `class` VARCHAR(255) NOT NULL AFTER `payment_page`  	
 
 
 
