@@ -1211,10 +1211,15 @@ $output_add='<br><br><br>
 		
 		$modx->setPlaceholder('order.id', $order_id);
 		
-		$order = $this->getOrderInfo($order_id);
+		if($_SESSION['just_ordered']==$order_id){
+			$modx->setPlaceholder('just_ordered', 1);
+			unset($_SESSION['just_ordered']);	
+		}
 		
-		if($_POST['payment']){
-			$payment_id = $_POST['payment']['id'];
+		$order = $this->getOrderInfo($order_id);
+
+		if($_REQUEST['payment']){
+			$payment_id = $_REQUEST['payment']['id'];
 			if($payment_id)
 			{
 				$item = $this->getPaymentType($payment_id);
@@ -1226,9 +1231,12 @@ $output_add='<br><br><br>
 									
 				require_once($modx->config['base_path'].'/assets/snippets/ecart/payments/'.$classFile);
 				
-				$Payment = new $classname($item);	
+				$Payment = new $classname($item, $order);	
 				
-				$output .= $Payment->postForm($_POST['payment']);			
+				if($Payment->validateForm($_REQUEST['payment'])){
+					$output .= $Payment->postForm($_REQUEST['payment']);
+					return $output;	
+				}
 			} 		
 		}
 		
@@ -2175,8 +2183,9 @@ $query55= "select postcode from modx_site_ec_regions where name='$region' LIMIT 
 					$this->sendOrderDetailsToAdmin($order_id);
 					$_SESSION['EC_ORDER_DETAILS_EMAILED'] = true;
 				}
+				$_SESSION['just_ordered'] = $order_id;//заказ был только что оформлен
 				session_write_close();
-				$url = $modx->makeURL($this->params['checkouthomeid']);
+				$url = $modx->makeURL($this->params['checkouthomeid']).'?user_order_id='.$order_id;
            		$modx->sendRedirect($url,0,'REDIRECT_HEADER');
            		return;
 			} 			
@@ -2246,8 +2255,13 @@ function buildPaymentTypes($id, $order) {
 				if ($id == $item['id']){
 					$_formTpl = str_replace('[+active+]', true, $_formTpl);
 				}
-				$_formTpl = str_replace('[+payment.id+]', $item['id'], $_formTpl);
 				$_formTpl = str_replace('[+content+]', $form, $_formTpl);
+				foreach($item as $k => $v){
+					$_formTpl = str_replace("[+payment.$k+]", $v, $_formTpl);
+				}				
+				foreach($order as $k => $v){
+					$_formTpl = str_replace("[+order.$k+]", $v, $_formTpl);
+				}
 				
 				$_forms .= $_formTpl;
 

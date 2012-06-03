@@ -42,11 +42,25 @@ class noncashPayment extends Payment
 		
 		return implode(', ', $o); 
 	}
-	
+		
 	public function postForm($data)
 	{
 		global $modx;
 		
+		$this->setPaymentType();
+		
+		foreach((array)$data as $k => $v){
+			$data[$k] = iconv('UTF-8', 'WINDOWS-1251', $v);
+		}
+
+		$amount = explode('.', $this->order['amount']);		
+		return $modx->parseChunk('pd4', array(
+			'pd4.title' => 'Заказ № ' . $this->order['id'] . ' от ' . date('d.m.Y', $this->order['order_date']),
+			'pd4.name' => $data['name'],
+			'pd4.address' => $data['address'],
+			'pd4.summ.rub' => $amount[0],
+			'pd4.summ.kop' => $amount[1]
+		), '[+', '+]');
 		
 	}
 }
