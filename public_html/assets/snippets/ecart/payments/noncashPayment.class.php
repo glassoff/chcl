@@ -1,6 +1,6 @@
 <?php
 
-require_once('payment.class.php');
+require_once('Payment.class.php');
 
 class noncashPayment extends Payment
 {
@@ -55,7 +55,7 @@ class noncashPayment extends Payment
 
 		$amount = explode('.', $this->order['amount']);		
 		return $modx->parseChunk('pd4', array(
-			'pd4.title' => 'Заказ № ' . $this->order['id'] . ' от ' . date('d.m.Y', $this->order['order_date']),
+			'pd4.title' => $this->getTitle(),
 			'pd4.name' => $data['name'],
 			'pd4.address' => $data['address'],
 			'pd4.summ.rub' => $amount[0],

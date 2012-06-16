@@ -1165,3 +1165,12 @@ a.next-tovar{
 			display: none;
 			min-height:300px;
 		}
+		
+	.b-checkout-oinfo{
+		
+	}
+		.b-checkout-oinfo__inner{
+			margin-left:10px;
+			font-size:14px;
+			color:#000;
+		}				

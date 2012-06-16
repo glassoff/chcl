@@ -1,8 +1,4 @@
 <div class="b-checkout__content__item" style="[+phx:if=`[+active+]`:ne=``:then=`display:block;`+]">
 	<h2>[+payment.name+]</h2>
-	<form method="post" action="">
-		<input type="hidden" name="payment[id]" value="[+payment.id+]" />
-		<input type="hidden" name="payment[order_id]" value="[+order.id+]" />
-		[+content+]
-	</form>
+	[+form+]
 </div>
