@@ -119,3 +119,7 @@ ALTER TABLE `modx_site_ec_payment_methods`  ADD `class` VARCHAR(255) NOT NULL AF
 UPDATE `modx_site_ec_payment_methods` SET `class` = 'yandex' WHERE `modx_site_ec_payment_methods`.`id` = 11;
 
 88 to 86
+
+
+
+UPDATE `modx_site_content` SET `menutitle`=IF(`menutitle`='', `pagetitle`, `menutitle`), `pagetitle`=`longtitle` WHERE `longtitle` != '' AND template IN (11, 46);
