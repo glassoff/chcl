@@ -51,6 +51,11 @@ class eCList {
 		$pagerTpl = $this->getTemplate($this->templates['pagerTpl']);		
 		$list_items = $this->getListItems($start, $stop);//print_r($list_items);die();
 				
+		$curPage = $modx->getPlaceholder('currentPage');
+		if($curPage > 1){
+			$modx->setPlaceholder('itemtitle', ' - Страница '.$curPage);
+		}
+		
 		if (count($list_items) == 0) {
 			$message = str_replace('[+message+]',$this->lang[0], $messageTpl);				
 			return $outerTpl.$message;
@@ -142,7 +147,7 @@ class eCList {
 			//echo $l;	
 			$output = str_replace('[+ecl.wrapper+]',$rows, $outerTpl);						
 		}		
-		if (sizeof($this->pager)>0) {
+		if (sizeof($this->pager)>0) {//print_r($this->pager);die();
 			foreach($this->pager as $k => $v) {						
 				$pagerTpl = str_replace('[+'.$k.'+]', $v, $pagerTpl);
 			} 
