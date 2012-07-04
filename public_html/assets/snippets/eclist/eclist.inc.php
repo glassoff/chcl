@@ -1024,7 +1024,7 @@ $sql.= "si.pagetitle='111111' ) ";
 		$tempDocInfo = $modx->fetchRow($result);
 		
 		//XXX отключение розницы
-		if((int)$tempDocInfo['price_opt'] && !$this->isSaleItem($tempDocInfo)){
+		if((int)$tempDocInfo['price_opt']/* && !$this->isSaleItem($tempDocInfo)*/){
 			$tempDocInfo['retail_price'] = 0;
 		}
 		

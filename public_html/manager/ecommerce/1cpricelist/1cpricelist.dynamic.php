@@ -819,7 +819,7 @@ function uploadImages() {
 
 function resetSale(){
 	global $modx;
-	$modx->db->query("UPDATE `modx_site_ec_items` SET package_price='0', package_items='0' WHERE parent=3119");
+	//$modx->db->query("UPDATE `modx_site_ec_items` SET package_price='0', package_items='0' WHERE parent=3119");
 }
 
 function parseColors($color){
