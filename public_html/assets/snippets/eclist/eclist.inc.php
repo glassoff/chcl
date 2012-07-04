@@ -1024,7 +1024,7 @@ $sql.= "si.pagetitle='111111' ) ";
 		$tempDocInfo = $modx->fetchRow($result);
 		
 		//XXX отключение розницы
-		if((int)$tempDocInfo['price_opt']){
+		if((int)$tempDocInfo['price_opt'] && !$this->isSaleItem($tempDocInfo)){
 			$tempDocInfo['retail_price'] = 0;
 		}
 		
@@ -1047,6 +1047,29 @@ $sql.= "si.pagetitle='111111' ) ";
 		//$resourceArray = $resourceArray[$tempDocInfo['id']];	
 		//print_r($resourceArray);die();	
         return $resourceArray;
+	}
+
+	function isSaleItem($item)
+	{
+		$saleCatalogId = 3119;
+		
+		global $modx;
+		
+		$catalog = $item['parent'];
+		
+		if($catalog==$saleCatalogId){
+			return true;
+		}
+		
+		$sql = "SELECT parent FROM modx_site_content WHERE id='$catalog'";
+		
+		$result = $modx->db->query($sql);
+		$row = $modx->db->getRow($result);
+		
+		if($row['parent']==$saleCatalogId){
+			return true;
+		}
+		return false;
 	}
 
 	function appendColors($tempResults, $docIDs){
