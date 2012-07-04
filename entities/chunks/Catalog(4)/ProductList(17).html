@@ -1,3 +1,5 @@
+[[Wayfinder?startId=`[*id*]` &id=`catalogCenterMenu` &cache=`1` &cacheScale=`folder` &sortBy=`menuindex,pagetitle` &level=`1` &columns=`4` &outerTpl=`catTopMenuOuter` &rowTpl=`catTopMenuCell` &cellOuterTpl=`catTopMenuRow`]]
+
 <div class="content_body">
 
 <!-- filter form -->
@@ -37,4 +39,7 @@
 [+ecl.pager+]
 <div class="space"></div> 
 </div>
+
+[+phx:if=`[+currentPage+]`:is=`1`:then=`[[eCList? &id=`catalogList`  &parents=``  &outerTpl=`r_content`]] `+]
+
 

@@ -1217,6 +1217,11 @@ $output_add='<br><br><br>
 		}
 		
 		$order = $this->getOrderInfo($order_id);
+		
+		$modx->setPlaceholder('order.amount', $order['amount']);
+		$modx->setPlaceholder('order.quantity', $order['quantity']);
+		
+		$modx->setPlaceholder('orderdetailshomeid', $this->params['orderdetailshomeid']);
 
 		if($_REQUEST['payment']){
 			$payment_id = $_REQUEST['payment']['id'];
@@ -2223,7 +2228,24 @@ function buildPaymentTypes($id, $order) {
 				$id = $payment_types[0]['id'];	
 			}	
 								
-			foreach($payment_types as $v => $item) {	
+			foreach($payment_types as $v => $item) 
+			{
+				$class = $item['class'];
+				
+				$classname = $class.'Payment';
+				$classFile = $classname . '.class.php';
+									
+				require_once($modx->config['base_path'].'/assets/snippets/ecart/payments/'.$classFile);
+				
+				$Payment = new $classname($item, $order);
+				
+				if(!$Payment->isActive()){
+					if($id == $item['id']){
+						$id = $payment_types[$v+1]['id'];
+					}
+					continue;
+				}
+									
 				$_rowTpl = $rowTpl;			
 				$i++;
 				if ($id == $item['id']) {
@@ -2241,21 +2263,13 @@ function buildPaymentTypes($id, $order) {
 				
 				//forms
 				$_formTpl = $formTpl;
-				$class = $item['class'];
-				
-				$classname = $class.'Payment';
-				$classFile = $classname . '.class.php';
-									
-				require_once($modx->config['base_path'].'/assets/snippets/ecart/payments/'.$classFile);
-				
-				$Payment = new $classname($item, $order);
 				
 				$form = $Payment->showForm();
 				
 				if ($id == $item['id']){
 					$_formTpl = str_replace('[+active+]', true, $_formTpl);
 				}
-				$_formTpl = str_replace('[+content+]', $form, $_formTpl);
+				$_formTpl = str_replace('[+form+]', $form, $_formTpl);
 				foreach($item as $k => $v){
 					$_formTpl = str_replace("[+payment.$k+]", $v, $_formTpl);
 				}				

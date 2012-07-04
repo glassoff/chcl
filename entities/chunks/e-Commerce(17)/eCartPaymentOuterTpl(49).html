@@ -9,11 +9,15 @@
 			    $(this).find('input[type=radio]').attr('checked', 'checked');
 			  });
 			});
-		});		
+		});	
+		
+		$('.b-checkout__header input:checked').each(function(){
+			$(this).parents('li').trigger('click');
+		});	
 	});	
 </script>
 
-<h2>Заказ № [+order.id+]</h2>
+<h2 class="b-checkout-oinfo">Заказ № [+order.id+] <a title="Информация о заказе" href="[~[+orderdetailshomeid+]~]?orderid=[+order.id+]" class="b-checkout-oinfo__inner">[+order.quantity+] шт. на <b>[+order.amount+]</b> руб. </a></h2>
 
 [+phx:if=`[+just_ordered+]`:ne=``:then=`
 <div class="cart-comment">
