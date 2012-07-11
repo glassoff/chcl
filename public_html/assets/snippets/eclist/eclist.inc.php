@@ -1090,7 +1090,7 @@ $sql.= "si.pagetitle='111111' ) ";
 		$itemid = $ids;
 		$sql = "SELECT si.*,sc.pagetitle as parenttitle FROM modx_site_ec_items si
 				LEFT JOIN modx_site_content sc ON si.parent = sc.id
-				WHERE(si.parent=(SELECT parent FROM modx_site_ec_items WHERE id=$itemid LIMIT 0,1) AND si.published=1 AND si.deleted=0) ORDER by RAND() LIMIT 0,4";
+				WHERE(si.parent=(SELECT parent FROM modx_site_ec_items WHERE id=$itemid LIMIT 0,1) AND si.published=1 AND si.deleted=0) ORDER by RAND() LIMIT 0,8";
 		$result = $modx->dbQuery($sql);	
 		
 		/*if (empty($ids)) return array();
