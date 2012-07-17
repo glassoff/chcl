@@ -16,6 +16,7 @@ $payment_page = intval($_POST['payment_page']);
 $auto = intval($_POST['auto']);
 $confirm = intval($_POST['confirm']);
 $params = mysql_escape_string($_POST['properties']);
+$icon = mysql_escape_string($_POST['icon']);
 
 
 $actionToTake = "new";
@@ -39,8 +40,8 @@ if ($actionToTake != "new") {
 }
 switch ($actionToTake) {
 	case 'new' :
-		$sql = "INSERT INTO $dbase.`" . $table_prefix . "site_ec_payment_methods` (auto,confirm,name,description,listindex,payment_page,params,active)
-			    VALUES($auto,$confirm,'".$name."','".$description."',".$listindex.",".$payment_page.",'".$params."'," . $active . ")";
+		$sql = "INSERT INTO $dbase.`" . $table_prefix . "site_ec_payment_methods` (auto,confirm,name,description,listindex,payment_page,params,active,icon)
+			    VALUES($auto,$confirm,'".$name."','".$description."',".$listindex.",".$payment_page.",'".$params."'," . $active . ", '".$icon."')";
 		$rs = mysql_query($sql);
 		//echo $sql;
 		if (!$rs) {
@@ -70,7 +71,7 @@ switch ($actionToTake) {
 		break;
 	case 'edit' :		
 		// update the document
-		$sql = "UPDATE $dbase.`" . $table_prefix . "site_ec_payment_methods` SET auto = $auto,confirm = $confirm,name='$name', description='$description', payment_page=$payment_page, listindex=$listindex, active=$active, params='$params' WHERE id=$id;";
+		$sql = "UPDATE $dbase.`" . $table_prefix . "site_ec_payment_methods` SET auto = $auto,confirm = $confirm,name='$name', description='$description', payment_page=$payment_page, listindex=$listindex, active=$active, params='$params', icon='$icon' WHERE id=$id;";
 
 		$rs = mysql_query($sql);
 		if (!$rs) {

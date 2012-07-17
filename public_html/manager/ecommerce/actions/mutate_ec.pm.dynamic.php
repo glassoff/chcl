@@ -359,6 +359,13 @@ function decode(s){
                 <input name="payment_page" type="text" maxlength="255" value="<?php echo htmlspecialchars(stripslashes($content['payment_page']));?>" class="inputBox" style="width:300px;" onchange="" spellcheck="true" />
                 </td>
               </tr>
+              
+             <tr style="height: 24px;">
+                <td valign="top" width="100" align="left"><span class='warning'>»конка</span></td>
+                <td valign="top">
+                <input name="icon" type="text" maxlength="255" value="<?php echo htmlspecialchars(stripslashes($content['icon']));?>" class="inputBox" style="width:300px;" onchange="" spellcheck="true" />
+                </td>
+              </tr>              
                 
               
           <tr>

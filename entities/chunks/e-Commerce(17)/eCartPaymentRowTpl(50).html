@@ -1,4 +1,5 @@
 <li class="b-checkout__header__item [+phx:if=`[+checked+]`:ne=``:then=`current`+]">
     <input type="radio" name="order[payment_method_id]" [+checked+] value="[+id+]">
+    <img src="[+icon+]" width="30" height="30"/>
     [+name+] [+description_+]
 </li>
