@@ -743,7 +743,21 @@ a.next-tovar{
 	*display: inline;
 	*zoom:1;
 	_overflow:hidden;
+	
+	width: 160px;
+	text-align: center;
 }
+	.similar-item .oblect_image{
+		float: none;
+	}
+	.similar-item .object_desc{
+		float: none;
+		margin: 0;
+		width: auto;
+	}
+		.similar-item .object_price{
+			margin-top:3px;
+		}
 
 .regError .message{
 	color:red;
@@ -1170,7 +1184,7 @@ a.next-tovar{
 	}
 		.b-checkout__content__item{
 			display: none;
-			min-height:300px;
+			min-height:350px;
 		}
 		
 	.b-checkout-oinfo{
