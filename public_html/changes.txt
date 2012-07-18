@@ -120,6 +120,6 @@ UPDATE `modx_site_ec_payment_methods` SET `class` = 'yandex' WHERE `modx_site_ec
 
 88 to 86
 
-
-
 UPDATE `modx_site_content` SET `menutitle`=IF(`menutitle`='', `pagetitle`, `menutitle`), `pagetitle`=`longtitle` WHERE `longtitle` != '' AND template IN (11, 46);
+
+ALTER TABLE `modx_site_ec_payment_methods` ADD `icon` VARCHAR( 255 ) NOT NULL AFTER `listindex` 
