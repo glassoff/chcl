@@ -42,10 +42,10 @@ if (file_exists($ec_lang_file)) {
 
 $modx->regClientStartupScript(MODX_SITE_URL . "assets/templates/cd/js/jquery-1.4.4.min.js");
 $modx->regClientStartupScript(MODX_SITE_URL . "assets/templates/cd/js/tooltip.js");
-$modx->regClientStartupScript(MODX_SITE_URL . "assets/templates/cd/js/thickbox.js");
+//$modx->regClientStartupScript(MODX_SITE_URL . "assets/templates/cd/js/thickbox.js");
 //$modx->regClientStartupScript(MODX_SITE_URL . "?id=2959"); 
 $modx->regClientStartupScript(MODX_SITE_URL . "assets/templates/cd/js/cart.js"); 
-$modx->regClientCSS(MODX_SITE_URL . "assets/templates/cd/css/thickbox.css"); 
+//$modx->regClientCSS(MODX_SITE_URL . "assets/templates/cd/css/thickbox.css"); 
 //$modx->regClientStartupScript(MODX_SITE_URL . "assets/templates/cd/js/hover-zoom.js");
 
 $modx->regClientCSS(MODX_SITE_URL . "assets/templates/kidsdream/jqzoom/css/jquery.jqzoom.css");
