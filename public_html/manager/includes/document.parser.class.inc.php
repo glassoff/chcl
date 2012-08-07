@@ -282,7 +282,7 @@ class DocumentParser {
             }
             elseif ($type == 'REDIRECT_HEADER' || empty ($type)) {
                 // check if url has /$base_url 
-                global $base_url, $site_urlad;
+                global $base_url, $site_url;
                 if (substr($url, 0, strlen($base_url)) == $base_url) {
                     // append $site_url to make it work with Location:
                     $url= $site_url . substr($url, strlen($base_url));
@@ -623,6 +623,11 @@ class DocumentParser {
 
         $this->documentOutput= $this->documentContent;
 
+        if ($this->documentGenerated == 1 && $this->documentObject['cacheable'] == 1 && $this->documentObject['type'] == 'document' && $this->documentObject['published'] == 1) {
+            if (!empty($this->sjscripts)) $this->documentObject['__MODxSJScripts__'] = $this->sjscripts;
+            if (!empty($this->jscripts)) $this->documentObject['__MODxJScripts__'] = $this->jscripts;
+        }
+
         // check for non-cached snippet output
         if (strpos($this->documentOutput, '[!') > -1) {
             $this->documentOutput= str_replace('[!', '[[', $this->documentOutput);
@@ -803,8 +808,8 @@ class DocumentParser {
 
 				// Attach Document Groups and Scripts
 				if (is_array($docGroups)) $this->documentObject['__MODxDocGroups__'] = implode(",", $docGroups);
-				if (!empty($this->sjscripts)) $this->documentObject['__MODxSJScripts__'] = $this->sjscripts;
-				if (!empty($this->jscripts)) $this->documentObject['__MODxJScripts__'] = $this->jscripts;
+				//if (!empty($this->sjscripts)) $this->documentObject['__MODxSJScripts__'] = $this->sjscripts;
+				//if (!empty($this->jscripts)) $this->documentObject['__MODxJScripts__'] = $this->jscripts;
 
                 $docObjSerial= serialize($this->documentObject);
                 $cacheContent= $docObjSerial . "<!--__MODxCacheSpliter__-->" . $this->documentContent;
