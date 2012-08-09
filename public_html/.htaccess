@@ -17,6 +17,11 @@
 RewriteEngine on
 Options +FollowSymlinks
 
+# ! only for developing
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} \.jpg$
+RewriteRule ^(.*)$ http://chcl.ru/$1 [QSA,L]
+
 #RewriteCond %{HTTP_HOST} .
 #RewriteCond %{HTTP_HOST} !^www\.chcl\.ru [NC]
 #RewriteRule (.*) http://www.chcl.ru/$1 [R=301,L]
