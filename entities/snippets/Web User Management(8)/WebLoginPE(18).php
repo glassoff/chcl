@@ -145,7 +145,7 @@ include_once MODX_BASE_PATH.'manager/includes/controls/class.phpmailer.php';
             case 'register' :
                 
                 if (in_array('register', $disableServices)){return;}
-                $registration = $wlpe->Register($regType, $groups, $regRequired, $notify, $notifyTpl, $notifySubject);                              
+                $registration = $wlpe->Register($regType, $groups, $regRequired, $notify, $notifyTpl, $notifySubject);  
                 if (isset($regSuccessId) && $regSuccessId !== '')
                 {
                     if ($registration == 'success')

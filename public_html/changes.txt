@@ -101,6 +101,7 @@
   	240
   	2960
 3284 add
+2873 шаблон blank
 
 	mysql:
   	add 'subscribe' to modx_web_user_attributes

@@ -255,6 +255,7 @@ class DocumentParser {
     }
 
     function sendRedirect($url, $count_attempts= 0, $type= '', $responseCode= '') {
+        //$trace = debug_backtrace(false);echo count($trace);print_r($trace);die();
     	if (empty ($url)) {
             return false;
         } else {
@@ -1480,7 +1481,7 @@ class DocumentParser {
             }
 
             // get the template and start parsing!
-            if (!$this->documentObject['template'])
+            if (!$this->documentObject['template'] || $_SERVER['HTTP_X_REQUESTED_WITH']=='XMLHttpRequest')
                 $this->documentContent= "[*content*]"; // use blank template
             else {
                 $sql= "SELECT * FROM " . $this->getFullTableName("site_templates") . " WHERE " . $this->getFullTableName("site_templates") . ".id = '" . $this->documentObject['template'] . "';";
@@ -2973,6 +2974,7 @@ class DocumentParser {
         $parsedMessageString= str_replace("[^t^]", $totalTime, $parsedMessageString);
 
         // Display error
+        header($_SERVER['SERVER_PROTOCOL'] . ' 500 Internal Server Error', true, 500);
         echo $parsedMessageString;
         ob_end_flush();
 

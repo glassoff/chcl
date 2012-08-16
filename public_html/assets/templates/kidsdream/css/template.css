@@ -88,7 +88,7 @@ textarea {
 	}
 */
 input[type=text]:focus, input[type=password]:focus, select:focus, textarea:focus {
-	border: 1px solid #81bb1b;
+	border: 1px solid #f26805;
 	
 	/*outline: 0;*/
 }

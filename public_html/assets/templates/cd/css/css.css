@@ -812,7 +812,7 @@ a.next-tovar{
 	border-radius:15px 15px 15px 15px;
 	width:350px;
 	text-align:left;
-	z-index:9999;
+	z-index:9998;
 	line-height:normal;
 }
 #recallForm p{
@@ -1194,4 +1194,88 @@ a.next-tovar{
 			margin-left:10px;
 			font-size:14px;
 			color:#000;
-		}				
+		}	
+
+
+/* Popup */
+
+.b-overlay {
+	width: 100%;
+	height: 100%;
+	background: #000;
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 9998;
+	opacity: .5;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+	filter: alpha(opacity=50);
+}
+.b-popup {
+	width: 100%;
+	height: 100%;
+	display: none;
+	overflow-x: hidden;
+	overflow-y: scroll;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 9999;
+}
+	.b-popup__table {
+		width: 100%;
+		height: 100%;
+	}
+	.b-popup__center {
+		vertical-align: middle;
+		padding: 10px 0;
+	}
+	.b-popup__wrap {
+		width: 640px;
+		background: #fff;
+		position: relative;
+		margin: auto;
+
+		background:#ffea77;
+		padding:10px;
+		border:3px solid #f26805;
+		border-radius:15px 15px 15px 15px;
+
+		-moz-box-shadow: 0 5px 10px #000;
+		-webkit-box-shadow: 0 5px 10px #000;
+		box-shadow: 0 5px 10px #000;
+	}
+	.b-popup__close {
+		position: absolute;
+		top: 5px;
+		right: 5px;
+		z-index: 1;
+	}
+		.b-popup__close .b-icon {
+			display: block;
+			cursor: pointer;
+
+		    background: url("/assets/templates/kidsdream/images/recall-sprite.png") no-repeat scroll 0 0 transparent;
+		    font-size: 0 !important;
+		    height: 26px;
+		    width: 28px;			
+		}
+		.b-popup__close:hover .b-icon {
+
+		}
+
+/* registration popup */
+.b-popup_register .auth-block, .b-popup_register .reg-block{
+	float: left;
+}
+	.b-popup_register .auth-block{
+
+	}
+	.b-popup_register .reg-block{
+		width: 400px;
+
+		border-left: 1px solid #f26805;
+		padding: 0 0 0 15px;
+		margin: 0 0 0 15px;		
+	}

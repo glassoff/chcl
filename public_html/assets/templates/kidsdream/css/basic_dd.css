@@ -4,13 +4,13 @@
 	margin:0; 
 	margin:0px 0 0px 0;
 	/*position:relative;*/
-	z-index:9999;
+	z-index:9997;
 	/*border:1px solid black;*/
 	/*border-top:1px solid #7bbb02;*/
 	
 }
 .menu ul {
-	z-index:9999;
+	z-index:9997;
 	
 	padding:0; 
 	margin:0;

@@ -1,7 +1,7 @@
 <?php
 include_once("config.inc.php");
 
-$vword = new VeriWord(148,60);
+$vword = new VeriWord(148,30);
 $vword->output_image();
 $vword->destroy_image();
 
@@ -121,7 +121,7 @@ class VeriWord {
 		/* angle for text inclination */
 		$text_angle = rand(-9,9);
 		/* initial text size */
-		$text_size	= 30;
+		$text_size	= 38;
 		/* calculate text width and height */
 		$box 		= imagettfbbox ( $text_size, $text_angle, $text_font, $this->word);
 		$text_width	= $box[2]-$box[0]; //text width

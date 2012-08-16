@@ -9,7 +9,9 @@
 		<div class="orderpage-first__left">
 			[+phx:if=`[+ec.cartamount+]`:gt=`[+ec.limit+]`:then=`
 				<p>Перейдите на страницу оформления заказа для выбора способа доставки и оплаты.</p>
-				<a href="[~240~]" title="Оформить заказ"><img alt="Оформить заказ" src="[(site_url)]/images/order.gif" border="0" /></a>
+				<a href="[~240~]" title="Оформить заказ" style="display:block; margin-top:8px;" id="popup_register-open" data-popup-open="b-popup_register">
+					<img alt="Оформить заказ" src="[(site_url)]/images/order.gif" border="0" />
+				</a>
 			`:else=`
 				{{cartLimitMess}}
 			`+]

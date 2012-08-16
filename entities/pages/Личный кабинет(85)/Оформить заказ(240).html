@@ -5,6 +5,15 @@
 `:else=`                
 
     [+phx:if=`[[web_user_id]]`:is=``:then=`
+
+    [!eCart? &type=`pagecart` &sort=`eci.id` &itemhomeid=`219` &cartHomeId=`[*id*]` &activateorderhomeid=`221` &cartOuterTpl=`eCartOuterTpl` &cartRowTpl=`eCartRowTpl`!]
+
+    <script>
+        $(function(){
+           $('#popup_register-open').trigger('click'); 
+        });
+    </script>
+
     <p>
         Если Вы являетесь зарегистрированным пользователем, пожалуйста, введите логин и пароль:
     </p>

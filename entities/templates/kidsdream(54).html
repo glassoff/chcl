@@ -31,6 +31,9 @@
 
     <script type="text/javascript">var MODX_MEDIA_PATH = "media";</script>
     
+    <script type="text/javascript" src="assets/templates/cd/js/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="assets/templates/cd/js/common.js"></script>
+
     {{top_js}}
 </head>
 <body>
@@ -172,6 +175,12 @@
     </div>
     {{bottom_js}}
     {{pInfo}}
+
+    <div class="b-overlay"></div>
+
+    [!LoadIfNotUserLogin? &output=`popupRegistration`!]
+
+
 </body>
 </html>
 
