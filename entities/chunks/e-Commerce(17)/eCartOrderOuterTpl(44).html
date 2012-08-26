@@ -112,7 +112,16 @@
            <tr>
         <td>Компания</td>
         <td align="left">
-            [+type+] [+company+]<br>
+            <select name="order[type]" id="wlpeUserProfilesType">
+                <option value="Физ.лицо" [+phx:if=`[+order.type+]`:is=`Физ.лицо`:then=`selected`+]>Физ.лицо</option>                                                                                                        
+                <option value="ООО" [+phx:if=`[+order.type+]`:is=`ООО`:then=`selected`+]>ООО</option>
+                <option value="ИП" [+phx:if=`[+order.type+]`:is=`ИП`:then=`selected`+]>ИП</option>
+                <option value="ЗАО" [+phx:if=`[+order.type+]`:is=`ЗАО`:then=`selected`+]>ЗАО</option>
+                <option value="ОАО" [+phx:if=`[+order.type+]`:is=`ОАО`:then=`selected`+]>ОАО</option>
+                <option value="Госпредприятие" [+phx:if=`[+order.type+]`:is=`Госпредприятие`:then=`selected`+]>Госпредприятие</option>
+                <option value="Другое" [+phx:if=`[+order.type+]`:is=`Другое`:then=`selected`+]>Другое</option>
+             </select>
+            <input size="60" type="text" name="order[company]" class="inputBox" value="[+order.company+]">
         </td>
     </tr>
        

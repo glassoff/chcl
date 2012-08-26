@@ -1270,7 +1270,7 @@ a.next-tovar{
 	float: left;
 }
 	.b-popup_register .auth-block{
-
+		width:210px;
 	}
 	.b-popup_register .reg-block{
 		width: 400px;
@@ -1278,4 +1278,39 @@ a.next-tovar{
 		border-left: 1px solid #f26805;
 		padding: 0 0 0 15px;
 		margin: 0 0 0 15px;		
+	}
+
+
+/* custom buttons */
+.b-btn{
+   	background: none repeat scroll 0 0 transparent;
+    border: 0 none;
+    cursor: pointer;
+    font-size: 15px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;	
+
+    padding:0;
+}
+	.b-btn .b-btn__wrap{
+	    padding-left: 0;
+	    padding-right: 0;
+	    width: 100%;
+
+	    background: left top url("../i/btn.png") repeat-x #fff;
+
+	    border: 1px solid #a5b89a;
+	    border-radius: 10px 10px 10px 10px;
+	    box-shadow: 1px 1px 3px #d1e8b2 inset;
+
+	    color: #2d4e02;
+	    line-height: 26px;
+	    padding: 2px 15px 3px;
+	    text-shadow: 0 -1px rgba(0, 0, 0, 0.3);
+	}
+	.b-btn:hover .b-btn__wrap{	
+	    background: left -23px url("../i/btn.png") repeat-x #fff;
+	    box-shadow: 1px 1px 3px #bcec7e inset;
 	}

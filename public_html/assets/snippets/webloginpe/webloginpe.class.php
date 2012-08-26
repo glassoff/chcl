@@ -295,7 +295,9 @@ class WebLoginPE
 		$this->OnWebLogin();
 		$this->ActiveUsers();
 		$this->UserDocumentGroups();
-		if ($type !== 'taconite')
+
+
+		if ($type !== 'taconite' && $_SERVER['HTTP_X_REQUESTED_WITH']!='XMLHttpRequest')
 		{
 			$this->LoginHomePage();
 		}
@@ -1313,7 +1315,7 @@ class WebLoginPE
 				return; 
 			}	
 					
-		$generalElementsArray = array('fname','sname','lname','email','phone', 'town', 'street', 'house','korpus', 'kvartira', 'postcode1', 'bonuscode', 'subscribe');
+		$generalElementsArray = array('fname','sname','lname','email','phone', 'town', 'street', 'house','korpus', 'kvartira', 'postcode1', 'bonuscode', 'subscribe', 'type', 'company');
 		$generalElementsUpdate = array();
 		foreach ($generalElementsArray as $id => $field)
 		{

@@ -5,22 +5,28 @@
     <tbody>
         <tr valign="middle"> 
             <td align="left">E-mail:</td>
-            <td align="left"><input type="text" class="reg_txt1" name="username" maxlength="50" size="20" value=""></td>
+            <td align="left"><input id="authEmailInput" type="text" class="reg_txt1" name="username" maxlength="50" size="20" value="[+post.username+]"></td>
         </tr>
         <tr> 
             <td align="left">Пароль:</td>
-            <td align="left"><input type="password" class="reg_txt1" name="password" maxlength="50" size="20" ></td>
+            <td align="left"><input type="password" class="reg_txt1" name="password" maxlength="50" size="20" value="[+post.password+]"></td>
         </tr>
         <tr>
             <td colspan="2" valign="middle" ><input type="checkbox" id="rememberme" value="on" name="rememberme"> <label for="rememberme">Запомнить меня</label></td>     
         </tr> 
         <tr> 
             <td colspan="2" align="left">
-            <input type="submit"   value=" " style="cursor:pointer;border:0;width: 75px; height: 25px;background:url([(site_url)]/images/enter.gif);"></td>
+
+                <button type="submit" class="b-btn">
+                    <span class="b-btn__wrap">Войти</span> 
+                </button>
+
+            </td>
         </tr>
 </tbody>
 </table>
 </form>
 
+<a href="[~80~]">Забыли пароль?</a> 
 
 

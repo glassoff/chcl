@@ -1,34 +1,39 @@
-//popups
-$('[data-popup-open]').live('click', function(){
+$(function(){
+	//popups
+	$('[data-popup-open]').live('click', function(){
 
-	var popupClass = $(this).data('popup-open');
-	    popupElem = $('.' + popupClass),
-		popupHandler = $(this).data('popup-handler'),
-        popupObj = popupElem.data('popup');
+		var popupClass = $(this).data('popup-open'),
+		    popupElem = $('.' + popupClass),
+			popupHandler = $(this).data('popup-handler'),
+	        popupObj = popupElem.data('popup'),
+	        onshow = $(this).data('popup-onshow'),
+	        onhide = '';
 
-    if (!popupObj) {
-        if(popupHandler){
-            popupObj = eval('new ' + popupHandler + '(popupElem, this)');
-        } else{
-            popupObj = new Popup(popupElem, this);
-        }
+	    if (!popupObj) {
+	        if(popupHandler){
+	            popupObj = eval('new ' + popupHandler + '(popupElem, this)');
+	        } else{
+	            popupObj = new Popup(popupElem, this, onhide, onshow);
+	        }
 
-        popupElem.data('popup', popupObj);
-	}
+	        popupElem.data('popup', popupObj);
+		}
 
-	if (popupClass == 'b-popup_photo') {
-	  popupObj.updateContent(this);
-	}
+		if (popupClass == 'b-popup_photo') {
+		  popupObj.updateContent(this);
+		}
 
-	popupObj.show(this);
+		popupObj.show(this, onhide, onshow);
 
-	return false;
+		return false;
+
+	});
 
 });
 
 /* Popup */
 
-function Popup(container, element, onhide){
+function Popup(container, element, onhide, onshow){
 
 	var _this = this;
 
@@ -40,6 +45,7 @@ function Popup(container, element, onhide){
 	this.content = $('.popup-content', this.container);
 	this.element = element;
 	this.onhide = onhide || function(){};
+	this.onShow = onshow;
 
 	this.container.live('click', function(e){
 		_this.hide();
@@ -62,7 +68,7 @@ function Popup(container, element, onhide){
 			var submit = $(form).find('[type=submit]:first');
 
 			var data = $(form).serializeArray();
-			data.push({name: $(submit).attr('name'), value: $(submit).attr('value')});
+			data.push({name: $(submit).attr('name'), value: $.browser.msie ? $(submit).data('value') : $(submit).attr('value')});
 
 			$.ajax({
 				url: $(form).attr('action'),
@@ -115,11 +121,13 @@ Popup.prototype.getScrollbarWidth = function(){
 
 };
 
-Popup.prototype.show = function(element){
+Popup.prototype.show = function(element, onhide, onshow){
 
 	var _this = this;
 	
 	this.element = element;
+	this.onhide = onhide || function(){};
+	this.onShow = onshow;	
 
 	$(window).bind('resize.popup', function(){
 		_this.resize();
@@ -130,6 +138,7 @@ Popup.prototype.show = function(element){
 	this.container.show();
 	this.overlay.show();
 
+	eval(this.onShow);
 };
 
 Popup.prototype.hide = function(){

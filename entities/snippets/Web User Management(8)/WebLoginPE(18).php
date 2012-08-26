@@ -59,6 +59,34 @@ include_once MODX_BASE_PATH.'manager/includes/controls/class.phpmailer.php';
     $displaySuccessTpl = isset($successTpl) ? $wlpe->Template($successTpl) : $wlpeDefaultSuccessTpl;
     $displayRegisterTpl = isset($registerTpl) ? $wlpe->Template($registerTpl) : $wlpeRegisterTpl;
     $displayRegSuccessTpl = isset($registerSuccessTpl) ? $wlpe->Template($registerSuccessTpl) : $wlpeDefaultFormTpl;
+
+    if($_SERVER['HTTP_X_REQUESTED_WITH']=='XMLHttpRequest'){
+        $displayRegSuccessTpl .= '
+        <div style="color:#5C5C5C;">
+            <button type="submit" class="b-btn" onclick="document.location = document.location;">
+                <span class="b-btn__wrap">Продолжить</span> 
+            </button>  
+            <button type="submit" class="b-btn" onclick="document.location = \'[~85~]\'">
+                <span class="b-btn__wrap">В личный кабинет</span> 
+            </button>             
+            <br>     
+            Автоматически через <span id="reg-sec">10</span> сек.
+
+        </div>
+        <script>
+            var sec = 10, curSec = 0;
+            var regInt = window.setInterval(function(){
+                curSec++;
+                $("#reg-sec").html(sec - curSec);
+                if(curSec >= sec){
+                    clearInterval(regInt);
+                    document.location = document.location;
+                }
+            }, 1000);
+        </script>';    
+
+    }
+
     $displayProfileTpl = isset($profileTpl) ? $wlpe->Template($profileTpl) : $wlpeProfileTpl;
     $displayViewProfileTpl = isset($viewProfileTpl) ? $wlpe->Template($viewProfileTpl) : $wlpeViewProfileTpl;
     $displayUsersOuterTpl = isset($usersOuterTpl) ? $wlpe->Template($usersOuterTpl) : $wlpeUsersOuterTpl;
@@ -384,6 +412,10 @@ include_once MODX_BASE_PATH.'manager/includes/controls/class.phpmailer.php';
 
                 if ($modx->getLoginUserID())
                 {
+                    //ajax login
+                    if($_SERVER['HTTP_X_REQUESTED_WITH']=='XMLHttpRequest'){
+                        return '<script>document.location = document.location;</script>' . $displayLoginFormTpl;
+                    }
                     return $displaySuccessTpl;
                 }
                 return $displayLoginFormTpl;

@@ -59,18 +59,47 @@
  [+phx:if=`[+user.opt+]`:is=`1`:then=`
     <tr valign="middle"> 
         <td  align="left" nowrap="nowrap"><font class="tableheadtext">Организационно-правовая форма:</font></td>
-        <td  align="left">[+user.type+]</td>
+        <td  align="left">
+            <select name="type" id="wlpeUserProfilesType">
+                <option value="Физ.лицо" [+phx:if=`[+user.type+]`:is=`Физ.лицо`:then=`selected`+]>Физ.лицо</option>                                                                                                        
+                <option value="ООО" [+phx:if=`[+user.type+]`:is=`ООО`:then=`selected`+]>ООО</option>
+                <option value="ИП" [+phx:if=`[+user.type+]`:is=`ИП`:then=`selected`+]>ИП</option>
+                <option value="ЗАО" [+phx:if=`[+user.type+]`:is=`ЗАО`:then=`selected`+]>ЗАО</option>
+                <option value="ОАО" [+phx:if=`[+user.type+]`:is=`ОАО`:then=`selected`+]>ОАО</option>
+                <option value="Госпредприятие" [+phx:if=`[+user.type+]`:is=`Госпредприятие`:then=`selected`+]>Госпредприятие</option>
+                <option value="Другое" [+phx:if=`[+user.type+]`:is=`Другое`:then=`selected`+]>Другое</option>
+             </select>
+
+            <script>
+                function companyFields(type){
+                    if(type!='Физ.лицо'){
+                        $('.companyField').css('display', $.browser.msie && ($.browser.version=='7.0' || $.browser.version=='6.0') ? 'block' : 'table-row');
+                    }
+                    else{
+                        $('.companyField').hide();
+                    }
+                }
+                $('#wlpeUserProfilesType').change(function(){
+                    companyFields($(this).val());
+                });
+                
+                $(function(){
+                    companyFields($('#wlpeUserProfilesType').val());    
+                });
+                
+            </script>
+        </td>
     </tr>  
-   <tr valign="middle"> 
+   <tr valign="middle" class="companyField"> 
         <td  align="left" nowrap="nowrap"><font class="tableheadtext">Наименование организации:</font></td>
-        <td  align="left">[+user.company+]</td>
+        <td  align="left"><input id="wlpeUserProfilesCompany"  type="text" name="company" value="[+user.company+]" /></td>
     </tr>  
     <tr valign="middle"> 
         <td  align="left" nowrap="nowrap"><font class="tableheadtext">Контактное лицо:</font></td>
         <td  align="left"><input id="wlpeUserProfilesName"  type="text" name="sname" value="[+user.sname+]" /></td>
     </tr>  
-    <tr valign="middle"> 
-        <td  align="left" valign="middle" nowrap="nowrap"><font class="tableheadtext">Карточка клиента:</font>[+user.clientfileload+]</td>
+    <tr valign="middle" class="companyField"> 
+        <td  align="left" valign="middle" nowrap="nowrap"><font class="tableheadtext">Ваши реквизиты или карточка клиента:</font>[+user.clientfileload+]</td>
         <td  align="left"><input id="wlpeUserClientFile" type="file" name="clientfile"  value="[+post.clientfile+]" />
         
         </td>

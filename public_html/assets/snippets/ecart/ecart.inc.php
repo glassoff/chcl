@@ -3008,14 +3008,14 @@ function buildPaymentTypes($id, $order) {
 		}
 		return $defaultLimit;*/
 		
-		$limit = 5000;
+		$limit = 10000;
 		
 		switch($type){
 			case 'retail':
 				$limit = 1000;
 				break;
 			case 'opt':
-				$limit = 5000;
+				$limit = 10000;
 				break;
 		}
 		return $limit;
