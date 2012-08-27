@@ -193,7 +193,7 @@ $sql = " SELECT *, IF(paid = 1,'".$_lang['ec_order_paid']."','".$_lang['ec_order
 	   " os.name as status_name, pt.name as payment_m,so.id as order_id".
 	   " FROM ".$modx->getFullTableName("site_ec_orders") . " so ".  
 	   " INNER JOIN" .$modx->getFullTableName("ec_order_status"). " os ON  os.id = so.status ".
-	   " INNER JOIN" .$modx->getFullTableName("site_ec_payment_methods"). " pt ON  so.payment_type = pt.id ". 
+	   " LEFT JOIN" .$modx->getFullTableName("site_ec_payment_methods"). " pt ON  so.payment_type = pt.id ". 
 	   " WHERE 1=1 ";
 	
 	
@@ -202,7 +202,7 @@ $sql5 = " SELECT *, IF(paid = 1,'".$_lang['ec_order_paid']."','".$_lang['ec_orde
 	   " os.name as status_name, pt.name as payment_m,so.id as order_id".
 	   " FROM ".$modx->getFullTableName("site_ec_orders") . " so ".  
 	   " INNER JOIN" .$modx->getFullTableName("ec_order_status"). " os ON  os.id = so.status ".
-	   " INNER JOIN" .$modx->getFullTableName("site_ec_payment_methods"). " pt ON  so.payment_type = pt.id ". 
+	   " LEFT JOIN" .$modx->getFullTableName("site_ec_payment_methods"). " pt ON  so.payment_type = pt.id ". 
 	   " WHERE 1=1 and status=5";	
 
 ##
