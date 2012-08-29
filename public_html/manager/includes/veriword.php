@@ -1,7 +1,7 @@
 <?php
 include_once("config.inc.php");
 
-$vword = new VeriWord(148,30);
+$vword = new VeriWord(148,30, $_REQUEST['code']);
 $vword->output_image();
 $vword->destroy_image();
 
@@ -46,10 +46,12 @@ class VeriWord {
 	var $word 		= ""; 
 	var $im_width 	= 0;
 	var $im_height 	= 0;
+	var $code = '';
 
-	function VeriWord($w=200, $h=80) {
+	function VeriWord($w=200, $h=80, $code = '') {
 		/* create session to set word for verification */
 		startCMSSession();
+		$this->code = $code;
 		$this->set_veriword();	
 		$this->im_width 		= $w;
 		$this->im_height 		= $h;
@@ -58,8 +60,13 @@ class VeriWord {
 	function set_veriword() {	
 		/* create session variable for verification, 
 		   you may change the session variable name */
-		$this->word 			= $this->pick_word();	
-		$_SESSION['veriword'] 	= $this->word;
+		$this->word 			= $this->pick_word();
+		if($this->code){
+			$_SESSION['veriwords'][$this->code] 	= $this->word;
+		}
+		else{
+			$_SESSION['veriword'] 	= $this->word;
+		}
 	}
 
 	function output_image() {

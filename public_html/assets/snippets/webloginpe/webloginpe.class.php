@@ -672,7 +672,7 @@ class WebLoginPE
 				if ($field == 'formcode')
 				{
 					$formcode = $_POST['formcode'];
-					if ($_SESSION['veriword'] !== $formcode)
+					if ($_SESSION['veriwords']['reg'] !== $formcode)
 					{
 						$this->invalidFields[] = 'formcode';
 						$this->FormatMessage($this->LanguageArray[6]);
