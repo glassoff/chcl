@@ -940,6 +940,8 @@ $output_add='<br><br><br>
 			$order['shipping'] = $last_order['delivery_type'];
 			$order['payment_method_id]'] = $last_order['payment_type'];
 			$order['phone'] = $last_order['customer_phone'];
+
+			$order['type'] = $last_order['customer_type'];
 			
 			$order['region'] = $this->getRegionIdByName($last_order['customer_region']);
 			
@@ -962,6 +964,7 @@ $output_add='<br><br><br>
 			$order['korpus'] = $user_info['korpus'];
 			$order['kvartira'] = $user_info['kvartira'];
 			$order['phone'] = $user_info['phone'];
+			$order['type'] = $user_info['type'] ? $user_info['type'] : 'Физ.лицо';
 							
 		}
 
@@ -1006,9 +1009,11 @@ $output_add='<br><br><br>
 			
 			if($order['region']==18825) $order['state'] = 'Москва';
 			
-			$required = array('region' => 'Регион', 'state' => 'Город', 'shipping' => 'Способ доставки', 'postcode1' => 'Почтовый индекс', 'street' => 'Улица', 'dom' => 'Дом'/*, 'kvartira' => 'Квартира'*/, 'phone' => 'Контактный телефон', 'sname' => 'Контактное лицо');
+			$required = array('region' => 'Регион', 'state' => 'Город', 'shipping' => 'Способ доставки', 
+				'postcode1' => 'Почтовый индекс', 'street' => 'Улица', 'dom' => 'Дом'/*, 'kvartira' => 'Квартира'*/, 
+				'phone' => 'Контактный телефон', 'sname' => 'Контактное лицо', 'company' => 'Название компании');
 			
-			$order_datas = array_merge($this->getOrderDatas(), $order);
+			$order_datas = array_merge((array)$this->getOrderDatas(), $order);
 			//получаем доступные способы доставки и текущий способ
 			$shippings = $this->getShippings($order_datas);
 			$order_datas['shipping_info'] = $shippings['selected'];
@@ -1022,6 +1027,11 @@ $output_add='<br><br><br>
 					unset($required[$exclude]);
 				}
 			} 
+
+			//делаем необязательным поле названия компании, если физ. лицо
+			if($order['type']=='Физ.лицо'){
+				unset($required['company']);
+			}
 							
 			foreach($required as $fieldName => $fieldDescription)
 			{
@@ -2102,9 +2112,13 @@ $query55= "select postcode from modx_site_ec_regions where name='$region' LIMIT 
 		$result56 = mysql_query($query56);
 	 	$row_attr = mysql_fetch_assoc($result56);
 	 
-		 if ($row_attr['region']!=$region or $row_attr['town']!=$state or $row_attr['street']!=$street or $row_attr['house']!=$dom or $row_attr['postcode1']!=$postcode1  or $row_attr['kvartira']!=$kvartira or $row_attr['korpus']!=$korpus or $row_attr['sname']!=$sname) 
+		 if ($row_attr['region']!=$region or $row_attr['town']!=$state or $row_attr['street']!=$street or 
+		 	$row_attr['house']!=$dom or $row_attr['postcode1']!=$postcode1  or $row_attr['kvartira']!=$kvartira or 
+		 	$row_attr['korpus']!=$korpus or $row_attr['sname']!=$sname or $row_attr['phone']!=$phone)
 		 {
-		 	$query57 = "UPDATE modx_web_user_attributes SET region='$region', town = '$state', street ='$street', house='$dom', postcode1='$postcode1', kvartira='$kvartira', korpus='$korpus', sname='$sname'  WHERE internalKey='$user_id'";
+		 	$query57 = "UPDATE modx_web_user_attributes SET region='$region', town = '$state', street ='$street', 
+		 		house='$dom', postcode1='$postcode1', kvartira='$kvartira', korpus='$korpus', sname='$sname', phone='$phone'  
+		 		WHERE internalKey='$user_id'";
 	   		$result57 = @mysql_query($query57);
 		 
 		 	$user_info = $modx->getWebUserInfo($user_id);

@@ -110,10 +110,10 @@
         </td>
     </tr>
            <tr>
-        <td>Компания</td>
+        <td width="150">Компания</td>
         <td align="left">
             <select name="order[type]" id="wlpeUserProfilesType">
-                <option value="Физ.лицо" [+phx:if=`[+order.type+]`:is=`Физ.лицо`:then=`selected`+]>Физ.лицо</option>                                                                                                        
+                <option value="Физ.лицо" [+phx:if=`[+order.type+]`:is=`Физ.лицо`:then=`selected`+]>Физ.лицо</option>   
                 <option value="ООО" [+phx:if=`[+order.type+]`:is=`ООО`:then=`selected`+]>ООО</option>
                 <option value="ИП" [+phx:if=`[+order.type+]`:is=`ИП`:then=`selected`+]>ИП</option>
                 <option value="ЗАО" [+phx:if=`[+order.type+]`:is=`ЗАО`:then=`selected`+]>ЗАО</option>
@@ -121,7 +121,21 @@
                 <option value="Госпредприятие" [+phx:if=`[+order.type+]`:is=`Госпредприятие`:then=`selected`+]>Госпредприятие</option>
                 <option value="Другое" [+phx:if=`[+order.type+]`:is=`Другое`:then=`selected`+]>Другое</option>
              </select>
-            <input size="60" type="text" name="order[company]" class="inputBox" value="[+order.company+]">
+             &nbsp;
+             [+phx:if=`[+order.type+]`:ne=`Физ.лицо`:then=`
+             	<input size="60" type="text" id="wlpeUserProfilesCompany" name="order[company]" class="inputBox" value="[+order.company+]">
+             `+]
+            
+            <script>
+            	$(function(){
+            		$('#wlpeUserProfilesType').change(function(){
+            			if($(this).val()=='Физ.лицо')
+            				$('#wlpeUserProfilesCompany').hide();
+            			else
+            				$('#wlpeUserProfilesCompany').show();
+            		});
+            	});
+            </script>
         </td>
     </tr>
        
@@ -151,7 +165,11 @@
 	После оформления заказа наши менеджеры свяжутся с вами для согласования удобного для вас способа оплаты.
 </p>
 <div class="space1"></div>
-[+phx:if=`[+ec.overweight+]`:is=`0`:then=`<input type="submit" name="placeorder" class="" value="Оформить заказ">`+]
+[+phx:if=`[+ec.overweight+]`:is=`0`:then=`
+    <button type="submit" class="b-btn" name="placeorder" value="placeorder" data-value="placeorder">
+        <span class="b-btn__wrap">Оформить заказ</span> 
+    </button>	
+`+]
 </form>
 
 `:else=`
