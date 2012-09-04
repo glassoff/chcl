@@ -942,6 +942,7 @@ $output_add='<br><br><br>
 			$order['phone'] = $last_order['customer_phone'];
 
 			$order['type'] = $last_order['customer_type'];
+			$order['company'] = $last_order['customer_company'];
 			
 			$order['region'] = $this->getRegionIdByName($last_order['customer_region']);
 			
@@ -965,6 +966,7 @@ $output_add='<br><br><br>
 			$order['kvartira'] = $user_info['kvartira'];
 			$order['phone'] = $user_info['phone'];
 			$order['type'] = $user_info['type'] ? $user_info['type'] : '‘из.лицо';
+			$order['company'] = $user_info['company'];
 							
 		}
 
